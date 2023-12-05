@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" type="text/css" href="../style/style.css">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+
+
+
+</head>
+<body>
+    <header>
+        <!-- Logo strony -->
+        <img id="logo" src="../style/img/logo.jpg" alt="Logo Twojej Strony"> <!-- Ścieżka do logo w folderze "style" -->
+    
+        <!-- Nazwa strony -->
+        <h1>Touristicle</h1>
+
+</header>
+
+
+        <div class="menu">
+        <ul>
+            <li><a href="#">Strona główna</a></li>
+            <li class="dropdown">
+                <a href="#">Konto</a>
+                <ul class="submenu">
+                    <li><a href=".\login.html">Logowanie</a></li>
+                    <li><a href=".\signup.html">Rejestracja</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Inna opcja</a></li>
+        </ul>
+    </div>
+    
+    <div class="content">
+        <div id="map" class="map-container"></div>
+        <div class="control-panel">
+            <div id="filter-container">
+              
+                <label>Atrakcje turystyczne:</label>
+                <br>
+                <input type="checkbox" id="museumCheckbox" onclick="filterMarkers()"> Muzea
+                <br>
+                <input type="checkbox" id="viewpointCheckbox" onclick="filterMarkers()"> Punkty widokowe
+                <br>
+                <input type="checkbox" id="natureMonumentCheckbox" onclick="filterMarkers()"> Pomniki przyrody
+                <br>
+                <input type="checkbox" id="entertainmentCheckbox" onclick="filterMarkers()"> Rozrywka
+                <br>
+                <input type="checkbox" id="cavesCheckbox" onclick="filterMarkers()"> Jaskinie
+                <br>
+                <br>
+                <label>Przydatne dla turystów:</label>
+                <br>
+                <input type="checkbox" id="touristInfoCheckbox" onclick="filterMarkers()"> Informacja turystyczna
+                <br>
+                <input type="checkbox" id="atmsCheckbox" onclick="filterMarkers()"> Bankomaty
+                <br>
+                <input type="checkbox" id="restroomsCheckbox" onclick="filterMarkers()"> Toalety
+                <br>
+                <input type="checkbox" id="restaurantsCheckbox" onclick="filterMarkers()"> Restauracje
+                <br>
+                <input type="checkbox" id="barCheckbox" onclick="filterMarkers()"> Bary
+
+                
+
+                <br>
+                <button onclick="resetMarkers()">Resetuj</button>
+            </div>
+        </div>
+        
+    </div>
+    <form method="post">
+
+
+        <footer>
+            <small>
+              Copyright © 2023 Patryja Oświęcimska
+            </small>
+          </footer>       
+    </form>
+    <script src="\JavaScripts\markes.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    
+
+</body>
+</html>
