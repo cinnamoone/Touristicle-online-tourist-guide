@@ -4,7 +4,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <link rel="stylesheet" type="text/css" href="../style/style.css">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 
@@ -33,13 +34,15 @@
                     <li><a href=".\signup.html">Rejestracja</a></li>
                 </ul>
             </li>
-            <li><a href="#">Inna opcja</a></li>
+            <li><a href="#">O projekcie</a></li>
         </ul>
     </div>
     
     <div class="content">
         <div id="map" class="map-container"></div>
-        <div class="control-panel">
+        <div class="control-panel" id="filterPanel">
+            <button id="toggleFilterBtn" onclick="toggleFilterPanel()">Filtruj zawartość</button>
+
             <div id="filter-container">
               
                 <label>Atrakcje turystyczne:</label>
@@ -63,7 +66,7 @@
                 <br>
                 <input type="checkbox" id="restroomsCheckbox" onclick="filterMarkers()"> Toalety
                 <br>
-                <input type="checkbox" id="restaurantsCheckbox" onclick="filterMarkers()"> Restauracje
+                <input type="checkbox" id="restaurantCheckbox" onclick="filterMarkers()"> Restauracje
                 <br>
                 <input type="checkbox" id="barCheckbox" onclick="filterMarkers()"> Bary
 
@@ -72,6 +75,8 @@
                 <br>
                 <button onclick="resetMarkers()">Resetuj</button>
             </div>
+                    
+
         </div>
         
     </div>
@@ -85,6 +90,7 @@
           </footer>       
     </form>
     <script src="\JavaScripts\markes.js"></script>
+    <script src="\JavaScripts\mapa.js"></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     
 
