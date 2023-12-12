@@ -8,7 +8,8 @@
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
 
 
 
@@ -16,15 +17,13 @@
 <body>
     <header>
         <!-- Logo strony -->
-        <img id="logo" src="../style/img/logo.jpg" alt="Logo Twojej Strony"> <!-- Ścieżka do logo w folderze "style" -->
-    
-        <!-- Nazwa strony -->
-        <h1>Touristicle</h1>
+        <div class="logo-container">
+            <img id="logo" src="../style/img/logo.jpg" alt="Logo Twojej Strony">
 
-</header>
-
-
-        <div class="menu">
+            <!-- Nazwa strony -->
+            <h1>Touristicle</h1>
+        </div>
+<div class="menu">
         <ul>
             <li><a href="#">Strona główna</a></li>
             <li class="dropdown">
@@ -36,49 +35,54 @@
             </li>
             <li><a href="#">O projekcie</a></li>
         </ul>
+</header>
+
+
+        
+
+        
     </div>
     
-    <div class="content">
-        <div id="map" class="map-container"></div>
-        <div class="control-panel" id="filterPanel">
-            <button id="toggleFilterBtn" onclick="toggleFilterPanel()">Filtruj zawartość</button>
 
-            <div id="filter-container">
-              
-                <label>Atrakcje turystyczne:</label>
-                <br>
-                <input type="checkbox" id="museumCheckbox" onclick="filterMarkers()"> Muzea
-                <br>
-                <input type="checkbox" id="viewpointCheckbox" onclick="filterMarkers()"> Punkty widokowe
-                <br>
-                <input type="checkbox" id="natureMonumentCheckbox" onclick="filterMarkers()"> Pomniki przyrody
-                <br>
-                <input type="checkbox" id="entertainmentCheckbox" onclick="filterMarkers()"> Rozrywka
-                <br>
-                <input type="checkbox" id="cavesCheckbox" onclick="filterMarkers()"> Jaskinie
-                <br>
-                <br>
-                <label>Przydatne dla turystów:</label>
-                <br>
-                <input type="checkbox" id="touristInfoCheckbox" onclick="filterMarkers()"> Informacja turystyczna
-                <br>
-                <input type="checkbox" id="atmsCheckbox" onclick="filterMarkers()"> Bankomaty
-                <br>
-                <input type="checkbox" id="restroomsCheckbox" onclick="filterMarkers()"> Toalety
-                <br>
-                <input type="checkbox" id="restaurantCheckbox" onclick="filterMarkers()"> Restauracje
-                <br>
-                <input type="checkbox" id="barCheckbox" onclick="filterMarkers()"> Bary
+    <div class="control-panel" id="filterPanel">
+        <button class="button" id="button" onclick="toggleFilterPanel()">Filtruj zawartość</button>
+        <div id="filter-container">
+          
+            <label>Atrakcje turystyczne:</label>
+            <br>
+            <input type="checkbox" id="museumCheckbox" onclick="filterMarkers()"> Muzea
+            <br>
+            <input type="checkbox" id="viewpointCheckbox" onclick="filterMarkers()"> Punkty widokowe
+            <br>
+            <input type="checkbox" id="natureMonumentCheckbox" onclick="filterMarkers()"> Pomniki przyrody
+            <br>
+            <input type="checkbox" id="entertainmentCheckbox" onclick="filterMarkers()"> Rozrywka
+            <br>
+            <input type="checkbox" id="cavesCheckbox" onclick="filterMarkers()"> Jaskinie
+            <br>
+            <br>
+            <label>Przydatne dla turystów:</label>
+            <br>
+            <input type="checkbox" id="touristInfoCheckbox" onclick="filterMarkers()"> Informacja turystyczna
+            <br>
+            <input type="checkbox" id="atmsCheckbox" onclick="filterMarkers()"> Bankomaty
+            <br>
+            <input type="checkbox" id="restroomsCheckbox" onclick="filterMarkers()"> Toalety
+            <br>
+            <input type="checkbox" id="restaurantCheckbox" onclick="filterMarkers()"> Restauracje
+            <br>
+            <input type="checkbox" id="barCheckbox" onclick="filterMarkers()"> Bary
 
+            
+
+            <br>
+            <button onclick="resetMarkers()">Resetuj</button>
+        </div>
                 
 
-                <br>
-                <button onclick="resetMarkers()">Resetuj</button>
-            </div>
-                    
-
-        </div>
-        
+    </div>
+    <div class="content">
+        <div id="map" class="map-container"></div> 
     </div>
     <form method="post">
 

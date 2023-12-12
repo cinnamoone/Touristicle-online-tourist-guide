@@ -1,34 +1,60 @@
 /* Styl całego dokumentu */
 body {
     font-family: Arial, sans-serif;
-    background-color: #A2DFE1;
+    background-color: #d1eff0;
     margin: 0;
     padding: 0;
 }
 
 /* Styl nagłówka */
 header {
-    height: 50px;
-    background-color: #044f63; /* Kolor tła nagłówka */
-    color: #fff; /* Kolor tekstu w nagłówku */
-    padding: 5px; /* Wielkość wewnętrznych marginesów */
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: left;
+    background-color: #044f63;
+    padding: 10px;
+    max-height: 50px;
+    
 }
 
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+#logo {
+    margin-right: 10px; /* Dodany margines między logo a nazwą strony */
+}
+
+
+#filter-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1001; /* Higher than the filter-container */
+}
+
+#filter-container {
+    display: none;
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    background: rgba(255, 255, 255, 0.902);
+    padding: 10px;
+    z-index: 1000;
+}
 /* Styl dla logo */
 #logo {
-    max-width: 40px; /* Maksymalna szerokość logo */
+    max-width: 40px; 
 }
 .menu {
-    background-color: #A2DFE1;
-    height: 50px;
+    height: 5vh;
     text-align: right;
     font-size: 20px;
     color: #ffffff;
 }
 .menu ul {
+    
     list-style: none;
     padding: 0;
     margin: 0;
@@ -36,13 +62,13 @@ header {
     
 }
 ul a {
-    text-decoration: none; /* Usunięcie podkreślenia */
-    color: #000; /* Zmiana koloru tekstu na czarny */
+    text-decoration: none; 
+    color: #ffffff; 
 }
 
-/* Styl dla linków wewnątrz elementu <ul> po najechaniu myszką */
+
 ul a:hover {
-    color: #8d42c7; /* Zmiana koloru tekstu na niebieski po najechaniu myszką */
+    color: #8d42c7; 
 }
 
 .menu li {
@@ -67,17 +93,16 @@ ul a:hover {
     display: block;
 }
 
-/* Styl głównego kontenera */
+
 .content {
     display: flex;
     width: 100%;
 }
 
-/* Styl kontenera mapy */
-/* Styl kontenera ma5py */
+
 .map-container {
-    width: 100%; /* Mapa zajmuje 75% dostępnej szerokości */
-    height: 85vh;
+    width: 100%; 
+    height: 86vh;
     border: 2px solid #333;
 }
   #toggleFilterBtn {
@@ -86,21 +111,10 @@ ul a:hover {
 	background-color: rgba(255, 255, 255, 0.938);
 	cursor: pointer;
   }
-/* Styl panelu sterowania */
 
-.control-panel {
-	width: 50px;
-	background-color: #ffffff34;
-	border: 1px solid #ccc;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	overflow: hidden;
-	transition: width 0.3s ease;
-  }
+
+
   
-  #filter-container {
-	padding: 10px;
-	display: none;
-  }
   
 
 
@@ -140,7 +154,23 @@ ul a:hover {
 
 #filter-container button {
     background-color: #4c8baf;
-    color: white;
+    color: rgb(255, 255, 255);
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.button {
+    background-color: #4c8baf;
+    color: rgb(255, 255, 255);
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.button:hover {
+    background-color: #90719f;
+    color: rgb(255, 255, 255);
     padding: 8px 12px;
     border: none;
     border-radius: 4px;
@@ -148,7 +178,7 @@ ul a:hover {
 }
 
 #filter-container button:hover {
-    background-color: #45a049;
+    background-color: #8339dd;
 }
 
 footer {

@@ -47,7 +47,15 @@ markers.forEach(marker => {
 });
 
 var markersLayer = L.layerGroup(markers).addTo(map);
+var filterContainer = document.getElementById('filter-container');
 
+function toggleFilterPanel() {
+    if (filterContainer.style.display === 'none' || filterContainer.style.display === '') {
+        filterContainer.style.display = 'block';
+    } else {
+        filterContainer.style.display = 'none';
+    }
+}
 function filterMarkers() {
     var museumChecked = document.getElementById('museumCheckbox').checked;
     var viewpointChecked = document.getElementById('viewpointCheckbox').checked;
