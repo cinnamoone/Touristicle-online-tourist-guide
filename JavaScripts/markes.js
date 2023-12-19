@@ -1,4 +1,5 @@
-    
+
+
             var map = L.map('map').setView([50.0614300, 19.9365800], 15);
             L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -22,8 +23,8 @@ markers.forEach(marker => {
         case 'Muzeum A':
             marker.info = {
                 zdjecie: 'laswolski.jpg',
-                adres: 'ul. Muzealna 1, Miasto A',
-                ocena: 4.2,
+                adres: 'Kraków',
+                ocena: 4.4,
                 komentarze: ['Bardzo interesujące!', 'Warto odwiedzić.']
             };
             break;
@@ -48,6 +49,20 @@ markers.forEach(marker => {
 
 var markersLayer = L.layerGroup(markers).addTo(map);
 var filterContainer = document.getElementById('filter-container');
+
+var customControl = L.Control.extend({
+    options: {
+      position: 'topleft'
+    },
+
+    onAdd: function (map) {
+      var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+      container.innerHTML = '<button class="custom-button" onclick="toggleFilterPanel()">Filtruj</button>';
+      return container;
+    }
+  });
+
+  map.addControl(new customControl());
 
 function toggleFilterPanel() {
     if (filterContainer.style.display === 'none' || filterContainer.style.display === '') {

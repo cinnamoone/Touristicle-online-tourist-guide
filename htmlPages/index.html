@@ -10,7 +10,18 @@
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
     <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+    <style>
 
+        .custom-button {
+          padding: 2px 2px; /* Wielkość wewnętrznego marginesu */
+          border-radius: 2px; /* Zaokrąglenie rogów */
+          cursor: pointer; /* Zmień kursor na wskaźnik */
+          font-size: 11px; /* Rozmiar tekstu */
+          w
+        }
+    
+        
+      </style>
 
 
 </head>
@@ -25,7 +36,7 @@
         </div>
 <div class="menu">
         <ul>
-            <li><a href="#">Strona główna</a></li>
+            <li><a href=".\main.html">Strona główna</a></li>
             <li class="dropdown">
                 <a href="#">Konto</a>
                 <ul class="submenu">
@@ -34,18 +45,12 @@
                 </ul>
             </li>
             <li><a href="#">O projekcie</a></li>
-        </ul>
+        </ul> </div>
 </header>
 
 
-        
-
-        
-    </div>
-    
-
     <div class="control-panel" id="filterPanel">
-        <button class="button" id="button" onclick="toggleFilterPanel()">Filtruj zawartość</button>
+        
         <div id="filter-container">
           
             <label>Atrakcje turystyczne:</label>
@@ -89,10 +94,13 @@
 
         <footer>
             <small>
-              Copyright © 2023 Patryja Oświęcimska
+                &copy; Copyright © 2023 Patryja Oświęcimska
             </small>
           </footer>       
     </form>
+      <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+  
     <script src="\JavaScripts\markes.js"></script>
     <script src="\JavaScripts\mapa.js"></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>

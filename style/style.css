@@ -1,30 +1,32 @@
 /* Styl całego dokumentu */
 body {
     font-family: Arial, sans-serif;
-    background-color: #d1eff0;
+    background-image: url('../style/img/background.png'); 
+    background-size: cover;
+    background-position: center;
     margin: 0;
-    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Styl nagłówka */
 header {
+    background-color: rgba(0, 0, 0, 0.7); 
+    padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #044f63;
-    padding: 10px;
-    max-height: 50px;
-    
+    max-height: 4vh;
+    color: #ffffffa6;
 }
+
 
 .logo-container {
     display: flex;
     align-items: center;
 }
 
-#logo {
-    margin-right: 10px; /* Dodany margines między logo a nazwą strony */
-}
 
 
 #filter-btn {
@@ -48,7 +50,7 @@ header {
     max-width: 40px; 
 }
 .menu {
-    height: 5vh;
+    height: 2vh;
     text-align: right;
     font-size: 20px;
     color: #ffffff;
@@ -97,12 +99,12 @@ ul a:hover {
 .content {
     display: flex;
     width: 100%;
+    flex-grow: 1;
 }
 
 
 .map-container {
     width: 100%; 
-    height: 86vh;
     border: 2px solid #333;
 }
   #toggleFilterBtn {
@@ -146,7 +148,7 @@ ul a:hover {
 
 .info-container img {
     max-width: 600px;  /* Ustawia maksymalną szerokość na 100% szerokości kontenera */
-    height: auto;     /* Automatyczne dostosowanie wysokości dla zachowania proporcji */
+    max-height: 300px;     /* Automatyczne dostosowanie wysokości dla zachowania proporcji */
     display: block;   /* Eliminuje dodatkowe marginesy, które mogą występować dla elementu img */
     margin: 0 auto;   /* Centralizuje obraz w obrębie kontenera */
 }
@@ -184,11 +186,10 @@ ul a:hover {
 footer {
     text-align: center;
     padding: 5px;
-    background-color: #044f63;
-    color: #000;
+    background-color:rgba(0, 0, 0, 0.7); 
+    color: #ffffff6c;
     margin-top: auto;
-  }
-
+}
 
 
 
