@@ -1,0 +1,28 @@
+section {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+/* Stylizacja paneli użytkownika */
+.user-panel {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px;
+}
+
+.user-panel h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.user-panel ul {
+    list-style: none;
+}
+
+.user-panel li {
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+}

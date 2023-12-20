@@ -56,19 +56,22 @@ ul a:hover {
     display: inline;
     
     margin-right: 20px;
-    padding: 20px;
+    padding: 5px;
 }
 
 .menu .dropdown {
     position: relative;
+    padding-top: none;
 }
 
 .menu .submenu {
     display: none;
-    background-color: rgb(26, 159, 159, 0.7);
+    text-align: left;
+    background-color: rgba(4, 79, 99, 0.9);
     position: absolute;
     top: 100%;
     left: 0;
+    width: 150px;
 }
 
 .menu .dropdown:hover .submenu {
@@ -83,7 +86,7 @@ ul a:hover {
     align-items: center;
 }
 header {
-    background-color: rgba(0, 0, 0, 0.7); 
+    background-color: rgba(0, 0, 0, 0.8); 
     padding: 20px;
     display: flex;
     justify-content: space-between;
@@ -112,7 +115,7 @@ section {
     align-items: center;
     text-align: center;
     flex-grow: 1;
-    padding: 20vh;
+    padding: 13vh;
     color: #000000; /* Kolor tekstu w sekcji */
 }
 
@@ -124,8 +127,6 @@ footer {
     margin-top: auto;
 }
 
-input[type="text"] {
-    padding: 10px;
-    font-size: 16px;
-    
-}
+
+
+

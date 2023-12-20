@@ -1,7 +1,7 @@
 /* Styl całego dokumentu */
 body {
     font-family: Arial, sans-serif;
-    background-image: url('../style/img/background.png'); 
+    background-color: rgb(143, 203, 235); 
     background-size: cover;
     background-position: center;
     margin: 0;
@@ -12,7 +12,7 @@ body {
 
 /* Styl nagłówka */
 header {
-    background-color: rgba(0, 0, 0, 0.7); 
+    background-color: rgba(0, 0, 0, 0.80); 
     padding: 20px;
     display: flex;
     justify-content: space-between;
@@ -39,11 +39,12 @@ header {
 #filter-container {
     display: none;
     position: absolute;
-    top: 20%;
+    top: 15%;
     left: 5%;
     background: rgba(255, 255, 255, 0.902);
     padding: 10px;
     z-index: 1000;
+    border-radius: 6px;
 }
 /* Styl dla logo */
 #logo {
@@ -76,19 +77,22 @@ ul a:hover {
 .menu li {
     display: inline;
     margin-right: 20px;
-    padding: 20px;
+    padding: 5px;
 }
 
 .menu .dropdown {
     position: relative;
+    z-index: 999;
 }
 
 .menu .submenu {
     display: none;
-    background-color: rgb(26, 159, 159, 0.7);
+    font-size: medium;
+    background-color: rgba(4, 79, 99, 0.9);
     position: absolute;
     top: 100%;
     left: 0;
+    z-index: 999;
 }
 
 .menu .dropdown:hover .submenu {
@@ -106,6 +110,10 @@ ul a:hover {
 .map-container {
     width: 100%; 
     border: 2px solid #333;
+    #map {
+        z-index: 1;
+    }
+    
 }
   #toggleFilterBtn {
 	width: 100%;
@@ -186,7 +194,7 @@ ul a:hover {
 footer {
     text-align: center;
     padding: 5px;
-    background-color:rgba(0, 0, 0, 0.7); 
+    background-color:rgba(0, 0, 0, 0.8); 
     color: #ffffff6c;
     margin-top: auto;
 }

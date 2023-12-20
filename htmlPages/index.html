@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script src="\JavaScripts\simulate.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
     <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
     <style>
@@ -34,6 +35,8 @@
             <!-- Nazwa strony -->
             <h1>Touristicle</h1>
         </div>
+        <div id="loggedInUser" style="display: none"></div>
+
 <div class="menu">
         <ul>
             <li><a href=".\main.html">Strona główna</a></li>
@@ -54,7 +57,7 @@
         <div id="filter-container">
           
             <label>Atrakcje turystyczne:</label>
-            <br>
+            
             <input type="checkbox" id="museumCheckbox" onclick="filterMarkers()"> Muzea
             <br>
             <input type="checkbox" id="viewpointCheckbox" onclick="filterMarkers()"> Punkty widokowe
@@ -67,7 +70,7 @@
             <br>
             <br>
             <label>Przydatne dla turystów:</label>
-            <br>
+            
             <input type="checkbox" id="touristInfoCheckbox" onclick="filterMarkers()"> Informacja turystyczna
             <br>
             <input type="checkbox" id="atmsCheckbox" onclick="filterMarkers()"> Bankomaty
@@ -80,8 +83,9 @@
 
             
 
-            <br>
-            <button onclick="resetMarkers()">Resetuj</button>
+        </br>
+    </br>
+            <center><button onclick="resetMarkers()">Wyczyść filtry</button></center>
         </div>
                 
 
