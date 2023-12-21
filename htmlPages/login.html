@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-    <script src="\JavaScripts\simulate.js"></script>
+    <script src="\JavaScripts\login.js"></script>
    
     <!--Stylesheet-->
     <style media="screen">
@@ -155,20 +155,17 @@ button{
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
-    <form method="post">
+    <form method="post" onsubmit="login(event)">
         <h3>Logowanie</h3>
-        <form method="post" onsubmit="login(event)">
+    
         <label for="email">Email</label>
         <input type="text" placeholder="" id="email" name="email" required>
-
+    
         <label for="password">Hasło</label>
         <input type="password" placeholder="" id="password" name="pass" required>
-
-
-        <button onclick='login(event)'>Zaloguj</button> 
-        </br>
-        </br>
-        </br>
+    
+        <button type="submit">Zaloguj</button>
+        <br><br><br>
         <center><a href="signup.html" style="color: #13b6d6; font-size: 14px;">Nie masz konta? Stwórz je już teraz!</a></center>
     </form>
         <div id="userInfo" style="display: none;">

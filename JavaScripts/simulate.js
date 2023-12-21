@@ -1,74 +1,52 @@
-const users = [
-  { email: 'user1@example.com', password: 'password1', fullName: 'John Doe'},
-  { email: 'user2@example.com', password: 'password2', fullName: 'Jane Doe'}
-];
+const request = indexedDB.open("usersDB", 2); // Zwiększ numer wersji bazy danych
 
-// Function to check if a user is logged in
-function checkLoggedInUser() {
-  return JSON.parse(localStorage.getItem('loggedInUser'));
-}
+request.onupgradeneeded = (event) => {
+  const db = event.target.result;
 
-// Function to update the dropdown menu based on login status
-function updateDropdownMenu() {
-  const dropdownMenu = document.querySelector('.dropdown ul.submenu');
-
-  // Check if a user is logged in
-  const loggedInUser = checkLoggedInUser();
-
-  if (dropdownMenu) {
-    if (loggedInUser) {
-      // If logged in, update the menu with "Moje Konto" and "Wyloguj"
-      dropdownMenu.innerHTML = `
-        <li><a href="#">Moje Konto</a></li>
-        <li><a href="#" onclick="logout()">Wyloguj</a></li>
-      `;
-    } else {
-      // If not logged in, display the default "Logowanie" and "Rejestracja"
-      dropdownMenu.innerHTML = `
-        <li><a href=".\login.html">Logowanie</a></li>
-        <li><a href=".\signup.html">Rejestracja</a></li>
-      `;
-    }
+  // Utwórz magazyn danych dla użytkowników, jeśli nie istnieje
+  if (!db.objectStoreNames.contains("users")) {
+    const objectStore = db.createObjectStore("users", { keyPath: "email" });
+    // Dodaj indeksy dla pól, które mogą być używane do wyszukiwania
+    objectStore.createIndex("username", "username", { unique: false });
   }
-}
 
-// Function to handle logout
-function logout() {
-  localStorage.removeItem('loggedInUser');
-  updateDropdownMenu(); // Update menu after logout
-}
-
-// Function to handle login
-// Function to handle login
-function login(event) {
-  event.preventDefault();
-
-  const emailInput = document.getElementById('email').value;
-  const passwordInput = document.getElementById('password').value;
-
-  const user = users.find(u => u.email === emailInput && u.password === passwordInput);
-
-  if (user) {
-    localStorage.setItem('loggedInUser', JSON.stringify(user));
-
-    const loggedInUserElement = document.getElementById('loggedInUser');
-    const loginFormElement = document.getElementById('loginForm');
-    const userInfoElement = document.getElementById('userInfo');
-    const errorElement = document.getElementById('error');
-
-    if (loggedInUserElement && loginFormElement && userInfoElement && errorElement) {
-      loggedInUserElement.innerText = user.fullName;
-      loginFormElement.style.display = 'none';
-      userInfoElement.style.display = 'block';
-      errorElement.style.display = 'none';
-      console.log('Setting user details and updating dropdown menu');
-   }
-   
-   updateDropdownMenu();
-   console.log('After updating dropdown menu');
-   
-    window.location.href = 'konto.html';
-  } else {
-    alert('Invalid email or password');
+  // Utwórz magazyn danych dla komentarzy
+  if (!db.objectStoreNames.contains("comments")) {
+    db.createObjectStore("comments", { autoIncrement: true });
   }
+
+  // Utwórz magazyn danych dla polubionych postów
+  if (!db.objectStoreNames.contains("likedPosts")) {
+    db.createObjectStore("likedPosts", { autoIncrement: true });
+  }
+
+  // Utwórz magazyn danych dla dodanych postów
+  if (!db.objectStoreNames.contains("addedPosts")) {
+    db.createObjectStore("addedPosts", { autoIncrement: true });
+  }
+};
+
+// ... (pozostała część kodu bez zmian)
+
+// Funkcja do dodawania komentarza do bazy danych
+function addComment(userEmail, commentText) {
+  const db = request.result;
+  const commentTransaction = db.transaction(["comments"], "readwrite");
+  const commentObjectStore = commentTransaction.objectStore("comments");
+
+  // Dodaj nowy komentarz do magazynu danych
+  const newComment = { userEmail, commentText };
+  const requestAddComment = commentObjectStore.add(newComment);
+
+  requestAddComment.onsuccess = () => {
+    console.log('Dodano komentarz do bazy danych');
+  };
+
+  requestAddComment.onerror = (event) => {
+    console.error('Błąd podczas dodawania komentarza:', event.target.error);
+  };
+
+  commentTransaction.oncomplete = () => {
+    console.log('Transakcja zakończona');
+  };
 }

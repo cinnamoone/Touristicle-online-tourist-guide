@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-
+    <script src="\JavaScripts\register.js"></script>
     <!-- firebase-->
 
     <!--Stylesheet-->
@@ -178,17 +178,17 @@
         <h3>Rejestracja</h3>
 
         <label for="username">Nazwa użytkownika</label>
-        <input type="text" placeholder="" name="username" id="username">
+        <input type="text" placeholder="" name="username" id="username" required>
         
         <label for="email">Email</label>
-        <input type="email" placeholder="" name="email" id="email">
+        <input type="email" placeholder="" name="email" id="email" required>
 
         <label for="password">Hasło</label>
-        <input type="password" placeholder="" id="password" name="password">
+        <input type="password" placeholder="" id="password" name="password" required>
 
-        <label for="password2">Potwierdź hasło</label>
-        <input type="password" placeholder="" id="password2" name="password2">
-        <button onclick='register()'>Zarejestruj się</button>
+        <label for="confirmPassword">Potwierdź hasło</label>
+        <input type="password" placeholder="" id="confirmPassword" name="confirmPassword" required>
+        <button onclick='registerUser()'>Zarejestruj się</button>
         <br></br>
         <br></br>
         <center><a href="login.html" style="color: #13b6d6; font-size: 14px;">Posiadasz już konto? Zaloguj się!</a></center>
