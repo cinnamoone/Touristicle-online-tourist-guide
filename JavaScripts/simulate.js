@@ -50,3 +50,21 @@ function addComment(userEmail, commentText) {
     console.log('Transakcja zakończona');
   };
 }
+
+
+
+
+
+
+
+
+
+
+
+        function redirectToHomepage() {
+            // Tutaj ustaw adres URL, do którego chcesz przekierować użytkownika
+            var homepageUrl = "main.html";
+            
+            // Wykonaj przekierowanie
+            window.location.href = homepageUrl;
+        }

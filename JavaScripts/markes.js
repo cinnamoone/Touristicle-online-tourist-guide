@@ -4,24 +4,57 @@
             L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
               }).addTo(map);
+
+
+
               L.Control.geocoder().addTo(map);
+              var parkIcon = L.icon({
+                iconUrl: '../style/img/icons/park.png',
+                iconSize: [40,40],
+                 });
+
+                 L.Control.geocoder().addTo(map);
+              var infoIcon = L.icon({
+                iconUrl: '../style/img/icons/info.png',
+                iconSize: [40,40],
+                 });
+
+                 L.Control.geocoder().addTo(map);
+              var restaurantIcon = L.icon({
+                iconUrl: '../style/img/icons/restaurant.png',
+                iconSize: [40,40],
+                 });
+
+
+                 var museumIcon = L.icon({
+                    iconUrl: '../style/img/icons/museum.png',
+                    iconSize: [40,40],
+                     });
+                   
+                     var viewIcon = L.icon({
+                        iconUrl: '../style/img/icons/view.png',
+                        iconSize: [40,40],
+                         });
+
+
 
 
               var markers = [
-    L.marker([50.053555165158244, 19.848564721218292], { category: 'park', title: 'Las Wolski' }),
-    L.marker([50.057731118068396, 19.884149685348152], { category: 'viewpoint', title: 'Punkt widokowy B' }),
-    L.marker([50.06205651582134, 19.937869678768998], { category: 'museum', title: 'Rynek Podziemny' }),
-    L.marker([50.06157439140573, 19.93736005904437], { category: 'viewpoint', title: 'Sukiennice' }),
-    L.marker([50.06277280600165, 19.938084255501], { category: 'museum', title: 'Muzeum Bursztynu' }),
-    L.marker([50.06031474322343, 19.941430219690446], { category: 'park', title: 'Planty' }),
-    L.marker([50.061956647590286, 19.93674315095667], { category: 'viewpoint', title: 'Rynek główny' }),
-    L.marker([50.06108881834254, 19.93938244469425], { category: 'restaurant', title: 'Italiano Pizza and pasta' })
+    L.marker([50.053555165158244, 19.848564721218292], {icon: parkIcon, category: 'park', title: 'Las Wolski' }),
+    L.marker([50.0645817136116, 19.943452411089474], {icon: infoIcon, category: 'info', title: 'Punkt Informacji' }),
+    L.marker([50.05282655584498, 19.904319897606957], {icon: museumIcon, category: 'museum', title: 'Muzeum C' }),
+    L.marker([50.06205651582134, 19.937869678768998], {icon: museumIcon, category: 'museum', title: 'Rynek Podziemny' }),
+    L.marker([50.06157439140573, 19.93736005904437], {icon: viewIcon, category: 'viewpoint', title: 'Sukiennice' }),
+    L.marker([50.06277280600165, 19.938084255501], {icon: museumIcon, category: 'museum', title: 'Muzeum Bursztynu' }),
+    L.marker([50.06031474322343, 19.941430219690446], {icon: parkIcon,  category: 'park', title: 'Planty' }),
+    L.marker([50.061956647590286, 19.93674315095667],  {icon: viewIcon, category: 'viewpoint', title: 'Rynek główny' }),
+    L.marker([50.06108881834254, 19.93938244469425], {icon: restaurantIcon, category: 'restaurant', title: 'Italiano Pizza and pasta' })
 ];
 markers.forEach(marker => {
     switch (marker.options.title) {
         case 'Rynek Podziemny':
             marker.info = {
-                zdjecie: 'podz.jpg',
+                zdjecie: '../style/img/imgHTML/podz.jpg',
                 nazwa: "Rynek Podziemny",
                 adres: 'Rynek Główny 1, 31-042 Kraków',
                 ocena: 4.4,
@@ -31,7 +64,7 @@ markers.forEach(marker => {
 
         case 'Muzeum Bursztynu':
             marker.info = {
-                zdjecie: 'bursztyn.jpg',
+                zdjecie: '../style/img/imgHTML/bursztyn.jpg',
                 nazwa: "Muzeum Bursztynu",
                 adres: 'Świętego Jana 2, 31-018 Kraków',
                 ocena: 4.5,
@@ -41,7 +74,7 @@ markers.forEach(marker => {
 
             case 'Las Wolski':
             marker.info = {
-                zdjecie: 'laswolski.jpg',
+                zdjecie: '../style/img/imgHTML/laswolski.jpg',
                 nazwa: "Las Wolski",
                 adres: 'Kraków',
                 ocena: 4.5,
@@ -51,7 +84,7 @@ markers.forEach(marker => {
 
             case 'Rynek główny':
             marker.info = {
-                zdjecie: 'rynekgl.jpg',
+                zdjecie: '../style/img/imgHTML/rynekgl.jpg',
                 nazwa: "Rynek Głowny",
                 adres: 'Rynek Główny, 31-422 Kraków',
                 ocena: 4.5,
@@ -61,7 +94,7 @@ markers.forEach(marker => {
 
             case 'Sukiennice':
             marker.info = {
-                zdjecie: 'sukiennice.jpg',
+                zdjecie: '../style/img/imgHTML/sukiennice.jpg',
                 nazwa: "Sukiennice",
                 adres: 'Rynek Główny 1/3, 31-042 Kraków',
                 ocena: 4.5,
@@ -71,7 +104,7 @@ markers.forEach(marker => {
 
             case 'Italiano Pizza and pasta':
             marker.info = {
-                zdjecie: 'italiano.jpg',
+                zdjecie: '../style/img/imgHTML/italiano.jpg',
                 nazwa: "Italiano Pizza and pasta",
                 adres: 'Sienna 6, 31-041 Kraków',
                 ocena: 4.5,
@@ -79,13 +112,23 @@ markers.forEach(marker => {
             };
             break;
 
+            case 'Punkt Informacji':
+            marker.info = {
+                zdjecie: '../style/img/imgHTML/info.jpg',
+                nazwa: "Punkt Informacji Miejskiej - InfoKraków",
+                adres: 'Szpitalna 25, 31-024 Kraków',
+                ocena: 4.1,
+                komentarze: ['Pomocne panie', 'Długie kolejki']
+            };
+            break;
+
             case 'Planty':
             marker.info = {
-                zdjecie: 'planty.jpg',
+                zdjecie: '../style/img/imgHTML/planty.jpg',
                 nazwa: "Planty",
                 adres: '31-041 Kraków',
                 ocena: 4.5,
-                komentarze: ['Urokliwy park', 'Przyjemny spacerek']
+                komentarze: ['Urokliwy park', 'Przyjemny spacerke']
             };
             break;
 
@@ -123,31 +166,31 @@ function toggleFilterPanel() {
 }
 function filterMarkers() {
     var museumChecked = document.getElementById('museumCheckbox').checked;
-    var viewpointChecked = document.getElementById('viewCheckbox').checked;
-    var restaurantChecked = document.getElementById('nmCheckbox').checked;
-    var viewpointChecked = document.getElementById('funCheckbox').checked;
-    var viewpointChecked = document.getElementById('parkCheckbox').checked;
+    var viewChecked = document.getElementById('viewCheckbox').checked;
+    var nmChecked = document.getElementById('nmCheckbox').checked;
+    var funChecked = document.getElementById('funCheckbox').checked;
+    var parkChecked = document.getElementById('parkCheckbox').checked;
     
-    var museumChecked = document.getElementById('infoCheckbox').checked;
-    var viewpointChecked = document.getElementById('atmsCheckbox').checked;
-    var restaurantChecked = document.getElementById('wcCheckbox').checked;
-    var viewpointChecked = document.getElementById('restaurantCheckbox').checked;
-    var viewpointChecked = document.getElementById('barCheckbox').checked;
+    var infoChecked = document.getElementById('infoCheckbox').checked;
+    var atmsChecked = document.getElementById('atmsCheckbox').checked;
+    var wcChecked = document.getElementById('wcCheckbox').checked;
+    var restaurantCheckedd = document.getElementById('restaurantCheckbox').checked;
+    var barChecked = document.getElementById('barCheckbox').checked;
 
     markersLayer.clearLayers();
 
     markers.forEach(function(marker) {
         if ((museumChecked && marker.options.category === 'museum') ||
-            (viewpointChecked && marker.options.category === 'viewpoint') || 
-            (restaurantChecked && marker.options.category === 'natureMonument') ||
-            (restaurantChecked && marker.options.category === 'fun') ||
-            (restaurantChecked && marker.options.category === 'park') ||
+            (viewChecked && marker.options.category === 'viewpoint') || 
+            (nmChecked && marker.options.category === 'natureMonument') ||
+            (funChecked && marker.options.category === 'fun') ||
+            (parkChecked && marker.options.category === 'park') ||
 
-            (restaurantChecked && marker.options.category === 'info') ||
-            (restaurantChecked && marker.options.category === 'atms') ||
-            (restaurantChecked && marker.options.category === 'wc') ||
-            (restaurantChecked && marker.options.category === 'restaurant') ||
-            (restaurantChecked && marker.options.category === 'bar')
+            (infoChecked && marker.options.category === 'info') ||
+            (atmsChecked && marker.options.category === 'atms') ||
+            (wcChecked  && marker.options.category === 'wc') ||
+            (restaurantCheckedd && marker.options.category === 'restaurant') ||
+            (barChecked && marker.options.category === 'bar')
 
             
             )   {
@@ -179,7 +222,7 @@ infoContainer.update = function (info) {
     if (info) {
         this._div.innerHTML += `
             <p><strong></strong> <img src="${info.zdjecie}" alt="Zdjęcie"></p>
-            <p><strong></strong> ${info.nazwa}</p>
+            <p><strong> ${info.nazwa}</strong></p>
             <p><strong>Adres:</strong> ${info.adres}</p>
             <p><strong>Ocena:</strong> ${generateRatingStars(info.ocena)}</p>
             <p><strong>Komentarze:</strong> ${info.komentarze.join('<br>')}</p>

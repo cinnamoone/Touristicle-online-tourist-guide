@@ -85,6 +85,7 @@ ul a:hover {
 .logo-container {
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 header {
     background-color: rgba(0, 0, 0, 0.8); 
@@ -118,6 +119,9 @@ section {
     flex-grow: 1;
     padding: 13vh;
     color: #000000; /* Kolor tekstu w sekcji */
+}
+h2{
+    font-size: 35px;
 }
 h1{
     font-size: 35px;

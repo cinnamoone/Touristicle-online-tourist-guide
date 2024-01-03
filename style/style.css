@@ -25,9 +25,12 @@ header {
 .logo-container {
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
-
+h1{
+    font-size: 35px;
+}
 
 #filter-btn {
     position: absolute;
