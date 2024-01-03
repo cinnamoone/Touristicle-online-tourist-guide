@@ -1,4 +1,4 @@
-const request = indexedDB.open("usersDB", 2); // Zwiększ numer wersji bazy danych
+const request = indexedDB.open("usersDB", 2); 
 
 request.onupgradeneeded = (event) => {
   const db = event.target.result;
@@ -26,7 +26,7 @@ request.onupgradeneeded = (event) => {
   }
 };
 
-// ... (pozostała część kodu bez zmian)
+
 
 // Funkcja do dodawania komentarza do bazy danych
 function addComment(userEmail, commentText) {

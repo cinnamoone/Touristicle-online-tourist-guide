@@ -1,13 +1,15 @@
+
+//filtrowanie 
 function toggleFilterPanel() {
     var filterContainer = document.getElementById('filter-container');
     var filterPanel = document.getElementById('filterPanel');
   
     if (filterContainer.style.display === 'none' || filterContainer.style.display === '') {
       filterContainer.style.display = 'block';
-      filterPanel.style.width = '300px'; // Możesz dostosować szerokość panelu, jak chcesz
+      filterPanel.style.width = '300px'; 
     } else {
       filterContainer.style.display = 'none';
-      filterPanel.style.width = '150px'; // Szerokość początkowa panelu
+      filterPanel.style.width = '150px'; 
     }
   }
   
@@ -15,7 +17,7 @@ function toggleFilterPanel() {
     var museumChecked = document.getElementById('museumCheckbox').checked;
     var viewpointChecked = document.getElementById('viewpointCheckbox').checked;
     var restaurantChecked = document.getElementById('restaurantCheckbox').checked;
-    var viewpointChecked = document.getElementById('viewpointCheckbox').checked;
+    var viewpointChecked = document.getElementById('parkCheckbox').checked;
 
     markersLayer.clearLayers();
 

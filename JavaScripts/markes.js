@@ -8,43 +8,91 @@
 
 
               var markers = [
-    L.marker([50.053555165158244, 19.848564721218292], { category: 'museum', title: 'Muzeum A' }),
+    L.marker([50.053555165158244, 19.848564721218292], { category: 'park', title: 'Las Wolski' }),
     L.marker([50.057731118068396, 19.884149685348152], { category: 'viewpoint', title: 'Punkt widokowy B' }),
-    L.marker([50.05282655584498, 19.904319897606957], { category: 'museum', title: 'Muzeum C' }),
     L.marker([50.06205651582134, 19.937869678768998], { category: 'museum', title: 'Rynek Podziemny' }),
     L.marker([50.06157439140573, 19.93736005904437], { category: 'viewpoint', title: 'Sukiennice' }),
     L.marker([50.06277280600165, 19.938084255501], { category: 'museum', title: 'Muzeum Bursztynu' }),
-    L.marker([50.053555165158244, 19.848564721218292], { category: 'museum', title: 'Muzeum A' }),
+    L.marker([50.06031474322343, 19.941430219690446], { category: 'park', title: 'Planty' }),
     L.marker([50.061956647590286, 19.93674315095667], { category: 'viewpoint', title: 'Rynek główny' }),
     L.marker([50.06108881834254, 19.93938244469425], { category: 'restaurant', title: 'Italiano Pizza and pasta' })
 ];
 markers.forEach(marker => {
     switch (marker.options.title) {
-        case 'Muzeum A':
+        case 'Rynek Podziemny':
             marker.info = {
-                zdjecie: 'laswolski.jpg',
-                nazwa: "Las Wolski",
-                adres: 'Kraków',
+                zdjecie: 'podz.jpg',
+                nazwa: "Rynek Podziemny",
+                adres: 'Rynek Główny 1, 31-042 Kraków',
                 ocena: 4.4,
                 komentarze: ['Bardzo interesujące!', 'Warto odwiedzić.']
             };
             break;
 
-        case 'Punkt widokowy B':
+        case 'Muzeum Bursztynu':
             marker.info = {
-                zdjecie: 'zdj.jpg',
-                nazwa: "Las Wolski",
-                adres: 'ul. Widokowa 2, Miasto B',
+                zdjecie: 'bursztyn.jpg',
+                nazwa: "Muzeum Bursztynu",
+                adres: 'Świętego Jana 2, 31-018 Kraków',
                 ocena: 4.5,
                 komentarze: ['Piękne widoki!', 'Wspaniałe miejsce.']
             };
             break;
 
-        // Dodaj obsługę dla pozostałych markerów
-        // ...
+            case 'Las Wolski':
+            marker.info = {
+                zdjecie: 'laswolski.jpg',
+                nazwa: "Las Wolski",
+                adres: 'Kraków',
+                ocena: 4.5,
+                komentarze: ['Piękne widoki!', 'Wspaniałe miejsce.']
+            };
+            break;
+
+            case 'Rynek główny':
+            marker.info = {
+                zdjecie: 'rynekgl.jpg',
+                nazwa: "Rynek Głowny",
+                adres: 'Rynek Główny, 31-422 Kraków',
+                ocena: 4.5,
+                komentarze: ['Piękne widoki!', 'Wspaniałe miejsce.']
+            };
+            break;
+
+            case 'Sukiennice':
+            marker.info = {
+                zdjecie: 'sukiennice.jpg',
+                nazwa: "Sukiennice",
+                adres: 'Rynek Główny 1/3, 31-042 Kraków',
+                ocena: 4.5,
+                komentarze: ['Piękne widoki!', 'Wspaniałe miejsce.']
+            };
+            break;
+
+            case 'Italiano Pizza and pasta':
+            marker.info = {
+                zdjecie: 'italiano.jpg',
+                nazwa: "Italiano Pizza and pasta",
+                adres: 'Sienna 6, 31-041 Kraków',
+                ocena: 4.5,
+                komentarze: ['Super jedzenie!', 'Pyszna pizza :)']
+            };
+            break;
+
+            case 'Planty':
+            marker.info = {
+                zdjecie: 'planty.jpg',
+                nazwa: "Planty",
+                adres: '31-041 Kraków',
+                ocena: 4.5,
+                komentarze: ['Urokliwy park', 'Przyjemny spacerek']
+            };
+            break;
+
+        // markery zostaną jeszcze dodane
 
         default:
-            // Domyślna obsługa, jeśli tytuł nie pasuje do żadnego przypadku
+            // domyślna obsługa jeśli tytuł nie pasuje do żadnego przypadku
             break;
     }
 });
@@ -75,15 +123,34 @@ function toggleFilterPanel() {
 }
 function filterMarkers() {
     var museumChecked = document.getElementById('museumCheckbox').checked;
-    var viewpointChecked = document.getElementById('viewpointCheckbox').checked;
-    var restaurantChecked = document.getElementById('restaurantCheckbox').checked;
-    var viewpointChecked = document.getElementById('viewpointCheckbox').checked;
+    var viewpointChecked = document.getElementById('viewCheckbox').checked;
+    var restaurantChecked = document.getElementById('nmCheckbox').checked;
+    var viewpointChecked = document.getElementById('funCheckbox').checked;
+    var viewpointChecked = document.getElementById('parkCheckbox').checked;
+    
+    var museumChecked = document.getElementById('infoCheckbox').checked;
+    var viewpointChecked = document.getElementById('atmsCheckbox').checked;
+    var restaurantChecked = document.getElementById('wcCheckbox').checked;
+    var viewpointChecked = document.getElementById('restaurantCheckbox').checked;
+    var viewpointChecked = document.getElementById('barCheckbox').checked;
 
     markersLayer.clearLayers();
 
     markers.forEach(function(marker) {
         if ((museumChecked && marker.options.category === 'museum') ||
-            (viewpointChecked && marker.options.category === 'viewpoint') || (restaurantChecked && marker.options.category === 'restaurant'))   {
+            (viewpointChecked && marker.options.category === 'viewpoint') || 
+            (restaurantChecked && marker.options.category === 'natureMonument') ||
+            (restaurantChecked && marker.options.category === 'fun') ||
+            (restaurantChecked && marker.options.category === 'park') ||
+
+            (restaurantChecked && marker.options.category === 'info') ||
+            (restaurantChecked && marker.options.category === 'atms') ||
+            (restaurantChecked && marker.options.category === 'wc') ||
+            (restaurantChecked && marker.options.category === 'restaurant') ||
+            (restaurantChecked && marker.options.category === 'bar')
+
+            
+            )   {
             markersLayer.addLayer(marker);
         }
     });
@@ -96,7 +163,7 @@ function resetMarkers() {
     });
 }
 
-// Dodaj nowy kontener do przechowywania informacji
+// dodaj nowy kontener do przechowywania informacji
 var infoContainer = L.control({ position: 'bottomleft' });
 
 infoContainer.onAdd = function (map) {
@@ -105,7 +172,7 @@ infoContainer.onAdd = function (map) {
     return this._div;
 };
 
-// Aktualizuj zawartość kontenera na podstawie informacji o zaznaczonym miejscu
+// aktualizacja zawartości kontenera na podstawie informacji o zaznaczonym miejscu
 infoContainer.update = function (info) {
     this._div.innerHTML = '<h4>Informacje o miejscu</h4>';
 
@@ -123,17 +190,17 @@ infoContainer.update = function (info) {
 };
 
 
-// Dodaj kontener do mapy
+
 infoContainer.addTo(map);
 
-// Obsługa kliknięcia na markerze
+// obsługa kliknięcia na markerze
 markers.forEach(marker => {
     marker.on('click', function () {
         infoContainer.update(marker.info);
     });
 });
 
-// Funkcja do zresetowania informacji na panelu bocznym
+// funkcja do zresetowania informacji na panelu bocznym
 function resetInfoContainer() {
     infoContainer.update();
 }
