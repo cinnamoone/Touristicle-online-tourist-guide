@@ -23,6 +23,7 @@ markers.forEach(marker => {
         case 'Muzeum A':
             marker.info = {
                 zdjecie: 'laswolski.jpg',
+                nazwa: "Las Wolski",
                 adres: 'Kraków',
                 ocena: 4.4,
                 komentarze: ['Bardzo interesujące!', 'Warto odwiedzić.']
@@ -32,6 +33,7 @@ markers.forEach(marker => {
         case 'Punkt widokowy B':
             marker.info = {
                 zdjecie: 'zdj.jpg',
+                nazwa: "Las Wolski",
                 adres: 'ul. Widokowa 2, Miasto B',
                 ocena: 4.5,
                 komentarze: ['Piękne widoki!', 'Wspaniałe miejsce.']
@@ -98,7 +100,7 @@ function resetMarkers() {
 var infoContainer = L.control({ position: 'bottomleft' });
 
 infoContainer.onAdd = function (map) {
-    this._div = L.DomUtil.create('div', 'info-container'); // utwórz nowy kontener div z klasą "info-container"
+    this._div = L.DomUtil.create('div', 'info-container'); 
     this.update();
     return this._div;
 };
@@ -109,7 +111,8 @@ infoContainer.update = function (info) {
 
     if (info) {
         this._div.innerHTML += `
-            <p><strong>Zdjęcie:</strong> <img src="${info.zdjecie}" alt="Zdjęcie"></p>
+            <p><strong></strong> <img src="${info.zdjecie}" alt="Zdjęcie"></p>
+            <p><strong></strong> ${info.nazwa}</p>
             <p><strong>Adres:</strong> ${info.adres}</p>
             <p><strong>Ocena:</strong> ${generateRatingStars(info.ocena)}</p>
             <p><strong>Komentarze:</strong> ${info.komentarze.join('<br>')}</p>
