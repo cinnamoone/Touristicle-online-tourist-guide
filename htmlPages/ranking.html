@@ -4,16 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../style/main.css">
     <link rel="stylesheet" type="text/css" href="../style/ranking.css">
+    
     <script src="\JavaScripts\ranking.js"></script>
+    <script src="\JavaScripts\simulate.js"></script>
     <title>Touristicle</title>
 </head>
 
 <body>
     <header>
-        <div class="logo-container">
-            <img id="logo" src="../style/img/logo.ico" alt="Logo Twojej Strony">
+        <div class="logo-container" onclick="redirectToHomepage()">
+            <img id="logo" src="../style/img/logo.png" alt="Logo">
 
             <!-- Nazwa strony -->
             <h1>Touristicle</h1>
@@ -32,12 +33,12 @@
             </ul>
         </div>
     </header>
-    <center><h1>Przejrzyj najlepiej oceniane miejsca i atrakcje!</h1></center>
+    
     
     
     
     <section id="ranking">
-        
+      <center><h1>Przejrzyj najlepiej oceniane miejsca i atrakcje!</h1></center>  
         <div id="filter">
             <label for="category-filter">Filtruj według kategorii:</label>
             <select id="category-filter">
@@ -56,8 +57,8 @@
             <br>
             <label for="sort">Sortuj według oceny:</label>
             <select id="sort">
-                <option value="highest">Najwyższa ocena</option>
-                <option value="lowest">Najniższa ocena</option>
+                <option value="highest">Od najwyższej</option>
+                <option value="lowest">Od najniższej</option>
             </select>
         </div>
         <ul id="ranking-list">
