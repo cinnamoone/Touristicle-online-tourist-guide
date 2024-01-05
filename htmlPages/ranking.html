@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../style/main.css">
+    <link rel="stylesheet" type="text/css" href="../style/ranking.css">
+    <script src="\JavaScripts\ranking.js"></script>
+    <title>Touristicle</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo-container">
+            <img id="logo" src="../style/img/logo.ico" alt="Logo Twojej Strony">
+
+            <!-- Nazwa strony -->
+            <h1>Touristicle</h1>
+        </div>
+        <div class="menu">
+            <ul>
+                <li><a href=".\main.html">Strona główna</a></li>
+                <li class="dropdown">
+                    <a href="#">Konto</a>
+                    <ul class="submenu">
+                        <li><a href=".\login.html">Logowanie</a></li>
+                        <li><a href=".\signup.html">Rejestracja</a></li>
+                    </ul>
+                </li>
+                <li><a href="ranking.html">Ranking</a></li>
+            </ul>
+        </div>
+    </header>
+    <center><h1>Przejrzyj najlepiej oceniane miejsca i atrakcje!</h1></center>
+    
+    
+    
+    <section id="ranking">
+        
+        <div id="filter">
+            <label for="category-filter">Filtruj według kategorii:</label>
+            <select id="category-filter">
+                <option value="all">Wszystkie</option>
+                <option value="info">Info</option>
+                <option value="restaurant">Restauracje</option>
+                <option value="fun">Rozrywka</option>
+                <option value="museum">Muzea</option>
+                <option value="bar">Bary</option>
+                <option value="park">Parki</option>
+                <option value="natureMonument">Pomniki przyrody</option>
+                <option value="view">Punkty widokowe</option>
+                <!-- Dodaj inne opcje kategorii, jeśli są dostępne -->
+            </select>
+            <br>
+            <br>
+            <label for="sort">Sortuj według oceny:</label>
+            <select id="sort">
+                <option value="highest">Najwyższa ocena</option>
+                <option value="lowest">Najniższa ocena</option>
+            </select>
+        </div>
+        <ul id="ranking-list">
+            <!-- Dane JSON zostaną wyświetlone tutaj -->
+        </ul>
+    </section>
+    
+
+    <footer>
+        &copy; Copyright © 2023 Patryja Oświęcimska
+    </footer>
+    <script>
+        
+
+
+      </script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+</body>
+
+</html>

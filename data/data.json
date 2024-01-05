@@ -1,5 +1,13 @@
 [
-        { "coordinates": [50.053555165158244, 19.848564721218292], "category": "park", "title": "Las Wolski" },
+        { "coordinates": [50.053555165158244, 19.848564721218292], "category": "park", "title": "Las Wolski",
+        "info": {
+            "zdjecie": "../style/img/imgHTML/laswolski.jpg",
+            "nazwa": "Las Wolski",
+            "adres": "Kraków",
+            "ocena": 4.8,
+            "komentarze": ["Piękne widoki!", "Wspaniałe miejsce."]
+        }
+     },
         {
             "coordinates": [50.0645817136116, 19.943452411089474],
             "category": "info",
@@ -8,16 +16,66 @@
                 "zdjecie": "../style/img/imgHTML/info.jpg",
                 "nazwa": "Punkt Informacji Miejskiej - InfoKraków",
                 "adres": "Szpitalna 25, 31-024 Kraków",
-                "ocena": 4.1,
-                "komentarze": ["Pomocne panie", "Długie kolejki"]
+                "ocena": 3.1,
+                "komentarze": ["Wspaniały spektakl", "Cudowne wnętrze!"]
             }
-        },        { "coordinates": [50.06397064954134, 19.942853125730878], "category": "fun", "title": "Teatr im. Juliusza Słowackiego" },
-        { "coordinates": [50.06205651582134, 19.937869678768998], "category": "museum", "title": "Rynek Podziemny" },
-        { "coordinates": [50.06157439140573, 19.93736005904437], "category": "viewpoint", "title": "Sukiennice" },
-        { "coordinates": [50.06277280600165, 19.938084255501], "category": "museum", "title": "Muzeum Bursztynu" },
-        { "coordinates": [50.06031474322343, 19.941430219690446], "category": "park", "title": "Planty" },
-        { "coordinates": [50.061527013633864, 19.93542257204163], "category": "bar", "title": "Piwnica Pod Baranami" },
-        { "coordinates": [50.061956647590286, 19.93674315095667], "category": "viewpoint", "title": "Rynek główny" },
-        { "coordinates": [50.06108881834254, 19.93938244469425], "category": "restaurant", "title": "Italiano Pizza and pasta" }
+        },        
+        { "coordinates": [50.06397064954134, 19.942853125730878], "category": "fun", "title": "Teatr im. Juliusza Słowackiego",
+        "info": {
+            "zdjecie": "../style/img/imgHTML/teatr.jpg",
+            "nazwa": "Teatr im. Juliusza Słowackiego w Krakowie",
+            "adres": "plac Świętego Ducha 1, 31-023 Kraków",
+            "ocena": 4.8,
+            "komentarze": ["Pomocne panie", "Długie kolejki"]}
+    },
+        { "coordinates": [50.06205651582134, 19.937869678768998], "category": "museum", "title": "Rynek Podziemny" ,
+        "info": {
+            "zdjecie": "../style/img/imgHTML/podz.jpg",
+            "nazwa": "Rynek Podziemny",
+            "adres": "pRynek Główny 1, 31-042 Kraków",
+            "ocena": 4.5,
+            "komentarze": ["Bardzo interesujące!", "Warto odwiedzić."]}},
+        { "coordinates": [50.06157439140573, 19.93736005904437], "category": "viewpoint", "title": "Sukiennice" ,
+        "info": {
+            "zdjecie": "../style/img/imgHTML/sukiennice.jpg",
+            "nazwa": "Sukiennice",
+            "adres": "Rynek Główny 1/3, 31-042 Kraków",
+            "ocena": 4.7,
+            "komentarze": ["Super atrakcja", "Będąc w Krakowie trzeba odwiedzić!"]}},
+        { "coordinates": [50.06277280600165, 19.938084255501], "category": "museum", "title": "Muzeum Bursztynu" ,
+        "info": {
+            "zdjecie": "../style/img/imgHTML/bursztyn.jpg",
+            "nazwa": "Muzeum Bursztynu",
+            "adres": "Świętego Jana 2, 31-018 Kraków",
+            "ocena": 4.1,
+            "komentarze": ["Bardzo ciekawa atrakcja", "Dzieciom się podobało"]}},
+        { "coordinates": [50.06031474322343, 19.941430219690446], "category": "park", "title": "Planty" ,
+        "info": {
+            "zdjecie": "../style/img/imgHTML/planty.jpg",
+            "nazwa": "Planty",
+            "adres": "31-041 Kraków",
+            "ocena": 4.2,
+            "komentarze": ["Urokliwy park", "Przyjemny spacerek"]}},
+        { "coordinates": [50.061527013633864, 19.93542257204163], "category": "bar", "title": "Piwnica Pod Baranami" ,
+        "info": {
+            "zdjecie": "../style/img/imgHTML/teatr.jpg",
+            "nazwa": "Piwnica Pod Baranami",
+            "adres": "plac Świętego Ducha 1, 31-023 Kraków",
+            "ocena": 4.1,
+            "komentarze": ["Pyszne piwko", "Długie kolejki"]}},
+        { "coordinates": [50.061956647590286, 19.93674315095667], "category": "viewpoint", "title": "Rynek główny" ,
+        "info": {
+            "zdjecie": "../style/img/imgHTML/rynekgl.jpg",
+            "nazwa": "Rynek Główny",
+            "adres": "Rynek Główny, 31-422 Kraków",
+            "ocena": 4.8,
+            "komentarze": ["Pomocne panie", "Długie kolejki"]}},
+        { "coordinates": [50.06108881834254, 19.93938244469425], "category": "restaurant", "title": "Italiano Pizza and pasta" ,
+        "info": {
+            "zdjecie": "../style/img/imgHTML/italiano.jpg",
+            "nazwa": "Italiano Pizza and pasta",
+            "adres": "Sienna 6, 31-041 Kraków",
+            "ocena": 3.2,
+            "komentarze": ["Super jedzenie!", "Pyszna pizza :)"]}}
 
 ]

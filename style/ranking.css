@@ -1,0 +1,55 @@
+/* Styl dla sekcji rankingowej */
+/* Styl dla sekcji rankingowej */
+#ranking {
+    background-color: rgba(255, 255, 255, 0.8); /* Półprzezroczyste tło */
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 800px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Styl dla filtrów i sortowania */
+#filter {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Styl dla listy rankingowej */
+#ranking-list {
+    list-style: none;
+    padding: 0;
+}
+
+/* Styl dla każdego elementu na liście */
+#ranking-list li {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    text-align: center;
+    max-width: 400px; /* Ustal maksymalną szerokość elementów na liście */
+    margin: 0 auto; /* Wyśrodkowanie elementów na liście */
+}
+
+/* Styl dla obrazka w elemencie na liście */
+#ranking-list img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+/* Styl dla nazwy w elemencie na liście */
+#ranking-list h3 {
+    font-size: 18px;
+    margin: 0;
+}
+
+/* Styl dla oceny w elemencie na liście */
+#ranking-list p {
+    font-size: 14px;
+    color: #888;
+    margin: 0;
+}
