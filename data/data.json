@@ -1,0 +1,23 @@
+[
+        { "coordinates": [50.053555165158244, 19.848564721218292], "category": "park", "title": "Las Wolski" },
+        {
+            "coordinates": [50.0645817136116, 19.943452411089474],
+            "category": "info",
+            "title": "Punkt Informacji",
+            "info": {
+                "zdjecie": "../style/img/imgHTML/info.jpg",
+                "nazwa": "Punkt Informacji Miejskiej - InfoKraków",
+                "adres": "Szpitalna 25, 31-024 Kraków",
+                "ocena": 4.1,
+                "komentarze": ["Pomocne panie", "Długie kolejki"]
+            }
+        },        { "coordinates": [50.06397064954134, 19.942853125730878], "category": "fun", "title": "Teatr im. Juliusza Słowackiego" },
+        { "coordinates": [50.06205651582134, 19.937869678768998], "category": "museum", "title": "Rynek Podziemny" },
+        { "coordinates": [50.06157439140573, 19.93736005904437], "category": "viewpoint", "title": "Sukiennice" },
+        { "coordinates": [50.06277280600165, 19.938084255501], "category": "museum", "title": "Muzeum Bursztynu" },
+        { "coordinates": [50.06031474322343, 19.941430219690446], "category": "park", "title": "Planty" },
+        { "coordinates": [50.061527013633864, 19.93542257204163], "category": "bar", "title": "Piwnica Pod Baranami" },
+        { "coordinates": [50.061956647590286, 19.93674315095667], "category": "viewpoint", "title": "Rynek główny" },
+        { "coordinates": [50.06108881834254, 19.93938244469425], "category": "restaurant", "title": "Italiano Pizza and pasta" }
+
+]
