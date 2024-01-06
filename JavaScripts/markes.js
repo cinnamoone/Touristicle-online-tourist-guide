@@ -13,13 +13,13 @@
                 iconSize: [40,40],
                  });
 
-                 L.Control.geocoder().addTo(map);
+                 
               var infoIcon = L.icon({
                 iconUrl: '../style/img/icons/info.png',
                 iconSize: [40,40],
                  });
 
-                 L.Control.geocoder().addTo(map);
+                 
               var restaurantIcon = L.icon({
                 iconUrl: '../style/img/icons/restaurant.png',
                 iconSize: [40,40],
