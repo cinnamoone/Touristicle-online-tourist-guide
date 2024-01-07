@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../style/ranking.css">
+    <link rel="stylesheet" type="text/css" href="../style/dodawanie.css">
+
+    <script src="\JavaScripts\adding.js"></script>
+
+    <title>Touristicle</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo-container" onclick="redirectToHomepage()">
+            <img id="logo" src="../style/img/logo.png" alt="Logo">
+            <!-- Nazwa strony -->
+            <h1>Touristicle</h1>
+        </div>
+        <div class="menu">
+            <ul>
+                <li><a href="dodawanie.html">Dodaj miejsce</a></li>
+                <li class="dropdown">
+                    <a href="#">Konto</a>
+                    <ul class="submenu">
+                        <li><a href=".\login.html">Logowanie</a></li>
+                        <li><a href=".\signup.html">Rejestracja</a></li>
+                    </ul>
+                </li>
+                <li><a href="ranking.html">Ranking</a></li>
+            </ul>
+        </div>
+    </header>
+
+
+        <div id="form">
+            <h2>Dodaj nowy marker:</h2>
+            <form id="marker-form">
+                <label for="placeName">Nazwa miejsca:</label>
+                <input type="text" id="placeName" required><br>
+                <label for="address">Adres:</label>
+                <input type="text" id="address" required><br>
+                <label for="category">Kategoria:</label>
+                <select id="category" required>
+                  <option value="bar">Bar</option>
+                  <option value="fun">Rozrywka</option>
+                  <option value="info">Info</option>
+                  <option value="museum">Muzeum</option>
+                  <option value="natureMonument">Pomniky</option>
+                  <option value="park">Park</option>
+                  <option value="restaurant">Restauracja</option>
+                  <option value="view">Punkt widokowy</option>
+                </select><br>
+                <label for="coordinates">Współrzędne:</label>
+                <input type="text" id="coordinates" required><br>
+                <label for="imageURL">Link URL do zdjęcia:</label>
+                <input type="text" id="imageURL"><br>
+                <input type="button" class="formbutton" value="Dodaj marker" onclick="dodajMarker()">
+
+              </form>
+              
+            
+        </div>
+
+
+    <footer>
+        &copy; Copyright © 2023 Patryja Oświęcimska
+    </footer>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="\JavaScripts\adding.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+</body>
+
+</html>

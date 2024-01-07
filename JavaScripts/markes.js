@@ -198,7 +198,88 @@ function filterMarkers() {
         }
     });
 }
-
+// Funkcja inicjalizująca bazę danych IndexedDB
+function initIndexedDB() {
+    return new Promise((resolve, reject) => {
+      var request = indexedDB.open('markersDB', 1);
+  
+      request.onupgradeneeded = function(event) {
+        var db = event.target.result;
+  
+        if (!db.objectStoreNames.contains('markers')) {
+          db.createObjectStore('markers', { keyPath: 'id', autoIncrement: true });
+        }
+      };
+  
+      request.onsuccess = function(event) {
+        var db = event.target.result;
+        resolve(db);
+      };
+  
+      request.onerror = function(event) {
+        reject(event.target.error);
+      };
+    });
+  }
+  
+  // Funkcja do zapisywania markera do bazy danych
+  function saveMarkerToDB(markerData) {
+    initIndexedDB().then(function(db) {
+      var transaction = db.transaction('markers', 'readwrite');
+      var store = transaction.objectStore('markers');
+      
+      var request = store.add(markerData);
+  
+      request.onsuccess = function(event) {
+        console.log('Marker został zapisany w bazie danych.');
+      };
+  
+      request.onerror = function(event) {
+        console.error('Błąd podczas zapisu markera do bazy danych.');
+      };
+    });
+  }
+  
+  // Funkcja do odczytu markerów z bazy danych i ich dodawania do warstwy mapy
+  function readMarkersFromDB() {
+    initIndexedDB().then(function(db) {
+      var transaction = db.transaction('markers', 'readonly');
+      var store = transaction.objectStore('markers');
+  
+      store.openCursor().onsuccess = function(event) {
+        var cursor = event.target.result;
+  
+        if (cursor) {
+          var markerData = cursor.value;
+  
+          // Podziel współrzędne na szerokość i długość geograficzną
+          var coordinatesArray = markerData.coordinates.split(', ');
+          var lat = parseFloat(coordinatesArray[0]);
+          var lng = parseFloat(coordinatesArray[1]);
+  
+          // Tworzenie markera na podstawie danych z bazy
+          var marker = L.marker([lat, lng]);
+          marker.info = {
+            nazwa: markerData.placeName,
+            adres: markerData.address,
+            ocena: markerData.rating,
+            komentarze: markerData.comments,
+            zdjecie: markerData.imageURL
+          };
+  
+          // Dodawanie markera do warstwy na mapie
+          markersLayer.addLayer(marker);
+  
+          // Przesuń kursor do następnego rekordu
+          cursor.continue();
+        }
+      };
+    });
+  }
+  
+  // Dodanie odczytu markerów z bazy danych przy starcie aplikacji
+  readMarkersFromDB();
+  
 function resetMarkers() {
     markersLayer.clearLayers();
     markers.forEach(function(marker) {
