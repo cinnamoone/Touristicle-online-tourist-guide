@@ -1,17 +1,20 @@
 document.addEventListener("DOMContentLoaded", function () {
     const categoryFilter = document.getElementById("category-filter");
+    const cityFilter = document.getElementById("city-filter"); // City filter element
     const sortSelect = document.getElementById("sort");
     const rankingList = document.getElementById("ranking-list");
 
-    // Pobierz dane z pliku JSON (zakładając, że jest to plik "data.json")
+    // Fetch data from JSON file
     fetch("../data/data.json")
         .then(response => response.json())
         .then(data => {
-            // Wyświetl listę na stronie
             displayRanking(data);
 
-            // Dodaj obsługę zmiany kategorii i sortowania
             categoryFilter.addEventListener("change", () => {
+                displayRanking(data);
+            });
+
+            cityFilter.addEventListener("change", () => {
                 displayRanking(data);
             });
 
@@ -21,21 +24,34 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch(error => console.error(error));
 
-    // Funkcja do wyświetlania listy z filtrowaniem i sortowaniem
     function displayRanking(data) {
         const selectedCategory = categoryFilter.value;
+        const selectedCity = cityFilter.value; // City filter value
         const sortOption = sortSelect.value;
 
-        // Filtrowanie i sortowanie danych
-        const filteredData = data.filter(item => selectedCategory === "all" || item.category === selectedCategory);
+        // Apply category filter
+        let filteredData = data.filter(item => selectedCategory === "all" || item.category === selectedCategory);
+
+        // Apply city filter
+        if (selectedCity !== "all") {
+            filteredData = filteredData.filter(item => {
+                if (item.info && item.info.adres) {
+                    const addressParts = item.info.adres.split(',');
+                    const city = addressParts[addressParts.length - 1].trim(); // Get the last part of the address
+                    return city.includes(selectedCity);
+                }
+                return false;
+            });
+        }
+
+        // Sorting logic
         const sortedData = sortOption === "highest"
             ? filteredData.sort((a, b) => b.info.ocena - a.info.ocena)
             : filteredData.sort((a, b) => a.info.ocena - b.info.ocena);
 
-        // Wyczyść listę przed dodaniem nowych elementów
         rankingList.innerHTML = "";
 
-        // Wyświetl dane na liście
+        // Display sorted and filtered data
         sortedData.forEach(item => {
             const listItem = document.createElement("li");
             const itemImage = document.createElement("img");

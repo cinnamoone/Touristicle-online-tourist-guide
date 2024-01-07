@@ -21,7 +21,8 @@
         </div>
         <div class="menu">
             <ul>
-                <li><a href=".\main.html">Strona główna</a></li>
+                <li><a href="dodawanie.html">Dodaj miejsce</a></li>
+                <li><a href="ranking.html">Ranking</a></li>
                 <li class="dropdown">
                     <a href="#">Konto</a>
                     <ul class="submenu">
@@ -29,7 +30,6 @@
                         <li><a href=".\signup.html">Rejestracja</a></li>
                     </ul>
                 </li>
-                <li><a href="ranking.html">Ranking</a></li>
             </ul>
         </div>
     </header>
@@ -43,15 +43,27 @@
             <label for="category-filter">Filtruj według kategorii:</label>
             <select id="category-filter">
                 <option value="all">Wszystkie</option>
-                <option value="info">Info</option>
-                <option value="restaurant">Restauracje</option>
-                <option value="fun">Rozrywka</option>
-                <option value="museum">Muzea</option>
                 <option value="bar">Bary</option>
-                <option value="park">Parki</option>
+                <option value="fun">Rozrywka</option>
+                <option value="info">Info</option>
+                <option value="museum">Muzea</option>
                 <option value="natureMonument">Pomniki przyrody</option>
+                <option value="park">Parki</option>
+                <option value="restaurant">Restauracje</option>
                 <option value="view">Punkty widokowe</option>
-                <!-- Dodaj inne opcje kategorii, jeśli są dostępne -->
+                
+            </select>
+            <br>
+            <br>
+            <label for="city-filter">Filtruj według miasta:</label>
+            <select id="city-filter">
+                <option value="all">Wszystkie miasta</option>
+                <option value="Białystok">Białystok</option>
+                <option value="Gdańsk">Gdańsk</option>
+                <option value="Kraków">Kraków</option>
+                <option value="Rzeszów">Rzeszów</option>
+                <option value="Warszawa">Warszawa</option>
+                <option value="Wrocław">Wrocław</option>
             </select>
             <br>
             <br>

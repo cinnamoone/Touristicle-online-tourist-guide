@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "firebase": "^10.7.0",
+    "json-server": "^1.0.0-alpha.12",
     "leaflet-easybutton": "^2.4.0",
     "leaflet-search": "^4.0.0"
   }
