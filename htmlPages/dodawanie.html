@@ -42,16 +42,19 @@
                 <label for="address">Adres:</label>
                 <input type="text" id="address" required><br>
                 <label for="category">Kategoria:</label>
+                <span id="category-error" class="error-message" style="color: red; display: none;">Proszę wybrać kategorię z listy.</span>
                 <select id="category" required>
-                  <option value="bar">Bar</option>
-                  <option value="fun">Rozrywka</option>
-                  <option value="info">Info</option>
-                  <option value="museum">Muzeum</option>
-                  <option value="natureMonument">Pomniky</option>
-                  <option value="park">Park</option>
-                  <option value="restaurant">Restauracja</option>
-                  <option value="view">Punkt widokowy</option>
-                </select><br>
+                    <option disabled selected>wybierz kategorię z listy</option>
+                    <option value="bar">Bar</option>
+                    <option value="fun">Rozrywka</option>
+                    <option value="info">Info</option>
+                    <option value="museum">Muzeum</option>
+                    <option value="natureMonument">Pomniky</option>
+                    <option value="park">Park</option>
+                    <option value="restaurant">Restauracja</option>
+                    <option value="view">Punkt widokowy</option>
+                </select>
+                <br>
                 <label for="coordinates">Współrzędne:</label>
                 <input type="text" id="coordinates" required><br>
                 <label for="imageURL">Link URL do zdjęcia:</label>
@@ -75,6 +78,7 @@
             // Wykonaj przekierowanie
             window.location.href = homepageUrl;
         }
+
 
     </script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
