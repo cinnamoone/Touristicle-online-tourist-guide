@@ -62,9 +62,6 @@ select {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("dropdown-arrow.png"); /* Zastąp ścieżką do ikony strzałki w dół */
-    background-repeat: no-repeat;
-    background-position: right center;
     padding-right: 30px; /* Dostosuj szerokość dla strzałki */
 }
 

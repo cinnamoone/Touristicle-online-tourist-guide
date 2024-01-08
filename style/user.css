@@ -1,3 +1,14 @@
+#welcomeMessage {
+    background-color: rgba(255, 255, 255, 0.7); /* Tło z przezroczystością */
+    padding: 10px; /* Dodaj wewnętrzny padding */
+    border-radius: 5px; /* Zaokrąglony brzeg */
+    text-align: center; /* Wyśrodkowanie tekstu */
+    font-size: 24px; /* Rozmiar czcionki */
+    color: #71088f; /* Kolor tekstu */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Cień tekstu */
+}
+
+
 section {
     display: flex;
     justify-content: space-around;
@@ -25,4 +36,44 @@ section {
 .user-panel li {
     padding: 5px;
     border-bottom: 1px solid #ddd;
+}
+
+
+#markers-container {
+    background-color: rgba(255, 255, 255, 0.5); /* Półprzezroczyste tło */
+    border-radius: 15px; /* Zaokrąglone rogi */
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Lekkie cieniowanie */
+}
+
+.marker {
+    background-color: white; /* Białe tło dla każdego markera */
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px; /* Zaokrąglone rogi dla markerów */
+}
+.marker img {
+    max-width: 400px;
+    height: auto;
+    border-radius: 5px; /* Zaokrąglone rogi dla obrazków */
+}
+.marker h3 {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+}
+
+p{
+    font-size: 15px;;
+}
+
+#fav-container {
+    background-color: rgba(255, 255, 255, 0.5); /* Półprzezroczyste tło */
+    border-radius: 15px; /* Zaokrąglone rogi */
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Lekkie cieniowanie */
 }

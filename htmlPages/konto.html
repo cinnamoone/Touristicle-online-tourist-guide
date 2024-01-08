@@ -4,12 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../style/main.css">
+    <link rel="stylesheet" type="text/css" href="../style/ranking.css">
     <link rel="stylesheet" type="text/css" href="../style/user.css">
     <script src="\JavaScripts\login.js"></script>
+    
     <title>Touristicle</title>
 </head>
-
+<style>
+    
+</style>
 <body>
     <header>
         <div class="logo-container">
@@ -37,25 +40,23 @@
     </header>
     <center><h1><div id="welcomeMessage"></div></h1></center>
     <section>
-        <div id="user-info">
-            <!-- Panel dla dodanych komentarzy -->
-            <div class="user-panel comments">
-                <h2>Twoje komentarze:</h2>
-                <ul></ul>
-            </div>
         
-            <!-- Panel dla dodanych miejsc -->
-            <div class="user-panel places">
-                <h2>Twoje miejsca:</h2>
-                <ul></ul>
+            
+            
+            <div class="comment-container">
+            <h1>Twoje Komentarze</h1>
+            <!-- wyswietlanie komentarzy użytkownika -->
             </div>
+            <div id="markers-container">
+                <!-- wyswietlanie miejsc dodanych przez danego uzytkownika -->
         
-            <!-- Panel dla ulubionych postów -->
-            <div class="user-panel favorite-posts">
-                <h2>Twoje ulubione posty:</h2>
-                <ul></ul>
             </div>
-        </div>
+            <div class="fav-container">
+                <h1>Twoje ulubione miejsca</h1>
+                <!-- wyesiwtlanie ulubiinych miejsc -->
+            </div>
+            
+       
     </section>
 
     <footer>
@@ -63,14 +64,27 @@
     </footer>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-          const loggedInUser = checkLoggedInUser();
-      
-          if (loggedInUser) {
-            const welcomeMessage = document.getElementById('welcomeMessage');
-            welcomeMessage.innerText = 'Witaj na swoim koncie użytkowniku ' + loggedInUser.username +"!"; // Assuming 'username' is a property in your user object
-          }
+            const loggedInUser = checkLoggedInUser();
+    
+            if (loggedInUser) {
+                const welcomeMessage = document.getElementById('welcomeMessage');
+                welcomeMessage.innerText = 'Witaj na swoim koncie użytkowniku ' + loggedInUser.username + "!"; // Załóżmy, że 'username' jest właściwością obiektu użytkownika
+              
+                // Wywołaj funkcję do wyświetlania markerów użytkownika
+                
+            }
         });
-      </script>
+
+
+        function redirectToHomepage() {
+            // Tutaj ustaw adres URL, do którego chcesz przekierować użytkownika
+            var homepageUrl = "main.html";
+            
+            // Wykonaj przekierowanie
+            window.location.href = homepageUrl;
+        }
+    </script>
+    <script src="\JavaScripts\simulate.js"></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 </body>
