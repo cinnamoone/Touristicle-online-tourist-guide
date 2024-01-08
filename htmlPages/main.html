@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../style/main.css">
-    <script src="\JavaScripts\simulate.js"></script>
+   
     <title>Touristicle</title>
 
 </head>
@@ -22,7 +22,6 @@
         <div class="menu">
             <ul>
                 <li><a href="dodawanie.html">Dodaj miejsce</a></li>
-                <li><a href="ranking.html">Ranking</a></li>
                 <li class="dropdown">
                     <a href="#">Konto</a>
                     <ul class="submenu">
@@ -30,6 +29,8 @@
                         <li><a href=".\signup.html">Rejestracja</a></li>
                     </ul>
                 </li>
+                <li><a href="ranking.html">Ranking</a></li>
+                
             </ul>
          </div>
     </header>
@@ -51,7 +52,15 @@
     <footer>
         &copy; Copyright © 2023 Patryja Oświęcimska
     </footer>
-    
+    <script>
+        function redirectToHomepage() {
+            // Tutaj ustaw adres URL, do którego chcesz przekierować użytkownika
+            var homepageUrl = "main.html";
+            
+            // Wykonaj przekierowanie
+            window.location.href = homepageUrl;
+        }
+    </script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 

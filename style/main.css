@@ -120,7 +120,7 @@ section {
     align-items: center;
     text-align: center;
     flex-grow: 1;
-    padding: 2vh;
+    padding: 5vh;
     color: #000000; /* Kolor tekstu w sekcji */
 }
 h2{
@@ -140,6 +140,7 @@ footer {
     margin-top: auto;
 }
 #mainimg {
+    padding-top: 50px;
     max-height: 35vh;
 }
 

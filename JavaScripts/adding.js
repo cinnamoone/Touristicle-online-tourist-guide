@@ -1,5 +1,5 @@
 var db;
-var request = indexedDB.open('markersDB', 1);
+var request = indexedDB.open('markersDB', 2);
 
 request.onupgradeneeded = function(event) {
   db = event.target.result;
@@ -11,7 +11,7 @@ request.onsuccess = function(event) {
 };
 
 request.onerror = function(event) {
-  alert('Błąd podczas otwierania bazy danych IndexedDB.');
+  console.log('Błąd podczas otwierania bazy danych IndexedDB.');
 };
 
 var markerForm = document.getElementById('marker-form');

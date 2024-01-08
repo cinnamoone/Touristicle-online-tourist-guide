@@ -12,7 +12,7 @@
 section {
     display: flex;
     justify-content: space-around;
-    padding: 20px;
+    padding: 10px;
 }
 
 /* Stylizacja paneli użytkownika */
@@ -40,15 +40,29 @@ section {
 
 
 #markers-container {
-    background-color: rgba(255, 255, 255, 0.5); /* Półprzezroczyste tło */
+    background-color: rgba(255, 255, 255, 0.8); /* Półprzezroczyste tło */
     border-radius: 15px; /* Zaokrąglone rogi */
     padding: 20px;
     max-width: 600px;
     margin: auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Lekkie cieniowanie */
 }
-
+#comments-container {
+    background-color: rgba(255, 255, 255, 0.8); /* Półprzezroczyste tło */
+    border-radius: 15px; /* Zaokrąglone rogi */
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Lekkie cieniowanie */
+}
 .marker {
+    background-color: white; /* Białe tło dla każdego markera */
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px; /* Zaokrąglone rogi dla markerów */
+}
+.comment {
     background-color: white; /* Białe tło dla każdego markera */
     border: 1px solid #ddd;
     padding: 10px;

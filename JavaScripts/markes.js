@@ -98,7 +98,7 @@ marker.info = {
     nazwa: "Rynek Podziemny",
     adres: 'Rynek Główny 1, 31-042 Kraków',
     ocena: 4.4,
-    komentarze: ['Bardzo interesujące!', 'Warto odwiedzić.']
+    komentarze: ['user23: Bardzo interesujące!', 'Basia: Warto odwiedzić.']
 };
 break;
 
@@ -108,7 +108,7 @@ marker.info = {
     nazwa: "Muzeum Bursztynu",
     adres: 'Świętego Jana 2, 31-018 Kraków',
     ocena: 4.5,
-    komentarze: ['Piękne widoki!', 'Wspaniałe miejsce.']
+    komentarze: ['user: Piękne widoki!', 'user23: Wspaniałe miejsce.']
 };
 break;
 
@@ -118,7 +118,7 @@ marker.info = {
     nazwa: "Las Wolski",
     adres: 'Kraków',
     ocena: 4.5,
-    komentarze: ['Piękne widoki!', 'Wspaniałe miejsce.']
+    komentarze: ['user: Piękne widoki!', 'unknown: Wspaniałe miejsce.']
 };
 break;
 
@@ -128,7 +128,7 @@ marker.info = {
     nazwa: "Rynek Głowny",
     adres: 'Rynek Główny, 31-422 Kraków',
     ocena: 4.5,
-    komentarze: ['Piękne widoki!', 'Wspaniałe miejsce.']
+    komentarze: ['maja123: Piękne widoki!', 'sweetcat1: Wspaniałe miejsce.']
 };
 break;
 
@@ -138,7 +138,7 @@ marker.info = {
     nazwa: "Sukiennice",
     adres: 'Rynek Główny 1/3, 31-042 Kraków',
     ocena: 4.5,
-    komentarze: ['Piękne widoki!', 'Wspaniałe miejsce.']
+    komentarze: ['user: Piękne widoki!', 'barbara: Wspaniałe miejsce.']
 };
 break;
 
@@ -148,7 +148,7 @@ marker.info = {
     nazwa: "Italiano Pizza and pasta",
     adres: 'Sienna 6, 31-041 Kraków',
     ocena: 4.5,
-    komentarze: ['Super jedzenie!', 'Pyszna pizza :)']
+    komentarze: ['superman: Super jedzenie!', 'majka: Pyszna pizza :)']
 };
 break;
 
@@ -158,7 +158,7 @@ marker.info = {
     nazwa: "Punkt Informacji Miejskiej - InfoKraków",
     adres: 'Szpitalna 25, 31-024 Kraków',
     ocena: 4.1,
-    komentarze: ['Pomocne panie', 'Długie kolejki']
+    komentarze: ['daniel23: Pomocne panie', ' grzesiek432: Długie kolejki']
 };
 break;
 
@@ -168,7 +168,7 @@ marker.info = {
     nazwa: "Planty",
     adres: '31-041 Kraków',
     ocena: 4.5,
-    komentarze: ['Urokliwy park', 'Przyjemny spacerke']
+    komentarze: ['Janina: Urokliwy park', 'Zbigniew: Przyjemny spacerek']
 };
 break;
 
@@ -240,26 +240,34 @@ markersLayer.addLayer(marker);
 }
 // Funkcja inicjalizująca bazę danych IndexedDB
 function initIndexedDB() {
-return new Promise((resolve, reject) => {
-var request = indexedDB.open('markersDB', 1);
+  return new Promise((resolve, reject) => {
+      var request = indexedDB.open('markersDB', 2); // Zwiększ wersję bazy danych do 2
 
-request.onupgradeneeded = function(event) {
-var db = event.target.result;
+      request.onupgradeneeded = function(event) {
+          var db = event.target.result;
 
-if (!db.objectStoreNames.contains('markers')) {
-db.createObjectStore('markers', { keyPath: 'id', autoIncrement: true });
-}
-};
+          // Utwórz sklep obiektów 'markers', jeśli jeszcze nie istnieje
+          if (!db.objectStoreNames.contains('markers')) {
+              db.createObjectStore('markers', { keyPath: 'id', autoIncrement: true });
+          }
 
-request.onsuccess = function(event) {
-var db = event.target.result;
-resolve(db);
-};
+          // Utwórz sklep obiektów 'comments', jeśli jeszcze nie istnieje
+          if (!db.objectStoreNames.contains('comments')) {
+              var commentsStore = db.createObjectStore('comments', { keyPath: 'id', autoIncrement: true });
+              // Dodatkowo możesz dodać indeksy, jeśli są potrzebne, na przykład:
+              commentsStore.createIndex('placeName', 'placeName', { unique: false });
+          }
+      };
 
-request.onerror = function(event) {
-reject(event.target.error);
-};
-});
+      request.onsuccess = function(event) {
+          var db = event.target.result;
+          resolve(db);
+      };
+
+      request.onerror = function(event) {
+          reject(event.target.error);
+      };
+  });
 }
 
 // Funkcja do zapisywania markera do bazy danych
@@ -307,6 +315,7 @@ infoContainer.onAdd = function (map) {
 
 // aktualizacja zawartości kontenera na podstawie informacji o zaznaczonym miejscu
 infoContainer.update = function (info) {
+  
 this._div.innerHTML = '<h4>Informacje o miejscu</h4>';
 
 if (info) {
@@ -315,8 +324,9 @@ this._div.innerHTML += `
 <p><strong> ${info.nazwa}</strong></p>
 <p><strong>Adres:</strong> ${info.adres}</p>
 <p><strong>Ocena:</strong> ${generateRatingStars(info.ocena)}</p>
-<p><strong>Komentarze:</strong> ${info.komentarze.join('<br>')}</p>
-<div class="comment-section">
+<p><strong>Komentarze:</strong></p>
+<div id="commentsContainer"></div>
+<div class="comment-section" id="commentsSection">
     <textarea id="commentInput" placeholder="Dodaj komentarz..."></textarea>
     <button onclick="addComment('${info.nazwa}')">Wyślij</button>
 </div>
@@ -324,6 +334,7 @@ this._div.innerHTML += `
 } else {
 this._div.innerHTML += 'Kliknij na marker, aby zobaczyć informacje.';
 }
+displayComments(info);
 };
 
 
@@ -331,6 +342,102 @@ this._div.innerHTML += 'Kliknij na marker, aby zobaczyć informacje.';
 infoContainer.addTo(map);
 
 
+
+// Funkcja do dodawania komentarza do IndexedDB
+function addComment(placeName) {
+  var commentText = document.getElementById('commentInput').value;
+   // Pobierz nazwę zalogowanego użytkownika
+  var addedBy = checkLoggedInUser();
+
+  initIndexedDB().then(db => {
+    var transaction = db.transaction(['comments'], 'readwrite');
+    var store = transaction.objectStore('comments');
+    var comment = {
+      placeName: placeName,
+      commentText: commentText,
+      addedBy: addedBy.username,
+      timestamp: new Date().toISOString()
+    };
+    store.add(comment);
+  }).then(() => {
+    console.log('Komentarz dodany.');
+    alert('Komentarz dodany.');
+    updateInfoPanel(placeName); // Funkcja do aktualizacji panelu informacyjnego
+  }).catch(err => {console.error('Błąd podczas dodawania komentarza: ', err);
+  });
+}
+
+// Funkcja do aktualizacji panelu informacyjnego
+function updateInfoPanel(placeName) {
+  initIndexedDB().then(db => {
+    var transaction = db.transaction(['comments'], 'readonly');
+    var store = transaction.objectStore('comments');
+    var index = store.index('placeName');
+    var range = IDBKeyRange.only(placeName);
+    var comments = [];
+
+    index.openCursor(range).onsuccess = function(event) {
+      var cursor = event.target.result;
+      if (cursor) {
+        comments.push(cursor.value);
+        cursor.continue();
+      } else {
+        // Wyświetl komentarze w panelu informacyjnym
+        displayComments(comments);
+      }
+    };
+  });
+}
+
+// Funkcja do wyświetlania komentarzy w panelu informacyjnym
+function displayComments(info) {
+  // Sprawdź, czy 'info' oraz 'info.nazwa' są zdefiniowane
+  if (!info || typeof info.nazwa === 'undefined') {
+    //console.error('Informacje o miejscu są niepełne lub niezdefiniowane.');
+    return;
+  }
+
+  var commentsContainer = document.getElementById('commentsContainer');
+  if (!commentsContainer) {
+    console.error('Nie znaleziono kontenera na komentarze.');
+    return;
+  }
+
+  // Czyszczenie istniejących komentarzy
+  commentsContainer.innerHTML = '';
+
+  // Dodawanie komentarzy z obiektu 'info'
+  if (info.komentarze && info.komentarze.length > 0) {
+    info.komentarze.forEach(comment => {
+      var commentDiv = document.createElement('div');
+      commentDiv.classList.add('comment');
+      commentDiv.innerHTML = comment;
+      commentsContainer.appendChild(commentDiv);
+    });
+  }
+
+  // Dodawanie komentarzy z IndexedDB
+  initIndexedDB().then(db => {
+    var transaction = db.transaction(['comments'], 'readonly');
+    var store = transaction.objectStore('comments');
+    var index = store.index('placeName');
+    var range = IDBKeyRange.only(info.nazwa);
+
+    index.openCursor(range).onsuccess = function(event) {
+      var cursor = event.target.result;
+      if (cursor) {
+        var commentDiv = document.createElement('div');
+        commentDiv.classList.add('comment');
+        commentDiv.innerHTML = `<strong>${cursor.value.addedBy}:</strong> ${cursor.value.commentText}`;
+        commentsContainer.appendChild(commentDiv);
+        cursor.continue();
+      }
+    };
+  })
+  .catch(err => {
+    console.error('Błąd podczas wyświetlania komentarzy z IndexedDB:', err);
+  });
+}
 
 
 
@@ -365,9 +472,17 @@ function readMarkersFromDB() {
   
   if (cursor) {
       var markerData = cursor.value;
-      var coordinatesArray = markerData.coordinates.split(', ');
-      var lat = parseFloat(coordinatesArray[0]);
-      var lng = parseFloat(coordinatesArray[1]);
+      if (markerData.coordinates) {
+        var coordinatesArray = markerData.coordinates.split(', ');
+        var lat = parseFloat(coordinatesArray[0]);
+        var lng = parseFloat(coordinatesArray[1]);
+    
+        // reszta Twojego kodu, np. tworzenie markera
+    } else {
+        console.error('Błąd: brak współrzędnych dla markera', markerData);
+        // ewentualne dalsze działania, np. obsługa błędu
+    }
+    
   
       var marker = L.marker([lat, lng], { icon: getIconForCategory(markerData.category) });
       marker.info = {
@@ -389,10 +504,17 @@ function readMarkersFromDB() {
   }
   };
   });
-  }markers.forEach(marker => {
+  }
+  
+  
+  
+markers.forEach(marker => {
 marker.on('click', function () {
 infoContainer.update(marker.info);
 });
 });
 
+function checkLoggedInUser() {
+  return JSON.parse(localStorage.getItem('loggedInUser'));
+}
 
