@@ -241,21 +241,27 @@ markersLayer.addLayer(marker);
 // Funkcja inicjalizująca bazę danych IndexedDB
 function initIndexedDB() {
   return new Promise((resolve, reject) => {
-      var request = indexedDB.open('markersDB', 2); // Zwiększ wersję bazy danych do 2
+      var request = indexedDB.open('markersDB', 3); // Increment the version to 3
 
       request.onupgradeneeded = function(event) {
           var db = event.target.result;
 
-          // Utwórz sklep obiektów 'markers', jeśli jeszcze nie istnieje
+          // Create 'markers' object store if it does not exist
           if (!db.objectStoreNames.contains('markers')) {
               db.createObjectStore('markers', { keyPath: 'id', autoIncrement: true });
           }
 
-          // Utwórz sklep obiektów 'comments', jeśli jeszcze nie istnieje
+          // Create 'comments' object store if it does not exist
           if (!db.objectStoreNames.contains('comments')) {
               var commentsStore = db.createObjectStore('comments', { keyPath: 'id', autoIncrement: true });
-              // Dodatkowo możesz dodać indeksy, jeśli są potrzebne, na przykład:
               commentsStore.createIndex('placeName', 'placeName', { unique: false });
+          }
+
+          // Create 'favourites' object store if it does not exist
+          if (!db.objectStoreNames.contains('favourites')) {
+              var favouritesStore = db.createObjectStore('favourites', { keyPath: 'id', autoIncrement: true });
+              // Optionally, add indexes to the 'favourites' store if needed
+              favouritesStore.createIndex('userName', 'userName', { unique: false });
           }
       };
 
@@ -269,6 +275,7 @@ function initIndexedDB() {
       };
   });
 }
+
 
 // Funkcja do zapisywania markera do bazy danych
 function saveMarkerToDB(markerData) {
@@ -320,6 +327,16 @@ this._div.innerHTML = '<h4>Informacje o miejscu</h4>';
 
 if (info) {
 this._div.innerHTML += `
+<div style="text-align: right;">
+  <label class="checkbox-container">
+    <input type="checkbox" id="favoriteCheckbox" onclick="toggleFavorite('${info.nazwa}', this, '${info.zdjecie}')"  />
+    <i class="fas fa-heart icon-heart">
+      <i class="fas fa-plus-circle icon-plus-sign"></i>
+    </i>
+    <span class="tooltip-text">Dodaj do ulubionych</span>
+  </label>
+</div>
+
 <p><strong></strong> <img src="${info.zdjecie}" alt="Zdjęcie"></p>
 <p><strong> ${info.nazwa}</strong></p>
 <p><strong>Adres:</strong> ${info.adres}</p>
@@ -515,6 +532,73 @@ function readMarkersFromDB() {
   });
   }
   
+
+//ulubione
+
+function toggleFavorite(placeName, checkboxElem, imageUrl) {
+  var user = checkLoggedInUser();
+  if (!user) {
+    alert('Please log in to add favorites.');
+    checkboxElem.checked = false;
+    return;
+  }
+
+  if (checkboxElem.checked) {
+    addToFavorites(placeName, user, imageUrl);
+  } else {
+    removeFromFavorites(placeName, user);
+  }
+}
+
+function removeFromFavorites(placeName, user) {
+  initIndexedDB().then(function(db) {
+    var transaction = db.transaction('favourites', 'readwrite');
+    var store = transaction.objectStore('favourites');
+    // Assuming you have a unique identifier for each favorite entry
+    store.delete(placeName).onsuccess = function() {
+      console.log('Favorite removed from the database.');
+      alert('Usunięto z ulubionych');
+    };
+  });
+}
+
+function addToFavorites(placeName, user, imageUrl) {
+  if (!user) {
+    alert('Please log in to add favorites.');
+    return;
+  }
+
+  var favorite = {
+    placeName: placeName,
+    userName: user.username,
+    imageUrl: imageUrl
+  };
+
+  saveFavoriteToDB(favorite);
+}
+
+
+function saveFavoriteToDB(favorite) {
+  initIndexedDB().then(function(db) {
+    var transaction = db.transaction('favourites', 'readwrite');
+    var store = transaction.objectStore('favourites');
+    var request = store.add(favorite);
+
+    request.onsuccess = function() {
+      console.log('Favorite added to the database.');
+      alert('Dodano do ulubionych!');
+    };
+
+    request.onerror = function(event) {
+      console.error('Error adding favorite to the database.', event);
+    };
+  });
+}
+
+
+
+
+
   
   
 markers.forEach(marker => {

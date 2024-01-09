@@ -55,6 +55,14 @@ section {
     margin: auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Lekkie cieniowanie */
 }
+#favorites-container {
+    background-color: rgba(255, 255, 255, 0.8); /* Półprzezroczyste tło */
+    border-radius: 15px; /* Zaokrąglone rogi */
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Lekkie cieniowanie */
+}
 .marker {
     background-color: white; /* Białe tło dla każdego markera */
     border: 1px solid #ddd;
@@ -69,12 +77,30 @@ section {
     margin-bottom: 10px;
     border-radius: 10px; /* Zaokrąglone rogi dla markerów */
 }
+.favorite {
+    background-color: white; /* Białe tło dla każdego markera */
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px; /* Zaokrąglone rogi dla markerów */
+}
 .marker img {
-    max-width: 400px;
+    max-width: 300px;
     height: auto;
     border-radius: 5px; /* Zaokrąglone rogi dla obrazków */
 }
 .marker h3 {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+}
+
+
+.favorite img {
+    max-width: 300px;
+    height: auto;
+    border-radius: 5px; /* Zaokrąglone rogi dla obrazków */
+}
+.favorite  h3 {
     margin: 0 0 10px 0;
     font-size: 20px;
 }
@@ -91,3 +117,4 @@ p{
     margin: auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Lekkie cieniowanie */
 }
+

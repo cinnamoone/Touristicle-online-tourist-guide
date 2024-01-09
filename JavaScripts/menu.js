@@ -41,3 +41,9 @@ function logout() {
 
 // Wywołaj funkcję updateMenu przy ładowaniu strony
 document.addEventListener('DOMContentLoaded', updateMenu);
+
+function checkLoggedInUser() {
+    return JSON.parse(localStorage.getItem('loggedInUser'));
+  }
+  
+  

@@ -1,5 +1,5 @@
 var db;
-var request = indexedDB.open('markersDB', 2);
+var request = indexedDB.open('markersDB', 3);
 
 request.onupgradeneeded = function(event) {
   db = event.target.result;

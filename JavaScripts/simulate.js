@@ -10,6 +10,7 @@ function redirectToHomepage() {
 document.addEventListener('DOMContentLoaded', function() {
   displayUserMarkers();
   displayUserComments();
+  displayUserFavorites()
 });
 
 function displayUserMarkers() {
@@ -20,7 +21,7 @@ function displayUserMarkers() {
   }
 
   var db;
-  var request = indexedDB.open('markersDB', 2);
+  var request = indexedDB.open('markersDB', 3);
 
   request.onsuccess = function(event) {
       db = event.target.result;
@@ -85,7 +86,7 @@ function displayUserComments() {
     }
   
     var db;
-    var request = indexedDB.open('markersDB', 2);
+    var request = indexedDB.open('markersDB', 3);
   
     request.onsuccess = function(event) {
         db = event.target.result;
@@ -138,7 +139,70 @@ function displayUserComments() {
         container.appendChild(commentElement);
     });
   }
-  
+  function displayUserFavorites() {
+    var loggedInUser = checkLoggedInUser();
+    if (!loggedInUser) {
+        console.log('Brak zalogowanego użytkownika.');
+        return;
+    }
+
+    var db;
+    var request = indexedDB.open('markersDB', 3);
+
+    request.onsuccess = function(event) {
+        db = event.target.result;
+        loadFavorites(loggedInUser.username, db);
+    };
+
+    request.onerror = function(event) {
+        console.error('Błąd podczas otwierania bazy danych IndexedDB.');
+    };
+}
+
+function loadFavorites(username, db) {
+    var transaction = db.transaction(['favourites'], 'readonly');
+    var objectStore = transaction.objectStore('favourites');
+    var favorites = [];
+
+    objectStore.openCursor().onsuccess = function(event) {
+        var cursor = event.target.result;
+        if (cursor) {
+            if (cursor.value.userName === username) {
+                favorites.push(cursor.value);
+            }
+            cursor.continue();
+        } else {
+            displayFavorites(favorites);
+        }
+    };
+}
+
+function displayFavorites(favorites) {
+    var container = document.getElementById('favorites-container');
+    if (!container) {
+        console.error('Nie znaleziono kontenera do wyświetlania ulubionych miejsc.');
+        return;
+    }
+    container.innerHTML = ''; // Clears previous favorites
+
+    // Adding a header "Your Favorite Places"
+    var header = document.createElement('h1');
+    header.textContent = 'Twoje ulubione miejsca';
+    container.appendChild(header);
+
+    favorites.forEach(function(favorite) {
+        var favoriteElement = document.createElement('div');
+        favoriteElement.className = 'favorite';
+        favoriteElement.innerHTML = `
+            
+            <img src="${favorite.imageUrl}" alt="Obraz miejsca" />
+            <p><strong>Nazwa miejsca:</strong> "${favorite.placeName}"</p>
+        `;
+        container.appendChild(favoriteElement);
+    });
+}
+
+
   
 
 // Funkcja pomocnicza do pobierania informacji o zalogowanym użytkowniku z lokalnego magazynu
