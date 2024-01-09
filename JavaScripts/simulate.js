@@ -132,8 +132,8 @@ function displayUserComments() {
         var commentElement = document.createElement('div');
         commentElement.className = 'comment';
         commentElement.innerHTML = `
-            <p>Treść komentarza: "${comment.commentText}"</p> <!-- Adjusted to commentText -->
-            <p>Miejsce: ${comment.placeName}</p>
+            <p><strong>Treść komentarza:</strong> "${comment.commentText}"</p> <!-- Adjusted to commentText -->
+            <p><strong>Miejsce:</strong> ${comment.placeName}</p>
         `;
         container.appendChild(commentElement);
     });

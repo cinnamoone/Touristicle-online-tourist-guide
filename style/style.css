@@ -97,12 +97,17 @@ ul a:hover {
     top: 100%;
     left: 0;
     z-index: 999;
+    width: auto;
+    text-align: left;
 }
 
 .menu .dropdown:hover .submenu {
     display: block;
 }
 
+#mojeKontoItem a {
+    white-space: nowrap;
+}
 
 .content {
     display: flex;
@@ -147,6 +152,7 @@ ul a:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     position: relative;
     border-radius: 10px;
+    max-height: 30%;
 }
 
 .close-button {
@@ -160,8 +166,8 @@ ul a:hover {
 }
 
 .info-container img {
-    max-width: 600px;  /* Ustawia maksymalną szerokość na 100% szerokości kontenera */
-    max-height: 300px;     /* Automatyczne dostosowanie wysokości dla zachowania proporcji */
+    max-width: 500px;  /* Ustawia maksymalną szerokość na 100% szerokości kontenera */
+    max-height: 250px;     /* Automatyczne dostosowanie wysokości dla zachowania proporcji */
     display: block;   /* Eliminuje dodatkowe marginesy, które mogą występować dla elementu img */
     margin: 0 auto;   /* Centralizuje obraz w obrębie kontenera */
 }
@@ -206,12 +212,13 @@ footer {
 
 
 .comment-section {
-    background-color: #f2f2f2b5;
-    padding: 10px;
+    background-color: #f2f2f2a2;
+    padding: 5px;
     border-radius: 8px;
-    margin-top: 20px;
+    margin-top: 5px;
     display: flex;
     justify-content: space-between;
+    max-height: 50px;
 }
 
 .comment-section textarea {
@@ -220,6 +227,7 @@ footer {
     border: 1px solid #ccc;
     border-radius: 4px;
     resize: none;
+    height: 20px;
 }
 
 .comment-section button {
@@ -245,72 +253,22 @@ footer {
 
 
 
+/* Styl dla wypełnionych gwiazdek (złote) */
+/* Styl dla wypełnionych gwiazdek (złote) */
+.fas.fa-star, .fas.fa-star-half-alt {
+    color: #FFD700; 
+    text-shadow: 1px 1px 2px black; 
+}
 
-.add-fav {
-    display: inline-block;
-    padding: 5px;
-    cursor: pointer;
-    border: 1px solid #ccc;
-    background: -webkit-linear-gradient( top,#fff,#ddd) #ddd;
-    position: relative;
-    transition: all .5s ease;
-    border-radius: 3px;
-    box-shadow: inset 0 -1px 1px #eee;
-    
-    &:hover {
-      background: -webkit-linear-gradient( top,#fff,#ccc) #ddd;
-    }
-  
-    .icon-heart {
-      font-size: 24px;
-      color: #666;
-      position: relative;
-      transition: all .5s ease-in-out;
-    }
-    .icon-plus-sign {
-      font-size: 10px;
-      color: #333;
-      background: #fff;
-      border-radius: 100%;
-      position: absolute;
-      bottom: 2px;
-      right: 2px;
-      height: 11px;
-      width: 11px;
-      line-height: 11px;
-      text-align: center;
-      transition: all 1s ease-in-out;
-    }
-    input[type="checkbox"] { 
-      position: absolute;
-      opacity: 0;
-      &:checked + .icon-heart {
-        color: orange;
-        .icon-plus-sign {
-          display:none;
-        }
-      }
-    }
-  }
-  .tooltip-text {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-  
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -60px;
-  
-    /* Fade in tooltip */
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  
-  
+/* Styl dla pustych gwiazdek (srebrne lub szare) */
+.far.fa-star {
+    color: #C0C0C0; 
+    text-shadow: 1px 1px 2px black; 
+}
+
+
+.rating-stars {
+    font-size: 1em; 
+    display: inline; 
+    vertical-align: middle; 
+}

@@ -323,7 +323,7 @@ this._div.innerHTML += `
 <p><strong></strong> <img src="${info.zdjecie}" alt="Zdjęcie"></p>
 <p><strong> ${info.nazwa}</strong></p>
 <p><strong>Adres:</strong> ${info.adres}</p>
-<p><strong>Ocena:</strong> ${generateRatingStars(info.ocena)}</p>
+<span class="rating"><strong>Ocena:</strong> ${generateRatingStars(info.ocena)}</span>
 <p><strong>Komentarze:</strong></p>
 <div id="commentsContainer"></div>
 <div class="comment-section" id="commentsSection">
@@ -446,15 +446,24 @@ function displayComments(info) {
 // funkcja do zresetowania informacji na panelu bocznym
 
 function generateRatingStars(rating) {
-if (rating === 'Brak ocen') {
-return '<i class="far fa-star"></i>'.repeat(5); // 5 pustych gwiazdek
-} else {
-const filledStars = '<i class="fas fa-star"></i>'.repeat(Math.floor(rating));
-const halfStar = rating % 1 !== 0 ? '<i class="fas fa-star-half-alt"></i>' : '';
-const emptyStars = '<i class="far fa-star"></i>'.repeat(5 - Math.ceil(rating));
-return `<div class="rating-stars">${filledStars}${halfStar}${emptyStars}</div>`;
+  let starsHtml = '';
+  let ratingDisplay = '';
+
+  if (rating === 'Brak ocen') {
+      starsHtml = '<i class="far fa-star"></i>'.repeat(5); // 5 pustych gwiazdek
+      ratingDisplay = '(Brak ocen)';
+  } else {
+      const filledStars = '<i class="fas fa-star"></i>'.repeat(Math.floor(rating));
+      const halfStar = rating % 1 !== 0 ? '<i class="fas fa-star-half-alt"></i>' : '';
+      const emptyStars = '<i class="far fa-star"></i>'.repeat(5 - Math.ceil(rating));
+      starsHtml = `${filledStars}${halfStar}${emptyStars}`;
+      ratingDisplay = `(${rating.toFixed(1)})`; // Zaokrąglenie do jednego miejsca po przecinku
+  }
+
+  return `<span class="rating-stars">${starsHtml}</span> <span class="rating-number">${ratingDisplay}</span>`;
 }
-}
+
+
 function resetInfoContainer() {
   infoContainer.update(); // Wyczyszczenie zawartości panelu
 }
