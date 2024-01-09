@@ -9,11 +9,7 @@
 }
 
 
-section {
-    display: flex;
-    justify-content: space-around;
-    padding: 10px;
-}
+
 
 /* Stylizacja paneli użytkownika */
 .user-panel {
@@ -118,3 +114,20 @@ p{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Lekkie cieniowanie */
 }
 
+.sekcja {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start; /* Dodane wyrównanie elementów do góry */
+    padding: 10px;
+}
+
+/* Dodanie minimalnej wysokości dla każdego kontenera */
+#comments-container, #markers-container, #favorites-container {
+    min-height: 300px; /* Możesz dostosować wysokość według potrzeb */
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto; /* Wyzerowanie marginesu góra-dół */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

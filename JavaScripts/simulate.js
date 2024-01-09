@@ -1,8 +1,5 @@
 function redirectToHomepage() {
-    // Tutaj ustaw adres URL, do którego chcesz przekierować użytkownika
     var homepageUrl = "main.html";
-    
-    // Wykonaj przekierowanie
     window.location.href = homepageUrl;
 }
 
@@ -58,11 +55,16 @@ function displayMarkers(markers) {
       return;
   }
   container.innerHTML = ''; // Czyści poprzednie markery
-
+  
   // Dodawanie nagłówka "Twoje miejsca"
-  var header = document.createElement('h1');
-  header.textContent = 'Twoje miejsca';
-  container.appendChild(header);
+    var header = document.createElement('h1');
+    header.textContent = 'Dodane miejsca';
+    container.appendChild(header);
+
+  if (markers.length === 0) {
+    container.innerHTML += '<p>Nie dodałeś jeszcze żadnych miejsc.</p>';
+    return;
+}
 
   markers.forEach(function(marker) {
       var markerElement = document.createElement('div');
@@ -123,11 +125,15 @@ function displayUserComments() {
         return;
     }
     container.innerHTML = ''; // Clears previous comments
-  
-    // Adding a header "Your Comments"
+
     var header = document.createElement('h1');
     header.textContent = 'Twoje komentarze';
     container.appendChild(header);
+
+    if (comments.length === 0) {
+        container.innerHTML += '<p>Nie dodałeś jeszcze żadnych komentarzy.</p>';
+        return;
+    }
   
     comments.forEach(function(comment) {
         var commentElement = document.createElement('div');
@@ -172,9 +178,24 @@ function loadFavorites(username, db) {
             }
             cursor.continue();
         } else {
-            displayFavorites(favorites);
+            var uniqueFavorites = filterUniqueFavorites(favorites);
+            displayFavorites(uniqueFavorites);
         }
     };
+}
+
+function filterUniqueFavorites(favorites) {
+    var uniqueFavorites = [];
+    var uniqueNames = new Set();
+
+    favorites.forEach(function(favorite) {
+        if (!uniqueNames.has(favorite.placeName)) {
+            uniqueNames.add(favorite.placeName);
+            uniqueFavorites.push(favorite);
+        }
+    });
+
+    return uniqueFavorites;
 }
 
 function displayFavorites(favorites) {
@@ -183,12 +204,16 @@ function displayFavorites(favorites) {
         console.error('Nie znaleziono kontenera do wyświetlania ulubionych miejsc.');
         return;
     }
-    container.innerHTML = ''; // Clears previous favorites
+    container.innerHTML = ''; 
 
-    // Adding a header "Your Favorite Places"
     var header = document.createElement('h1');
     header.textContent = 'Twoje ulubione miejsca';
     container.appendChild(header);
+
+    if (favorites.length === 0) {
+        container.innerHTML += '<p>Nie dodałeś jeszcze żadnych ulubionych miejsc.</p>';
+        return;
+    }
 
     favorites.forEach(function(favorite) {
         var favoriteElement = document.createElement('div');
