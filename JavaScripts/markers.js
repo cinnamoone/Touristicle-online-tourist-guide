@@ -86,13 +86,37 @@ L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
   var rawMarkers = [
     {coords: [50.053555165158244, 19.848564721218292], category: 'park', title: 'Las Wolski'},
     {coords: [50.0645817136116, 19.943452411089474], category: 'info', title: 'Punkt Informacji'},
-    {coords: [50.05282655584498, 19.904319897606957], category: 'museum', title: 'Muzeum C'},
     {coords: [50.06205651582134, 19.937869678768998], category: 'museum', title: 'Rynek Podziemny'},
     {coords: [50.06157439140573, 19.93736005904437], category: 'viewpoint', title: 'Sukiennice'},
     {coords: [50.06277280600165, 19.938084255501], category: 'museum', title: 'Muzeum Bursztynu'},
     {coords: [50.06031474322343, 19.941430219690446], category: 'park', title: 'Planty'},
     {coords: [50.061956647590286, 19.93674315095667], category: 'viewpoint', title: 'Rynek główny'},
-    {coords: [50.06108881834254, 19.93938244469425], category: 'restaurant', title: 'Italiano Pizza and pasta'}
+    {coords: [50.06108881834254, 19.93938244469425], category: 'restaurant', title: 'Italiano Pizza and pasta'},
+    {coords: [50.008295158356304, 19.932197653896544], category: 'natureMonument', title: 'Dąb Szypułkowy'},
+    {coords: [50.0456065340809, 19.928718217100084], category: 'natureMonument', title: 'Pomnik Przyrody Twardowskiego'},
+    {coords: [52.218977335206326, 21.02698130066818], category: 'natureMonument', title: 'Pomnik przyrody Spadające Konary'},
+    {coords: [50.01275843527185, 22.071621631714695], category: 'natureMonument', title: 'Modrzew Słotek'},
+    {coords: [50.03943576653912, 21.978823469295314], category: 'natureMonument', title: 'Topola Wanda - pomnik przyrody'},
+    {coords: [50.008295158356304, 19.932197653896544], category: 'park', title: 'Lisia Góra'},
+    {coords: [50.065893541087426, 19.95011823312167], category: 'park', title: 'Park Strzelecki'},
+    {coords: [52.234042015368246, 21.005997153566554], category: 'park', title: 'Park Świętokrzyski'},
+    {coords: [52.24205559007616, 21.05439129999806], category: 'park', title: 'Park Skaryszewski'},
+    {coords: [50.024806168925636, 21.999880539118724], category: 'park', title: 'Park Kultury i Wypoczynku'},
+    {coords: [50.03784251981432, 22.006749525402462], category: 'museum', title: 'Muzeum Dobranocek'},
+    {coords: [50.03527275653483, 22.001264858988975], category: 'museum', title: 'Muzeum Okręgowe w Rzeszowie'},
+    {coords: [52.23286684420999, 20.981032958893557], category: 'museum', title: 'Muzeum Powstania Warszawskiego'},
+    {coords: [52.23185402392427, 21.023237549389133], category: 'museum', title: 'Muzeum Narodowe w Warszawie'},
+    {coords: [50.060897618803274, 19.923756563067272], category: 'museum', title: 'Muzeum Narodowe w Krakowie'},
+    {coords: [50.0628179302432, 19.941466320883098], category: 'atm', title: 'Bankomat Bank Pekao'},
+    {coords: [50.06089857714012, 19.9362919746465], category: 'atm', title: 'Bankomat PKO Banku Polskiego'},
+    {coords: [50.0411779464954, 19.94278057188052], category: 'atm', title: 'Bankomat PKO Banku Polskiego Smolki'},
+    {coords: [50.04132519519302, 22.00378868460847], category: 'atm', title: 'Euronet Polska Sp. z o.o.'},
+    {coords: [50.01946462308785, 21.982298223225428], category: 'atm', title: 'Bankomat PKO Banku Polskiego akademicka'}
+
+    
+
+
+
 ];
 
 //dynamiczne przypisanie ikon
@@ -184,6 +208,197 @@ marker.info = {
     komentarze: ['Janina: Urokliwy park', 'Zbigniew: Przyjemny spacerek']
 };
 break;
+case 'Dąb Szypułkowy':
+marker.info = {
+    zdjecie: 'https://upload.wikimedia.org/wikipedia/commons/7/71/Kraków_ul._Jugowicka_14_pomnik_przyrody_Dąb_szypułkowy_Quercus_robur.jpg',
+    nazwa: "Pomnik przyrody Dąb Szypułkowy",
+    adres: 'Jugowicka 10C, 30-443 Kraków',
+    ocena: 5,
+    komentarze: ['user23: Piękne drzewo!', 'janek23: Warto zobaczyć']
+};
+break;
+
+case 'Pomnik Przyrody Twardowskiego':
+marker.info = {
+    zdjecie: '../style/img/imgHTML/pomnikprzyr.png',
+    nazwa: "Pomnik Przyrody na Twardowskiego",
+    adres: 'Twardowskiego 30, 30-312 Kraków',
+    ocena: 4.9,
+    komentarze: ['basia34: Potrzeba więcej takich drzew :)', 'unknown: Wspaniałe miejsce.']
+};
+break;
+
+case 'Pomnik przyrody Spadające Konary':
+marker.info = {
+    zdjecie: 'https://bi.im-g.pl/im/f0/40/ce/z13517040IHG,Drzewo-na-skwerze-Kisielewskiego-zagraza-pieszym.jpg',
+    nazwa: "Pomnik przyrody Spadające Konary",
+    adres: 'Ujazdów, 00 001, Warszawa',
+    ocena: 5,
+    komentarze: ['user: Piękne widoki!', 'unknown: Wspaniałe miejsce.']
+};
+break;
+case 'Modrzew Słotek':
+marker.info = {
+    zdjecie: 'https://www.pomniki-przyrody.pl/wp-content/uploads/2017/04/Rezerwat-nad-Młyńską-Strugą-pień-pomnikowego-dębu.jpg',
+    nazwa: "Modrzew Słotek - pomnik przyrody",
+    adres: 'Świętego Marcina 62, 35-330 Rzeszów',
+    ocena: 5,
+    komentarze: ['user432: Super', 'unknown: Wspaniałe miejsce.']
+};
+break;
+case 'Lisia Góra':
+marker.info = {
+    zdjecie: 'https://visitrzeszow.pl/media/places/lisia_gora_2.jpg?v=1617958276',
+    nazwa: "Lisia Góra",
+    adres: 'Żeglarska, 35-086 Rzeszów',
+    ocena: 4.7,
+    komentarze: ['user: Miejsce bardzo przyjazne na spacer', 'unknown: Miejsce piękne, z potencjałem.']
+};
+break;
+case 'Topola Wanda - pomnik przyrody':
+marker.info = {
+    zdjecie: 'https://www.rpdp.hostingasp.pl/images/0000005000-0000005999/5290_7670.jpg',
+    nazwa: "Topola Wanda - pomnik przyrody",
+    adres: '35-111 Rzeszów',
+    ocena: 5,
+    komentarze: ['basia34: Potrzeba więcej takich drzew :)', 'unknown: Wspaniałe miejsce.']
+};
+break;
+
+
+case 'Park Strzelecki':
+marker.info = {
+    zdjecie: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/ParkStrzelecki-WidokOgólnyNaPółnocnyWschód-POL%2C_Kraków.jpg/1280px-ParkStrzelecki-WidokOgólnyNaPółnocnyWschód-POL%2C_Kraków.jpg',
+    nazwa: "Park Strzelecki",
+    adres: 'Zygmunta Augusta 7, 31-505 Kraków',
+    ocena: 4.9,
+    komentarze: ['kinia34: Miłe miejsce do spędzenia czasu', 'robert: Park praktycznie w centrum Krakowa']
+};
+break;
+
+case 'Park Świętokrzyski':
+marker.info = {
+    zdjecie: 'https://upload.wikimedia.org/wikipedia/commons/a/ae/Warsaw_07-13_img29_View_from_Palace_of_Culture_and_Science.jpg',
+    nazwa: "Park Świętokrzyski",
+    adres: 'Świętokrzyska, 00-901 Warszawa',
+    ocena: 4.5,
+    komentarze: ['monika: Park średnio atrakcyjny.', 'user6677: Mnie się spodobało']
+};
+break;
+case 'Park Skaryszewski':
+marker.info = {
+    zdjecie: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Warszawa%2C_Park_Skaryszewski_z_góry.jpg/1920px-Warszawa%2C_Park_Skaryszewski_z_góry.jpg',
+    nazwa: "Park Skaryszewski im. Ignacego Jana Paderewskiego",
+    adres: 'al. Jerzego Waszyngtona, 00-999 Warszawa',
+    ocena: 4.7,
+    komentarze: ['krzysztof: Rozległy park', 'unknown64: Wspaniale miejsce wsrodku Warszawskiego centrum miasta.']
+};
+break;
+case 'Park Kultury i Wypoczynku':
+marker.info = {
+    zdjecie: 'http://rzeszow-news.pl/wp-content/uploads/2014/11/bulwary-e1426950435515.jpg',
+    nazwa: "Park Kultury i Wypoczynku",
+    adres: '35-001 Rzeszów',
+    ocena: 4.7,
+    komentarze: ['user: Miejsce bardzo przyjazne na spacer', 'unknown: Miejsce piękne, z potencjałem.']
+};
+break;
+case 'Muzeum Dobranocek':
+marker.info = {
+    zdjecie: 'https://upload.wikimedia.org/wikipedia/commons/8/8d/Teatr_Maska_i_Muzeum_Dobranocek_w_Rzeszowie.jpg',
+    nazwa: "Muzeum Dobranocek ze zbiorów Wojciecha Jamy w Rzeszowie",
+    adres: 'Adama Mickiewicza 13, 35-064 Rzeszów',
+    ocena: 4.6,
+    komentarze: ['liliana: Powrót do lat dzieciństwa🙂', 'janek23: Fantastyczna podróż do czasów dzieciństwa. ']
+};
+break;
+
+case 'Muzeum Okręgowe w Rzeszowie':
+marker.info = {
+    zdjecie: 'https://www.muzeum.rzeszow.pl/wp-content/uploads/2017/05/5-Muzeum-Okręgowe-Rzeszów.jpg',
+    nazwa: "Muzeum Okręgowe w Rzeszowie",
+    adres: '3 Maja 19, 35-030 Rzeszów',
+    ocena: 4.5,
+    komentarze: ['unknown: Wspaniałe miejsce.']
+};
+break;
+
+case 'Muzeum Powstania Warszawskiego':
+marker.info = {
+    zdjecie: 'https://warsawtour.pl/wp-content/uploads/2022/04/Muzeum-Powstania-Warszawskiego-fot.-Filip-Kwiatkowski-5.jpg',
+    nazwa: "Muzeum Powstania Warszawskiego",
+    adres: 'Grzybowska 79, 00-844 Warszawa',
+    ocena: 4.7,
+    komentarze: ['user545: Super muzeum przedstawiające historię Powstania Warszawskiego.', 'unknown: Polecam z pełną odpowiedzialnością.']
+};
+break;
+case 'Muzeum Narodowe w Warszawie':
+marker.info = {
+    zdjecie: 'https://upload.wikimedia.org/wikipedia/commons/9/91/Muzeum_Narodowe_w_Warszawie.jpg',
+    nazwa: "Muzeum Narodowe w Warszawie",
+    adres: 'al. Jerozolimskie 3, 00-495 Warszawa',
+    ocena: 4.6,
+    komentarze: ['user432: Super', 'unknown: Wspaniałe miejsce.']
+};
+break;
+case 'Muzeum Narodowe w Krakowie':
+marker.info = {
+    zdjecie: 'https://s8.tvp.pl/images2/8/a/7/uid_8a731f1006a4981d39e6b28180025eb01623226486043_width_900_play_0_pos_0_gs_0_height_506.jpg',
+    nazwa: "Muzeum Narodowe w Krakowie",
+    adres: 'al. 3 Maja 1, 30-062 Kraków',
+    ocena: 4.7,
+    komentarze:  ['user432: Super', 'unknown: Wspaniałe miejsce.']
+};
+break;
+case 'Bankomat Bank Pekao':
+marker.info = {
+    zdjecie: '../style/img/imgHTML/atm.png',
+    nazwa: "Bankomat Bank Pekao",
+    adres: 'Szpitalna 15, 30-960 Kraków',
+    ocena: 2.3,
+    komentarze: ['greg34: Wpłatomat oczywiście jak nie działał tak nadal nie działa', 'baska: Byłam jakiś czas temu - wpłatomat nie działał. ']
+};
+break;
+
+
+case 'Bankomat PKO Banku Polskiego':
+marker.info = {
+    zdjecie: 'https://s3-media0.fl.yelpcdn.com/bphoto/eR7oGt-Q2LUmVkD9gf_-5g/o.jpg',
+    nazwa: "Bankomat PKO Banku Polskiego",
+    adres: 'Rynek Główny 21, 31-008 Kraków',
+    ocena: 1.6,
+    komentarze: ['kinia34: Najgorszy bank w Krakowie', 'robert: Bankomat PKO nie działa z kartą Banku PKO.']
+};
+break;
+
+case 'Bankomat PKO Banku Polskiego Smolki':
+marker.info = {
+    zdjecie: 'https://upload.wikimedia.org/wikipedia/commons/1/18/Bankomat_050421.jpg',
+    nazwa: "Bankomat PKO Banku Polskiego",
+    adres: 'Smolki 8, 30-001 Kraków',
+    ocena: 3.5,
+    komentarze: ['paweł: w tym miejscu nie ma gdzie postawić samochodu', 'user6677: Był nieczynny gdy chciałem skorzystać']
+};
+break;
+case 'Euronet Polska Sp. z o.o.':
+marker.info = {
+    zdjecie: '../style/img/imgHTML/euronet.png',
+    nazwa: "Euronet Polska Sp. z o.o.",
+    adres: 'Aleja Józefa Piłsudskiego 34, 35-001 Rzeszów',
+    ocena: 3.7,
+    komentarze: []
+};
+break;
+case 'Bankomat PKO Banku Polskiego akademicka':
+marker.info = {
+    zdjecie: 'https://prowly-uploads.s3.eu-west-1.amazonaws.com/uploads/landing_page/template_background/69341/709247229440b5f05986cead93a91e8a.jpg',
+    nazwa: "Bankomat PKO Banku Polskiego",
+    adres: 'Akademicka 2, 35-001 Rzeszów',
+    ocena: 3.9,
+    komentarze: []
+};
+break;
+
 
 // markery zostaną jeszcze dodane
 

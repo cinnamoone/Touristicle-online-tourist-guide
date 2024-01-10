@@ -74,3 +74,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         
 });
+
+
+function toggleFilter() {
+    var filterPanel = document.getElementById('filter');
+    if (filterPanel.style.display === 'none') {
+        filterPanel.style.display = 'block';
+    } else {
+        filterPanel.style.display = 'none';
+    }
+}

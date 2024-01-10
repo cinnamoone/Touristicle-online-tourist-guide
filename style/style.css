@@ -288,6 +288,7 @@ footer {
     box-shadow: inset 0 -1px 1px #eee;
     align-items: right;
     position: relative;
+    height: 20px;
   }
   
   .checkbox-container:hover {

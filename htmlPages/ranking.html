@@ -7,7 +7,6 @@
     <link rel="stylesheet" type="text/css" href="../style/ranking.css">
     <script src="\JavaScripts\menu.js"></script>
     <script src="\JavaScripts\ranking.js"></script>
-    <script src="\JavaScripts\simulate.js"></script>
     <title>Touristicle</title>
 </head>
 
@@ -40,7 +39,8 @@
     
     <section id="ranking">
       <center><h1>Przejrzyj najlepiej oceniane miejsca i atrakcje!</h1></center>  
-        <div id="filter">
+      <button class="button" id="filterButton" onclick="toggleFilter()">Filtrowanie</button>
+      <div  id="filter" style="display: none;">
             <label for="category-filter">Filtruj według kategorii:</label>
             <select id="category-filter">
                 <option value="all">Wszystkie</option>
@@ -65,7 +65,8 @@
                 <option value="highest">Od najwyższej</option>
                 <option value="lowest">Od najniższej</option>
             </select>
-        </div>
+        </div> </div>
+
         <ul id="ranking-list">
             <!-- dane JSON zostaną wyświetlone tutaj -->
         </ul>
@@ -77,7 +78,10 @@
     </footer>
     <script>
         
-
+        function redirectToHomepage() {
+            var homepageUrl = "main.html";
+            window.location.href = homepageUrl;
+        }
 
       </script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
