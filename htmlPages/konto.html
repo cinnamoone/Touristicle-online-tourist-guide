@@ -66,11 +66,9 @@
     </footer>
 
     <script>
+
         function redirectToHomepage() {
-            // Tutaj ustaw adres URL, do którego chcesz przekierować użytkownika
             var homepageUrl = "main.html";
-            
-            // Wykonaj przekierowanie
             window.location.href = homepageUrl;
         }
 
@@ -79,9 +77,9 @@
     
             if (loggedInUser) {
                 const welcomeMessage = document.getElementById('welcomeMessage');
-                welcomeMessage.innerText = 'Witaj na swoim koncie użytkowniku ' + loggedInUser.username + "!"; // Załóżmy, że 'username' jest właściwością obiektu użytkownika
+                welcomeMessage.innerText = 'Witaj na swoim koncie użytkowniku ' + loggedInUser.username + "!"; 
               
-                // Wywołaj funkcję do wyświetlania markerów użytkownika
+                // wywołanie funkcję do wyświetlania markerów użytkownika
                 
             } else {welcomeMessage.innerText = 'brak zalogowanego uzytkownika'}
         });

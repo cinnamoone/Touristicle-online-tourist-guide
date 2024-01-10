@@ -1,12 +1,13 @@
+//zmiana menu w zależności czy użytkownik jest zalogowany czy nie
 function updateMenu() {
     const loggedInUser = checkLoggedInUser();
 
-    // Znajdź element menu w DOM
+    
     const menu = document.querySelector('.menu ul');
 
-    // Sprawdź, czy użytkownik jest zalogowany
+    
     if (loggedInUser) {
-        // Użytkownik jest zalogowany, zmień menu
+        
         menu.innerHTML = `
             <li><a href="dodawanie.html">Dodaj miejsce</a></li>
             <li class="dropdown">
@@ -18,7 +19,7 @@ function updateMenu() {
             </li>
             <li><a href="ranking.html">Ranking</a></li>`;
     } else {
-        // Użytkownik nie jest zalogowany, zostaw domyślne menu
+        
         menu.innerHTML = `
             <li><a href="dodawanie.html">Dodaj miejsce</a></li>
             <li class="dropdown">
@@ -31,15 +32,14 @@ function updateMenu() {
             <li><a href="ranking.html">Ranking</a></li>`;
     }
 }
-function logout() {
-    // Usuwa zapisane informacje o zalogowanym użytkowniku
-    localStorage.removeItem('loggedInUser');
 
-    // Możesz też przekierować użytkownika na stronę główną lub stronę logowania
-    window.location.href = 'main.html'; // lub 'login.html'
+//obsługa wylogowania
+function logout() {
+    localStorage.removeItem('loggedInUser');
+    window.location.href = 'main.html'; 
 }
 
-// Wywołaj funkcję updateMenu przy ładowaniu strony
+
 document.addEventListener('DOMContentLoaded', updateMenu);
 
 function checkLoggedInUser() {

@@ -1,10 +1,12 @@
+//ranking
+
 document.addEventListener("DOMContentLoaded", function () {
     const categoryFilter = document.getElementById("category-filter");
-    const cityFilter = document.getElementById("city-filter"); // City filter element
+    const cityFilter = document.getElementById("city-filter"); 
     const sortSelect = document.getElementById("sort");
     const rankingList = document.getElementById("ranking-list");
 
-    // Fetch data from JSON file
+    // pobieranie danych z pliku json
     fetch("../data/data.json")
         .then(response => response.json())
         .then(data => {
@@ -57,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const itemName = document.createElement("h3");
                 itemName.textContent = item.title;
         
-                const itemAddress = document.createElement("p"); // Create a paragraph for the address
+                const itemAddress = document.createElement("p"); 
                 itemAddress.textContent = `Adres: ${item.info.adres}`;
         
                 const itemRating = document.createElement("p");
@@ -65,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
                 listItem.appendChild(itemImage);
                 listItem.appendChild(itemName);
-                listItem.appendChild(itemAddress); // Add address to the list item
+                listItem.appendChild(itemAddress); 
                 listItem.appendChild(itemRating);
                 rankingList.appendChild(listItem);
             });

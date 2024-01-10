@@ -1,3 +1,5 @@
+
+//obsługa klikniecia na logo strony
 function redirectToHomepage() {
     var homepageUrl = "main.html";
     window.location.href = homepageUrl;
@@ -10,6 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
   displayUserFavorites()
 });
 
+
+//wyświetlanie markerów danego użytkownika
 function displayUserMarkers() {
   var loggedInUser = checkLoggedInUser();
   if (!loggedInUser) {
@@ -54,9 +58,9 @@ function displayMarkers(markers) {
       console.error('Nie znaleziono kontenera do wyświetlania markerów.');
       return;
   }
-  container.innerHTML = ''; // Czyści poprzednie markery
+  container.innerHTML = ''; 
   
-  // Dodawanie nagłówka "Twoje miejsca"
+  
     var header = document.createElement('h1');
     header.textContent = 'Dodane miejsca';
     container.appendChild(header);
@@ -79,7 +83,7 @@ function displayMarkers(markers) {
 }
 
 
-
+//wyświetlanie komentarzy danego użytkownika
 function displayUserComments() {
     var loggedInUser = checkLoggedInUser();
     if (!loggedInUser) {
@@ -145,6 +149,9 @@ function displayUserComments() {
         container.appendChild(commentElement);
     });
   }
+
+
+  //wyświetlanie ulubionych miejsc danego użytkownika
   function displayUserFavorites() {
     var loggedInUser = checkLoggedInUser();
     if (!loggedInUser) {
@@ -230,7 +237,7 @@ function displayFavorites(favorites) {
 
   
 
-// Funkcja pomocnicza do pobierania informacji o zalogowanym użytkowniku z lokalnego magazynu
+// pobieranie informacji o zalogowanym użytkowniku z lokalstorage
 function checkLoggedInUser() {
   return JSON.parse(localStorage.getItem('loggedInUser'));
 }

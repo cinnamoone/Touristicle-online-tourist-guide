@@ -1,11 +1,17 @@
+
+//wywołanie mapy leaflet i ustawienie widoku na kraków
 var map = L.map('map').setView([50.0614300, 19.9365800], 15);
 L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
 
-
+//dodanie obsługi leaflet wyszukiwania do mapy
   L.Control.geocoder().addTo(map);
+
+
+
+  //deklaracje ikon w zależności od kategorii
   var parkIcon = L.icon({
     iconUrl: '../style/img/icons/park.png',
     iconSize: [40,40],
@@ -57,7 +63,7 @@ L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       iconUrl: '../style/img/icons/default.png',
       iconSize: [40,40],});
     
-
+   //funkcja dynamicznie przypisująca ikonę w zależności od kategorii markera
   function getIconForCategory(category) {
       var icons = {
         'park': parkIcon,
@@ -69,29 +75,36 @@ L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         'restaurant' : restaurantIcon,
         'fun' : funIcon,
         'wc' : wcIcon,
-        'view' : viewIcon
-
-                  // Dodaj resztę kategorii i odpowiadające im ikony
-              };
-              return icons[category] || defaultIcon; // Użyj domyślnej ikony, jeśli kategoria nie jest znana
+        'viewpoint' : viewIcon
+      };
+              return icons[category] || defaultIcon; // domyślna ikona jeśli kategoria nie jest znana
           }
                      
 
 
-
-  var markers = [
-L.marker([50.053555165158244, 19.848564721218292], {icon: parkIcon, category: 'park', title: 'Las Wolski' }),
-L.marker([50.0645817136116, 19.943452411089474], {icon: infoIcon, category: 'info', title: 'Punkt Informacji' }),
-L.marker([50.05282655584498, 19.904319897606957], {icon: museumIcon, category: 'museum', title: 'Muzeum C' }),
-L.marker([50.06205651582134, 19.937869678768998], {icon: museumIcon, category: 'museum', title: 'Rynek Podziemny' }),
-L.marker([50.06157439140573, 19.93736005904437], {icon: viewIcon, category: 'viewpoint', title: 'Sukiennice' }),
-L.marker([50.06277280600165, 19.938084255501], {icon: museumIcon, category: 'museum', title: 'Muzeum Bursztynu' }),
-L.marker([50.06031474322343, 19.941430219690446], {icon: parkIcon,  category: 'park', title: 'Planty' }),
-L.marker([50.061956647590286, 19.93674315095667],  {icon: viewIcon, category: 'viewpoint', title: 'Rynek główny' }),
-L.marker([50.06108881834254, 19.93938244469425], {icon: restaurantIcon, category: 'restaurant', title: 'Italiano Pizza and pasta' })
+//deklaracja markerów wewnątrz projektu 
+  var rawMarkers = [
+    {coords: [50.053555165158244, 19.848564721218292], category: 'park', title: 'Las Wolski'},
+    {coords: [50.0645817136116, 19.943452411089474], category: 'info', title: 'Punkt Informacji'},
+    {coords: [50.05282655584498, 19.904319897606957], category: 'museum', title: 'Muzeum C'},
+    {coords: [50.06205651582134, 19.937869678768998], category: 'museum', title: 'Rynek Podziemny'},
+    {coords: [50.06157439140573, 19.93736005904437], category: 'viewpoint', title: 'Sukiennice'},
+    {coords: [50.06277280600165, 19.938084255501], category: 'museum', title: 'Muzeum Bursztynu'},
+    {coords: [50.06031474322343, 19.941430219690446], category: 'park', title: 'Planty'},
+    {coords: [50.061956647590286, 19.93674315095667], category: 'viewpoint', title: 'Rynek główny'},
+    {coords: [50.06108881834254, 19.93938244469425], category: 'restaurant', title: 'Italiano Pizza and pasta'}
 ];
+
+//dynamiczne przypisanie ikon
+var markers = rawMarkers.map(m => {
+  var marker = L.marker(m.coords, {category: m.category, title: m.title});
+  marker.setIcon(getIconForCategory(m.category));
+  return marker;
+});
+
 markers.forEach(marker => {
 switch (marker.options.title) {
+  //symulacja dodanych informacji typu ocena i komentarze
 case 'Rynek Podziemny':
 marker.info = {
     zdjecie: '../style/img/imgHTML/podz.jpg',
@@ -180,6 +193,8 @@ break;
 }
 });
 
+
+//obsługa filtrowania markerów
 var markersLayer = L.layerGroup(markers).addTo(map);
 var filterContainer = document.getElementById('filter-container');
 
@@ -238,29 +253,29 @@ markersLayer.addLayer(marker);
 }
 });
 }
-// Funkcja inicjalizująca bazę danych IndexedDB
+
+// funkcja inicjalizująca bazę danych IndexedDB
 function initIndexedDB() {
   return new Promise((resolve, reject) => {
-      var request = indexedDB.open('markersDB', 3); // Increment the version to 3
+      var request = indexedDB.open('markersDB', 3); 
 
       request.onupgradeneeded = function(event) {
           var db = event.target.result;
 
-          // Create 'markers' object store if it does not exist
+          // markery
           if (!db.objectStoreNames.contains('markers')) {
               db.createObjectStore('markers', { keyPath: 'id', autoIncrement: true });
           }
 
-          // Create 'comments' object store if it does not exist
+          // komentarze
           if (!db.objectStoreNames.contains('comments')) {
               var commentsStore = db.createObjectStore('comments', { keyPath: 'id', autoIncrement: true });
               commentsStore.createIndex('placeName', 'placeName', { unique: false });
           }
 
-          // Create 'favourites' object store if it does not exist
+          // ulubione miejsca
           if (!db.objectStoreNames.contains('favourites')) {
               var favouritesStore = db.createObjectStore('favourites', { keyPath: 'id', autoIncrement: true });
-              // Optionally, add indexes to the 'favourites' store if needed
               favouritesStore.createIndex('userName', 'userName', { unique: false });
           }
       };
@@ -276,8 +291,8 @@ function initIndexedDB() {
   });
 }
 
-
-// Funkcja do zapisywania markera do bazy danych
+//symulacja działania konta użytkownika
+// funkcja do zapisywania markera do bazy danych indexedDB 
 function saveMarkerToDB(markerData) {
 initIndexedDB().then(function(db) {
 var transaction = db.transaction('markers', 'readwrite');
@@ -295,13 +310,7 @@ console.error('Błąd podczas zapisu markera do bazy danych.');
 });
 }
 
-// Funkcja do odczytu markerów z bazy danych i ich dodawania do warstwy mapy
-
-
-
-
-
-// Dodanie odczytu markerów z bazy danych przy starcie aplikacji
+// czytanie markerów z bazy danych przy starcie aplikacji
 readMarkersFromDB();
 
 function resetMarkers() {
@@ -311,7 +320,7 @@ markersLayer.addLayer(marker);
 });
 }
 
-// dodaj nowy kontener do przechowywania informacji
+// wyświetlanie informacji o markerze
 var infoContainer = L.control({ position: 'bottomleft' });
 
 infoContainer.onAdd = function (map) {
@@ -354,16 +363,13 @@ this._div.innerHTML += 'Kliknij na marker, aby zobaczyć informacje.';
 displayComments(info);
 };
 
-
-
 infoContainer.addTo(map);
 
 
 
-// Funkcja do dodawania komentarza do IndexedDB
+// dodawanie komentarza do IndexedDB
 function addComment(placeName) {
   var commentText = document.getElementById('commentInput').value;
-   // Pobierz nazwę zalogowanego użytkownika
   var addedBy = checkLoggedInUser();
 
   initIndexedDB().then(db => {
@@ -379,12 +385,12 @@ function addComment(placeName) {
   }).then(() => {
     console.log('Komentarz dodany.');
     alert('Komentarz dodany.');
-    updateInfoPanel(placeName); // Funkcja do aktualizacji panelu informacyjnego
+    updateInfoPanel(placeName); // aktualizacja panelu info o miejscu
   }).catch(err => {console.error('Błąd podczas dodawania komentarza: ', err);
   });
 }
 
-// Funkcja do aktualizacji panelu informacyjnego
+// aktualizacja panelu informacyjnego
 function updateInfoPanel(placeName) {
   initIndexedDB().then(db => {
     var transaction = db.transaction(['comments'], 'readonly');
@@ -399,7 +405,6 @@ function updateInfoPanel(placeName) {
         comments.push(cursor.value);
         cursor.continue();
       } else {
-        // Wyświetl komentarze w panelu informacyjnym
         displayComments(comments);
       }
     };
@@ -408,7 +413,7 @@ function updateInfoPanel(placeName) {
 
 // Funkcja do wyświetlania komentarzy w panelu informacyjnym
 function displayComments(info) {
-  // Sprawdź, czy 'info' oraz 'info.nazwa' są zdefiniowane
+  // obsługa wyjątku
   if (!info || typeof info.nazwa === 'undefined') {
     //console.error('Informacje o miejscu są niepełne lub niezdefiniowane.');
     return;
@@ -420,10 +425,13 @@ function displayComments(info) {
     return;
   }
 
-  // Czyszczenie istniejących komentarzy
+  // czyszczenie istniejących komentarzy
   commentsContainer.innerHTML = '';
 
-  // Dodawanie komentarzy z obiektu 'info'
+
+  //komentarze dodajemy z wewnątrz projektu i z bazy danych indexedDB więc musimy zrobić obsługę obu przypadków
+
+  // dodawanie komentarzy z obiektu 'info'
   if (info.komentarze && info.komentarze.length > 0) {
     info.komentarze.forEach(comment => {
       var commentDiv = document.createElement('div');
@@ -433,7 +441,7 @@ function displayComments(info) {
     });
   }
 
-  // Dodawanie komentarzy z IndexedDB
+  // dodawanie komentarzy z IndexedDB
   initIndexedDB().then(db => {
     var transaction = db.transaction(['comments'], 'readonly');
     var store = transaction.objectStore('comments');
@@ -458,10 +466,7 @@ function displayComments(info) {
 
 
 
-// obsługa kliknięcia na markerze
-
-// funkcja do zresetowania informacji na panelu bocznym
-
+// wyświetlanie oceny w postaci gwiazdek
 function generateRatingStars(rating) {
   let starsHtml = '';
   let ratingDisplay = '';
@@ -474,7 +479,7 @@ function generateRatingStars(rating) {
       const halfStar = rating % 1 !== 0 ? '<i class="fas fa-star-half-alt"></i>' : '';
       const emptyStars = '<i class="far fa-star"></i>'.repeat(5 - Math.ceil(rating));
       starsHtml = `${filledStars}${halfStar}${emptyStars}`;
-      ratingDisplay = `(${rating.toFixed(1)})`; // Zaokrąglenie do jednego miejsca po przecinku
+      ratingDisplay = `(${rating.toFixed(1)})`; // zaokrąglenie do jednego miejsca po przecinku
   }
 
   return `<span class="rating-stars">${starsHtml}</span> <span class="rating-number">${ratingDisplay}</span>`;
@@ -482,12 +487,13 @@ function generateRatingStars(rating) {
 
 
 function resetInfoContainer() {
-  infoContainer.update(); // Wyczyszczenie zawartości panelu
+  infoContainer.update(); 
 }
 function closeInfoContainer() {
-  currentMarker = null; // Wyczyszczenie aktualnego markera
-  infoContainer.update(); // Wyczyszczenie zawartości panelu
+  currentMarker = null; 
+  infoContainer.update(); 
 }
+//wczytywanie markerów dodanych przez użytkownika
 function readMarkersFromDB() {
   initIndexedDB().then(function (db) {
   var transaction = db.transaction('markers', 'readonly');
@@ -503,13 +509,9 @@ function readMarkersFromDB() {
         var lat = parseFloat(coordinatesArray[0]);
         var lng = parseFloat(coordinatesArray[1]);
     
-        // reszta Twojego kodu, np. tworzenie markera
     } else {
         console.error('Błąd: brak współrzędnych dla markera', markerData);
-        // ewentualne dalsze działania, np. obsługa błędu
-    }
-    
-  
+    }  
       var marker = L.marker([lat, lng], { icon: getIconForCategory(markerData.category) });
       marker.info = {
           nazwa: markerData.placeName,
@@ -522,7 +524,7 @@ function readMarkersFromDB() {
       markersLayer.addLayer(marker);
   
       marker.on('click', function () {
-          currentMarker = marker; // Aktualizacja currentMarker przy kliknięciu
+          currentMarker = marker; // aktualizacja currentMarker przy kliknięciu
           infoContainer.update(marker.info);
       });
   
@@ -534,11 +536,10 @@ function readMarkersFromDB() {
   
 
 //ulubione
-
 function toggleFavorite(placeName, checkboxElem, imageUrl) {
   var user = checkLoggedInUser();
   if (!user) {
-    alert('Please log in to add favorites.');
+    alert('Aby dodać miejsce do ulubionych, musisz być zalogowany');
     checkboxElem.checked = false;
     return;
   }
@@ -554,9 +555,8 @@ function removeFromFavorites(placeName, user) {
   initIndexedDB().then(function(db) {
     var transaction = db.transaction('favourites', 'readwrite');
     var store = transaction.objectStore('favourites');
-    // Assuming you have a unique identifier for each favorite entry
     store.delete(placeName).onsuccess = function() {
-      console.log('Favorite removed from the database.');
+      console.log('Usunięto z ulubionych.');
       alert('Usunięto z ulubionych');
     };
   });
@@ -564,7 +564,7 @@ function removeFromFavorites(placeName, user) {
 
 function addToFavorites(placeName, user, imageUrl) {
   if (!user) {
-    alert('Please log in to add favorites.');
+    alert('Aby dodać miejsce do ulubionych, musisz być zalogowany.');
     return;
   }
 
@@ -585,22 +585,17 @@ function saveFavoriteToDB(favorite) {
     var request = store.add(favorite);
 
     request.onsuccess = function() {
-      console.log('Favorite added to the database.');
+      console.log('Dodano do ulubionych!');
       alert('Dodano do ulubionych!');
     };
 
     request.onerror = function(event) {
-      console.error('Error adding favorite to the database.', event);
+      console.error('Błąd przy dodawaniu miejsca do ulubionych.', event);
     };
   });
 }
 
-
-
-
-
-  
-  
+//wyświetlanie info  
 markers.forEach(marker => {
 marker.on('click', function () {
 infoContainer.update(marker.info);

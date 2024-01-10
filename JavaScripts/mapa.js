@@ -1,3 +1,5 @@
+
+//panel filtrowania
 function toggleFilterPanel() {
     var filterContainer = document.getElementById('filter-container');
     var filterPanel = document.getElementById('filterPanel');
@@ -10,8 +12,6 @@ function toggleFilterPanel() {
       filterPanel.style.width = '150px'; 
     }
   }
-  
-  
   
   function resetMarkers() {
     markersLayer.clearLayers();
