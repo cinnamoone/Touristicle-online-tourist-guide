@@ -93,7 +93,7 @@ L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     {coords: [50.061956647590286, 19.93674315095667], category: 'viewpoint', title: 'Rynek główny'},
     {coords: [50.06108881834254, 19.93938244469425], category: 'restaurant', title: 'Italiano Pizza and pasta'},
     {coords: [50.008295158356304, 19.932197653896544], category: 'natureMonument', title: 'Dąb Szypułkowy'},
-    {coords: [50.0456065340809, 19.928718217100084], category: 'natureMonument', title: 'Pomnik Przyrody Twardowskiego'},
+    {coords: [50.05638309009899, 19.92486451752291], category: 'natureMonument', title: 'Pomnik Przyrody Wiąz górski'},
     {coords: [52.218977335206326, 21.02698130066818], category: 'natureMonument', title: 'Pomnik przyrody Spadające Konary'},
     {coords: [50.01275843527185, 22.071621631714695], category: 'natureMonument', title: 'Modrzew Słotek'},
     {coords: [50.03943576653912, 21.978823469295314], category: 'natureMonument', title: 'Topola Wanda - pomnik przyrody'},
@@ -111,9 +111,38 @@ L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     {coords: [50.06089857714012, 19.9362919746465], category: 'atm', title: 'Bankomat PKO Banku Polskiego'},
     {coords: [50.0411779464954, 19.94278057188052], category: 'atm', title: 'Bankomat PKO Banku Polskiego Smolki'},
     {coords: [50.04132519519302, 22.00378868460847], category: 'atm', title: 'Euronet Polska Sp. z o.o.'},
-    {coords: [50.01946462308785, 21.982298223225428], category: 'atm', title: 'Bankomat PKO Banku Polskiego akademicka'}
+    {coords: [50.01946462308785, 21.982298223225428], category: 'atm', title: 'Bankomat PKO Banku Polskiego akademicka'},
+    {coords: [50.037254476397884, 19.94507014285578], category: 'viewpoint', title: 'Punkt widokowy Krzemionki'},
+    {coords: [50.03999298411976, 19.9140229824643], category: 'viewpoint', title: 'Punkt widokowy na Wawel'},
+    {coords: [50.088430768555405, 19.86759139999806], category: 'viewpoint', title: 'Punkt widokowy przy krzyżu "pod lipką"'},
+    {coords: [49.98792965430816, 22.050968054003615], category: 'viewpoint', title: 'Panorama pogórze karpackie'},
+    {coords: [52.249929405707974, 21.01395332769446], category: 'viewpoint', title: 'Punkt widokowy Warszawa'},
+    {coords: [50.038248252600916, 22.00316469006734], category: 'bar', title: 'Pub K20'},
+    {coords: [50.037127083621925, 22.00561791165481], category: 'bar', title: 'Corner Pub Mała Graciarnia Rzeszów'},
+    {coords: [50.06269736311796, 19.934847992842947], category: 'bar', title: 'BaniaLuka'},
+    {coords: [50.061831445702154, 19.935832699998063], category: 'bar', title: 'Vis a Vis. Drink-bar'},
+    {coords: [50.0643488018698, 19.937751293235355], category: 'bar', title: 'The Artist Cocktail Bar'},
+    {coords: [50.06393113290446, 19.942860001612825], category: 'fun', title: 'Teatr im. Juliusza Słowackiego w Krakowie'},
+    {coords: [50.0615205852016, 19.935422947001836], category: 'fun', title: 'Kino Pod Baranami'},
+    {coords: [50.064400296631746, 19.94076952397438], category: 'fun', title: 'Kino 7D Max & Gry VR Kraków'},
+    {coords: [50.03495567484332, 22.000864204017365], category: 'fun', title: 'Kino „Zorza”'},
+    {coords: [50.019123215425616, 21.990689099998054], category: 'fun', title: 'Kino Helios'},
+    {coords: [50.06443468437378, 19.935119145961146], category: 'wc', title: 'Toaleta Publiczna'},
+    {coords: [50.05766221920261, 19.94567094225736], category: 'wc', title: 'Toaleta'},
+    {coords: [50.06469138477872, 19.9450605999988], category: 'wc', title: 'WC'},
+    {coords: [50.0323564166722, 21.999173345742427], category: 'wc', title: 'WC Rzeszów'},
+    {coords: [50.02450477982727, 21.998003749440127], category: 'wc', title: 'Toaleta Publiczna przy Bulwarach'},
+    {coords: [50.062617282040776, 19.93809080882538], category: 'info', title: 'InfoKraków'},
+    {coords: [50.061795280812305, 19.937605452573617], category: 'info', title: 'InfoKraków Sukiennice'},
+    {coords: [50.03786949257718, 22.003095182845605], category: 'info', title: 'Podkarpacka Regionalna Organizacja Turystyczna'},
+    {coords: [50.03754589386159, 22.00403189705621], category: 'info', title: 'Regionalne Centrum Informacji Turystycznej (Rzeszowskie Piwnice)'},
+    {coords: [52.23178239319089, 21.006169136872906], category: 'info', title: 'Stołeczne Biuro Turystyki'},
+    {coords: [52.23276768890413, 21.013354134052193], category: 'restaurant', title: 'Restauracja Gala Smaków'},
+    {coords: [50.06429836989672, 19.942220390556788], category: 'restaurant', title: 'Szalone Widelce'},
+    {coords: [50.062912211944784, 19.94122889130315], category: 'restaurant', title: 'Tawerna Wilczy Dół'},
+    {coords: [50.037100556716226, 22.001418287792635], category: 'restaurant', title: 'Restauracja „Niebieskie Migdały”'},
+    {coords: [50.03023128715652, 22.006994565634045], category: 'restaurant', title: 'Molto. Restauracja.'}
 
-    
 
 
 
@@ -218,12 +247,12 @@ marker.info = {
 };
 break;
 
-case 'Pomnik Przyrody Twardowskiego':
+case 'Pomnik Przyrody Wiąz górski':
 marker.info = {
-    zdjecie: '../style/img/imgHTML/pomnikprzyr.png',
-    nazwa: "Pomnik Przyrody na Twardowskiego",
-    adres: 'Twardowskiego 30, 30-312 Kraków',
-    ocena: 4.9,
+    zdjecie: 'https://plikimpi.krakow.pl//zalacznik/407952/frame_4_2969215234.jpg',
+    nazwa: "Pomnik Przyrody Wiąz górski",
+    adres: '30-102 Kraków',
+    ocena: 5.0,
     komentarze: ['basia34: Potrzeba więcej takich drzew :)', 'unknown: Wspaniałe miejsce.']
 };
 break;
@@ -398,10 +427,299 @@ marker.info = {
     komentarze: []
 };
 break;
+case 'Punkt widokowy Krzemionki':
+marker.info = {
+    zdjecie: 'https://plikimpi.krakow.pl/pliki/387348/4.jpg',
+    nazwa: "Punkt widokowy Krzemionki",
+    adres: '30-001, Kraków',
+    ocena: 4.7,
+    komentarze: ['zbyszek432: Wspaniałe miejsce na krótki spacer', 'gresd: Super widok na krakow polecam.']
+};
+break;
 
+case 'Punkt widokowy na Wawel':
+marker.info = {
+    zdjecie: 'https://cdn.galleries.smcloud.net/t/galleries/gf-SWoh-vTYR-DJex_wawel-zamek-krolewski-na-wawelu-994x828.jpg',
+    nazwa: "Punkt widokowy na Wawel",
+    adres: 'Salezjańska 7, 30-374 Kraków',
+    ocena: 4.9,
+    komentarze: ['jakub: Punkt z ładnym widokiem na Wawel, Kopiec Kościuszki, widać też kawałek diabelskiego młyńca ', 'gresd: SPiękne i spokojne miejsce. Wspaniała panorama.']
+};
+break;
 
-// markery zostaną jeszcze dodane
+case 'Punkt widokowy przy krzyżu "pod lipką"':
+marker.info = {
+    zdjecie: 'https://www.trasadlabobasa.pl/image/16845.jpg',
+    nazwa: "Punkt widokowy przy krzyżu pod lipką",
+    adres: 'Stanisława Ignacego Witkiewicza, 31-398 Kraków',
+    ocena: 4.8,
+    komentarze: ['user432: Super', 'unknown: Wspaniałe miejsce.']
+};
+break;
 
+case 'Panorama pogórze karpackie':
+marker.info = {
+    zdjecie: 'https://mynaszlaku.pl/wp-content/uploads/2020/04/widok-z-wiezy-widokowej-pod-jaworzem.jpg',
+    nazwa: "Panorama pogórze karpackie",
+    adres: '35-330 Rzeszów',
+    ocena: 4.8,
+    komentarze: ['user432: Ciekawy punkt widokowy, oraz liczne podjazdy i trasy rowerowe.', 'unknown: Najczęściej odwiedzana przeze mnie miejscówka do widoków na Tatry. ']
+};
+break;
+
+case 'Punkt widokowy Warszawa':
+marker.info = {
+    zdjecie: 'https://wf1.xcdn.pl/files/21/07/13/179807_H1cd_IMG_20200604_182438scaled_83.jpg.webp',
+    nazwa: "Punkt widokowy Warszawa",
+    adres: '00-001 Warszawa',
+    ocena: 4.3,
+    komentarze: ['user432: Super', 'unknown: Wspaniałe miejsce.']
+};
+break;
+
+case 'Pub K20':
+marker.info = {
+    zdjecie: 'https://bi.im-g.pl/im/5f/61/13/z20323679IHG.jpg',
+    nazwa: "Pub K20",
+    adres: 'Mikołaja Kopernika 4, 35-002 Rzeszów',
+    ocena: 4.9,
+    komentarze: ['user432: Super', 'unknown: Wspaniałe miejsce.']
+};
+break;
+
+case 'Corner Pub Mała Graciarnia Rzeszów':
+marker.info = {
+    zdjecie: 'https://partyonline.pl/files/place_gallery/18910/corner-pub-mala-graciarnia-rzeszow_22318910.jpg',
+    nazwa: "Corner Pub Mała Graciarnia Rzeszów",
+    adres: 'Przesmyk 2, 35-065 Rzeszów',
+    ocena: 4.1,
+    komentarze: ['user432: Super', 'unknown: Wspaniałe miejsce.']
+};
+break;
+
+case 'BaniaLuka':
+marker.info = {
+    zdjecie: 'https://krakowbuzz.com/wp-content/uploads/2017/08/Bania-Luka-Krakow.jpg',
+    nazwa: "BaniaLuka",
+    adres: 'Szewska 13, 31-009 Kraków',
+    ocena: 4.4,
+    komentarze: ['user432: Super', 'unknown: Wspaniałe miejsce.']
+};
+break;
+
+case 'Vis a Vis. Drink-bar':
+marker.info = {
+    zdjecie: 'https://upload.wikimedia.org/wikipedia/commons/1/12/Vis-à-vis_01_AB.jpg',
+    nazwa: "Vis a Vis. Drink-bar",
+    adres: 'Rynek Główny 29, 31-010 Kraków',
+    ocena: 4.3,
+    komentarze: ['user432: Super', 'unknown: Wspaniałe miejsce.']
+};
+break;
+
+case 'The Artist Cocktail Bar':
+marker.info = {
+    zdjecie: 'https://krakowboatparty.com/wp-content/uploads/2020/06/Opus-Lounge-Bar-2.jpg',
+    nazwa: "The Artist Cocktail Bar",
+    adres: 'św. Marka 11A, 31-012 Kraków',
+    ocena: 4.7,
+    komentarze: ['user432: Super', 'unknown: Wspaniałe miejsce.']
+};
+break;
+case 'Teatr im. Juliusza Słowackiego w Krakowie':
+marker.info = {
+    zdjecie: '../style/img/imgHTML/teatr.png',
+    nazwa: "Teatr im. Juliusza Słowackiego w Krakowie",
+    adres: 'plac Świętego Ducha 1, 31-023 Kraków',
+    ocena: 4.8,
+    komentarze: ['mike432: To jeden z najpiękniejszych teatrów', 'gresd: Budynek jest przepiękny']
+};
+break;
+
+case 'Kino Pod Baranami':
+marker.info = {
+    zdjecie: 'https://media.krakow.travel/photos/21796/xxl.jpg',
+    nazwa: "Kino Pod Baranami",
+    adres: 'Rynek Główny 27, 31-010 Kraków',
+    ocena: 4.7,
+    komentarze: ['zuser2: Klimatyczne miejsce w sercu Krakowa', 'piotr: Super']
+};
+break;
+
+case 'Kino 7D Max & Gry VR Kraków':
+marker.info = {
+    zdjecie: 'https://assets.superprezenty.pl/files/uploaded/programs/c679d740d5bd40228f74eda5022adaa2.jpeg',
+    nazwa: "Kino 7D Max & Gry VR Kraków",
+    adres: 'Floriańska 36, 31-021 Kraków',
+    ocena: 4.4,
+    komentarze: ['zbyszek432: Fajne doświadczenie, do wyboru kilka filmów.', 'gresd: ciekawe miejsce.']
+};
+break;
+
+case 'Kino „Zorza”':
+marker.info = {
+    zdjecie: 'https://bi.im-g.pl/im/cc/d2/1b/z29172940AMP.jpg',
+    nazwa: "Kino Zorza",
+    adres: '3 Maja 28, 35-030 Rzeszów',
+    ocena: 4.6,
+    komentarze: ['zbyszek432: Bardzo łądne kino', 'gresd: tanie bilety i niszowe filmy.']
+};
+break;
+
+case 'Kino Helios':
+marker.info = {
+    zdjecie: 'https://www.resinet.pl/_foty_news/260/kino-helios-w-galerii-rzeszow-wznawia-dzialalnosc-strefa-barowa-wciaz-pozostanie-zamknieta_40094.jpg',
+    nazwa: "Kino Helios",
+    adres: 'Aleja Józefa Piłsudskiego 44, 35-001 Rzeszów',
+    ocena: 4.5,
+    komentarze: ['zbyszek432: polecam', 'gresd: smaczne naczosy.']
+};
+break;
+
+case 'Toaleta Publiczna':
+marker.info = {
+    zdjecie: '../style/img/imgHTML/wc.jpg',
+    nazwa: "Toaleta Publiczna",
+    adres: 'plac Szczepański, 31-011 Kraków',
+    ocena: 3.8,
+    komentarze: ['zbyszek432: super', 'gresd: polecam']
+};
+break;
+
+case 'Toaleta':
+marker.info = {
+    zdjecie: '../style/img/imgHTML/wc2.png',
+    nazwa: "Toaleta",
+    adres: 'Józefa Dietla 84, 31-031 Kraków',
+    ocena: 2.5,
+    komentarze: ['gresd: polecam']
+};
+break;
+
+case 'WC':
+marker.info = {
+    zdjecie: '../style/img/imgHTML/wc3.png',
+    nazwa: "WC",
+    adres: 'Tunel, skrzyżowanie ulic Basztowa / Lubicz / Westerplatte, Pawia, 31-154 Kraków',
+    ocena: 3.5,
+    komentarze: ['zbyszek432: wejscie 4zl', 'gresd: czysto.']
+};
+break;
+
+case 'WC Rzeszów':
+marker.info = {
+    zdjecie: '../style/img/imgHTML/wc.jpg',
+    nazwa: "WC Rzeszów",
+    adres: 'plac Śreniawitów, 35-001 Rzeszów',
+    ocena: 2.3,
+    komentarze: ['zbyszek432: wejscie 4zl', 'gresd: czysto.']
+};
+break;
+
+case 'Toaleta Publiczna przy Bulwarach':
+marker.info = {
+    zdjecie: 'https://rzeszow-news.pl/wp-content/uploads/2016/08/toaletyy.jpg',
+    nazwa: "Toaleta Publiczna przy Bulwarach",
+    adres: 'Hetmańska 45E, 35-078 Rzeszów',
+    ocena: 4.0,
+    komentarze: ['zbyszek432: wejscie 4zl', 'gresd: czysto.']
+};
+break;
+case 'InfoKraków':
+marker.info = {
+    zdjecie: 'https://infokrakow.pl/images/InfoKrakow-ul-sw-Jana-2.jpeg',
+    nazwa: "InfoKraków",
+    adres: 'Świętego Jana 2, 33-332 Kraków',
+    ocena: 4.5,
+    komentarze: ['jan2: polecam']
+};
+break;
+
+case 'InfoKraków Sukiennice':
+marker.info = {
+    zdjecie: 'https://infokrakow.pl/images/InfoKrakow-Sukiennice.jpeg',
+    nazwa: "InfoKraków Sukiennice",
+    adres: 'Rynek Główny 1/3, 31-042 Kraków',
+    ocena: 4.1,
+    komentarze: ['jan2: polecam']
+};
+break;
+case 'Podkarpacka Regionalna Organizacja Turystyczna':
+marker.info = {
+    zdjecie: '../style/img/imgHTML/inforz.png',
+    nazwa: "Podkarpacka Regionalna Organizacja Turystyczna",
+    adres: 'Grunwaldzka 2, (wejście od, Jana Matejki, 35-068 Rzeszów',
+    ocena: 4.9,
+    komentarze: ['jan2: polecam']
+};
+break;
+
+case 'Regionalne Centrum Informacji Turystycznej (Rzeszowskie Piwnice)':
+marker.info = {
+    zdjecie: 'https://rzeszow-news.pl/wp-content/uploads/2022/08/piwnice.jpg',
+    nazwa: "Regionalne Centrum Informacji Turystycznej (Rzeszowskie Piwnice)",
+    adres: 'Rynek 26, 35-064 Rzeszów',
+    ocena: 3.7,
+    komentarze: ['jan2: polecam']
+};
+break;
+case 'Stołeczne Biuro Turystyki':
+marker.info = {
+    zdjecie: 'https://cdn.galleries.smcloud.net/t/galleries/gf-ESCJ-hi8V-exxq_warszawa-stare-miasto-1920x1080-nocrop.jpg',
+    nazwa: "Stołeczne Biuro Turystyki",
+    adres: 'Pałac Kultury i Nauki, plac Defilad 1, 00-901 Warszawa',
+    ocena: 4.0,
+    komentarze: ['jan2: polecam']
+};
+break;
+
+case 'Restauracja Gala Smaków':
+marker.info = {
+    zdjecie: 'https://partyonline.pl/files/place_gallery/15195/restauracja-gala-smakow---sniadania-obiady-kolacje_5.jpg',
+    nazwa: "Restauracja Gala Smaków",
+    adres: 'Zgoda 5, 00-032 Warszawa',
+    ocena: 3.8,
+    komentarze: ['olka322: nie polecam', 'janusz: dobra polska kuchnia']
+};
+break;
+case 'Szalone Widelce':
+marker.info = {
+    zdjecie: 'https://media-cdn.tripadvisor.com/media/photo-s/0f/5b/df/44/piwnica-szalone-widelce.jpg',
+    nazwa: "Szalone Widelce",
+    adres: 'Szpitalna 40, 31-024 Kraków',
+    ocena: 4.7,
+    komentarze: ['jan2: polecam']
+};
+break;
+
+case 'Tawerna Wilczy Dół':
+marker.info = {
+    zdjecie: 'https://pojedztam.pl/wp-content/uploads/2023/12/tawerna-wilczy-dol-w-krakowie.png',
+    nazwa: "Tawerna Wilczy Dół",
+    adres: 'Szpitalna 22, 31-024 Kraków',
+    ocena: 4.8,
+    komentarze: ['jan2: polecam']
+};
+break;
+case 'Restauracja „Niebieskie Migdały”':
+marker.info = {
+    zdjecie: 'https://www.rzeszowskiesmaki.resinet.pl/foto/news/4/niebieskie-migdaly-rzeszow.jpg',
+    nazwa: "Restauracja Niebieskie Migdały",
+    adres: '3 Maja 8, 35-030 Rzeszów',
+    ocena: 4.4,
+    komentarze: ['jan2: polecam']
+};
+break;
+
+case 'Molto. Restauracja.':
+marker.info = {
+    zdjecie: 'https://media-cdn.tripadvisor.com/media/photo-s/1d/4a/58/cf/wpadnij-na-drinka-lub.jpg',
+    nazwa: "Molto. Restauracja.",
+    adres: 'Podwisłocze 29, 35-309 Rzeszów',
+    ocena: 4.6,
+    komentarze: ['jan2: polecam']
+};
+break;
 default:
 // domyślna obsługa jeśli tytuł nie pasuje do żadnego przypadku
 break;
@@ -457,7 +775,7 @@ if ((museumChecked && marker.options.category === 'museum') ||
 (parkChecked && marker.options.category === 'park') ||
 
 (infoChecked && marker.options.category === 'info') ||
-(atmsChecked && marker.options.category === 'atms') ||
+(atmsChecked && marker.options.category === 'atm') ||
 (wcChecked  && marker.options.category === 'wc') ||
 (restaurantCheckedd && marker.options.category === 'restaurant') ||
 (barChecked && marker.options.category === 'bar')

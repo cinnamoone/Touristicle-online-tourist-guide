@@ -1,81 +1,561 @@
 [
-        { "coordinates": [50.053555165158244, 19.848564721218292], "category": "park", "title": "Las Wolski",
+    { "coordinates": [50.053555165158244, 19.848564721218292], "category": "park", "title": "Las Wolski",
+    "info": {
+        "zdjecie": "../style/img/imgHTML/laswolski.jpg",
+        "nazwa": "Las Wolski",
+        "adres": "Kraków",
+        "ocena": 4.8,
+        "komentarze": ["Piękne widoki!", "Wspaniałe miejsce."]
+    }
+ },
+    {
+        "coordinates": [50.0645817136116, 19.943452411089474],
+        "category": "info",
+        "title": "Punkt Informacji",
         "info": {
-            "zdjecie": "../style/img/imgHTML/laswolski.jpg",
-            "nazwa": "Las Wolski",
-            "adres": "Kraków",
-            "ocena": 4.8,
-            "komentarze": ["Piękne widoki!", "Wspaniałe miejsce."]
+            "zdjecie": "../style/img/imgHTML/info.jpg",
+            "nazwa": "Punkt Informacji Miejskiej - InfoKraków",
+            "adres": "Szpitalna 25, 31-024 Kraków",
+            "ocena": 3.1,
+            "komentarze": ["Wspaniały spektakl", "Cudowne wnętrze!"]
         }
-     },
-        {
-            "coordinates": [50.0645817136116, 19.943452411089474],
-            "category": "info",
-            "title": "Punkt Informacji",
-            "info": {
-                "zdjecie": "../style/img/imgHTML/info.jpg",
-                "nazwa": "Punkt Informacji Miejskiej - InfoKraków",
-                "adres": "Szpitalna 25, 31-024 Kraków",
-                "ocena": 3.1,
-                "komentarze": ["Wspaniały spektakl", "Cudowne wnętrze!"]
+    },        
+    { "coordinates": [50.06397064954134, 19.942853125730878], "category": "fun", "title": "Teatr im. Juliusza Słowackiego",
+    "info": {
+        "zdjecie": "../style/img/imgHTML/teatr.jpg",
+        "nazwa": "Teatr im. Juliusza Słowackiego w Krakowie",
+        "adres": "plac Świętego Ducha 1, 31-023 Kraków",
+        "ocena": 4.8,
+        "komentarze": ["Pomocne panie", "Długie kolejki"]}
+},
+    { "coordinates": [50.06205651582134, 19.937869678768998], "category": "museum", "title": "Rynek Podziemny" ,
+    "info": {
+        "zdjecie": "../style/img/imgHTML/podz.jpg",
+        "nazwa": "Rynek Podziemny",
+        "adres": "pRynek Główny 1, 31-042 Kraków",
+        "ocena": 4.5,
+        "komentarze": ["Bardzo interesujące!", "Warto odwiedzić."]}},
+    { "coordinates": [50.06157439140573, 19.93736005904437], "category": "viewpoint", "title": "Sukiennice" ,
+    "info": {
+        "zdjecie": "../style/img/imgHTML/sukiennice.jpg",
+        "nazwa": "Sukiennice",
+        "adres": "Rynek Główny 1/3, 31-042 Kraków",
+        "ocena": 4.7,
+        "komentarze": ["Super atrakcja", "Będąc w Krakowie trzeba odwiedzić!"]}},
+    { "coordinates": [50.06277280600165, 19.938084255501], "category": "museum", "title": "Muzeum Bursztynu" ,
+    "info": {
+        "zdjecie": "../style/img/imgHTML/bursztyn.jpg",
+        "nazwa": "Muzeum Bursztynu",
+        "adres": "Świętego Jana 2, 31-018 Kraków",
+        "ocena": 4.1,
+        "komentarze": ["Bardzo ciekawa atrakcja", "Dzieciom się podobało"]}},
+    { "coordinates": [50.06031474322343, 19.941430219690446], "category": "park", "title": "Planty" ,
+    "info": {
+        "zdjecie": "../style/img/imgHTML/planty.jpg",
+        "nazwa": "Planty",
+        "adres": "31-041 Kraków",
+        "ocena": 4.2,
+        "komentarze": ["Urokliwy park", "Przyjemny spacerek"]}},
+    { "coordinates": [50.061527013633864, 19.93542257204163], "category": "bar", "title": "Piwnica Pod Baranami" ,
+    "info": {
+        "zdjecie": "../style/img/imgHTML/teatr.jpg",
+        "nazwa": "Piwnica Pod Baranami",
+        "adres": "plac Świętego Ducha 1, 31-023 Kraków",
+        "ocena": 4.1,
+        "komentarze": ["Pyszne piwko", "Długie kolejki"]}},
+    { "coordinates": [50.061956647590286, 19.93674315095667], "category": "viewpoint", "title": "Rynek główny" ,
+    "info": {
+        "zdjecie": "../style/img/imgHTML/rynekgl.jpg",
+        "nazwa": "Rynek Główny",
+        "adres": "Rynek Główny, 31-422 Kraków",
+        "ocena": 4.8,
+        "komentarze": ["Pomocne panie", "Długie kolejki"]}},
+    { "coordinates": [50.06108881834254, 19.93938244469425], "category": "restaurant", "title": "Italiano Pizza and pasta" ,
+    "info": {
+        "zdjecie": "../style/img/imgHTML/italiano.jpg",
+        "nazwa": "Italiano Pizza and pasta",
+        "adres": "Sienna 6, 31-041 Kraków",
+        "ocena": 3.2,
+        "komentarze": ["Super jedzenie!", "Pyszna pizza :)"]}},
+            {
+                "coordinates": [50.008295158356304, 19.932197653896544],
+                "category": "natureMonument",
+                "title": "Dąb Szypułkowy",
+                "info": {
+                    "zdjecie": "https://upload.wikimedia.org/wikipedia/commons/7/71/Kraków_ul._Jugowicka_14_pomnik_przyrody_Dąb_szypułkowy_Quercus_robur.jpg",
+                    "nazwa": "Pomnik przyrody Dąb Szypułkowy",
+                    "adres": "Jugowicka 10C, 30-443 Kraków",
+                    "ocena": 5,
+                    "komentarze": ["user23: Piękne drzewo!", "janek23: Warto zobaczyć"]
+                }
+            },
+            {
+                "coordinates": [50.05638309009899, 19.92486451752291],
+                "category": "natureMonument",
+                "title": "Pomnik Przyrody Wiąz górski",
+                "info": {
+                    "zdjecie": "https://plikimpi.krakow.pl//zalacznik/407952/frame_4_2969215234.jpg",
+                    "nazwa": "Pomnik Przyrody Wiąz górski",
+                    "adres": "30-102 Kraków",
+                    "ocena": 5.0,
+                    "komentarze": ["basia34: Potrzeba więcej takich drzew :)", "unknown: Wspaniałe miejsce."]
+                }
+            },
+            {
+                "coordinates": [52.218977335206326, 21.02698130066818],
+                "category": "natureMonument",
+                "title": "Pomnik przyrody Spadające Konary",
+                "info": {
+                    "zdjecie": "https://bi.im-g.pl/im/f0/40/ce/z13517040IHG,Drzewo-na-skwerze-Kisielewskiego-zagraza-pieszym.jpg",
+                    "nazwa": "Pomnik przyrody Spadające Konary",
+                    "adres": "Ujazdów, 00 001, Warszawa",
+                    "ocena": 5,
+                    "komentarze": ["user: Piękne widoki!", "unknown: Wspaniałe miejsce."]
+                }
+            },
+            {
+                "coordinates": [50.01275843527185, 22.071621631714695],
+                "category": "natureMonument",
+                "title": "Modrzew Słotek",
+                "info": {
+                    "zdjecie": "https://www.pomniki-przyrody.pl/wp-content/uploads/2017/04/Rezerwat-nad-Młyńską-Strugą-pień-pomnikowego-dębu.jpg",
+                    "nazwa": "Modrzew Słotek - pomnik przyrody",
+                    "adres": "Świętego Marcina 62, 35-330 Rzeszów",
+                    "ocena": 5,
+                    "komentarze": ["user432: Super", "unknown: Wspaniałe miejsce."]
+                }
+            },
+            {
+                "coordinates": [50.03943576653912, 21.978823469295314],
+                "category": "natureMonument",
+                "title": "Topola Wanda - pomnik przyrody",
+                "info": {
+                    "zdjecie": "https://www.rpdp.hostingasp.pl/images/0000005000-0000005999/5290_7670.jpg",
+                    "nazwa": "Topola Wanda - pomnik przyrody",
+                    "adres": "35-111 Rzeszów",
+                    "ocena": 5,
+                    "komentarze": ["basia34: Potrzeba więcej takich drzew :)", "unknown: Wspaniałe miejsce."]
+                }
+            },
+            {
+                "coordinates": [50.008295158356304, 19.932197653896544],
+                "category": "park",
+                "title": "Lisia Góra",
+                "info": {
+                    "zdjecie": "https://visitrzeszow.pl/media/places/lisia_gora_2.jpg?v=1617958276",
+                    "nazwa": "Lisia Góra",
+                    "adres": "Żeglarska, 35-086 Rzeszów",
+                    "ocena": 4.7,
+                    "komentarze": ["user: Miejsce bardzo przyjemne", "janek23: Warto odwiedzić"]
+                }
+            },
+            {
+                "coordinates": [50.065893541087426, 19.95011823312167],
+                "category": "park",
+                "title": "Park Strzelecki",
+                "info": {
+                    "zdjecie": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/ParkStrzelecki-WidokOgólnyNaPółnocnyWschód-POL%2C_Kraków.jpg/1280px-ParkStrzelecki-WidokOgólnyNaPółnocnyWschód-POL%2C_Kraków.jpg",
+                    "nazwa": "Park Strzelecki",
+                    "adres": "Zygmunta Augusta 7, 31-505 Kraków",
+                    "ocena": 4.9,
+                    "komentarze": ["kinia34: Miłe miejsce do spędzenia czasu", "robert: Park praktycznie w centrum Krakowa"]
+                }
+            },
+            {
+                "coordinates": [52.234042015368246, 21.005997153566554],
+                "category": "park",
+                "title": "Park Świętokrzyski",
+                "info": {
+                    "zdjecie": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Warsaw_07-13_img29_View_from_Palace_of_Culture_and_Science.jpg",
+                    "nazwa": "Park Świętokrzyski",
+                    "adres": "Świętokrzyska, 00-901 Warszawa",
+                    "ocena": 4.5,
+                    "komentarze": ["monika: Park średnio atrakcyjny.", "user6677: Mnie się spodobało"]
+                }
+            },
+            {
+                "coordinates": [52.24205559007616, 21.05439129999806],
+                "category": "park",
+                "title": "Park Skaryszewski im. Ignacego Jana Paderewskiego",
+                "info": {
+                    "zdjecie": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Warszawa%2C_Park_Skaryszewski_z_góry.jpg/1920px-Warszawa%2C_Park_Skaryszewski_z_góry.jpg",
+                    "nazwa": "Park Skaryszewski im. Ignacego Jana Paderewskiego",
+                    "adres": "al. Jerzego Waszyngtona, 00-999 Warszawa",
+                    "ocena": 4.7,
+                    "komentarze": ["krzysztof: Rozległy park", "unknown64: Wspaniale miejsce wsrodku Warszawskiego centrum miasta."]
+                }
+            },
+            {
+                "coordinates": [50.024806168925636, 21.999880539118724],
+                "category": "park",
+                "title": "Park Kultury i Wypoczynku",
+                "info": {
+                    "zdjecie": "http://rzeszow-news.pl/wp-content/uploads/2014/11/bulwary-e1426950435515.jpg",
+                    "nazwa": "Park Kultury i Wypoczynku",
+                    "adres": "35-001 Rzeszów",
+                    "ocena": 4.7,
+                    "komentarze": ["user: Miejsce bardzo przyjazne na spacer", "unknown: Miejsce piękne, z potencjałem."]
+                }
+            },
+            {
+                "coordinates": [50.03784251981432, 22.006749525402462],
+                "category": "museum",
+                "title": "Muzeum Dobranocek ze zbiorów Wojciecha Jamy w Rzeszowie",
+                "info": {
+                    "zdjecie": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Teatr_Maska_i_Muzeum_Dobranocek_w_Rzeszowie.jpg",
+                    "nazwa": "Muzeum Dobranocek ze zbiorów Wojciecha Jamy w Rzeszowie",
+                    "adres": "Adama Mickiewicza 13, 35-064 Rzeszów",
+                    "ocena": 4.6,
+                    "komentarze": ["liliana: Powrót do lat dzieciństwa🙂", "janek23: Fantastyczna podróż do czasów dzieciństwa."]
+                }
+            },
+            {
+                "coordinates": [50.03527275653483, 22.001264858988975],
+                "category": "museum",
+                "title": "Muzeum Okręgowe w Rzeszowie",
+                "info": {
+                    "zdjecie": "https://www.muzeum.rzeszow.pl/wp-content/uploads/2017/05/5-Muzeum-Okr%C4%99gowe-Rzesz%C3%B3w.jpg",
+                    "nazwa": "Muzeum Okręgowe w Rzeszowie",
+                    "adres": "3 Maja 19, 35-030 Rzeszów",
+                    "ocena": 4.5,
+                    "komentarze": ["unknown: Wspaniałe miejsce."]
+                }
+            },
+            {
+                "coordinates": [52.23286684420999, 20.981032958893557],
+                "category": "museum",
+                "title": "Muzeum Powstania Warszawskiego",
+                "info": {
+                    "zdjecie": "https://warsawtour.pl/wp-content/uploads/2022/04/Muzeum-Powstania-Warszawskiego-fot.-Filip-Kwiatkowski-5.jpg",
+                    "nazwa": "Muzeum Powstania Warszawskiego",
+                    "adres": "Grzybowska 79, 00-844 Warszawa",
+                    "ocena": 4.7,
+                    "komentarze": ["user545: Super muzeum przedstawiające historię Powstania Warszawskiego.", "unknown: Polecam z pełną odpowiedzialnością."]
+                }
+            },
+            {
+                "coordinates": [52.23185402392427, 21.023237549389133],
+                "category": "museum",
+                "title": "Muzeum Narodowe w Warszawie",
+                "info": {
+                    "zdjecie": "https://upload.wikimedia.org/wikipedia/commons/9/91/Muzeum_Narodowe_w_Warszawie.jpg",
+                    "nazwa": "Muzeum Narodowe w Warszawie",
+                    "adres": "al. Jerozolimskie 3, 00-495 Warszawa",
+                    "ocena": 4.6,
+                    "komentarze": ["user432: Super", "unknown: Wspaniałe miejsce."]
+                }
+            },
+            {
+                "coordinates": [50.060897618803274, 19.923756563067272],
+                "category": "museum",
+                "title": "Muzeum Narodowe w Krakowie",
+                "info": {
+                    "zdjecie": "https://s8.tvp.pl/images2/8/a/7/uid_8a731f1006a4981d39e6b28180025eb01623226486043_width_900_play_0_pos_0_gs_0_height_506.jpg",
+                    "nazwa": "Muzeum Narodowe w Krakowie",
+                    "adres": "al. 3 Maja 1, 30-062 Kraków",
+                    "ocena": 4.7,
+                    "komentarze": ["user432: Super", "unknown: Wspaniałe miejsce."]
+                }
+            },
+            {
+                "coordinates": [50.037254476397884, 19.94507014285578],
+                "category": "viewpoint",
+                "title": "Punkt widokowy Krzemionki",
+                "info": {
+                    "zdjecie": "https://plikimpi.krakow.pl/pliki/387348/4.jpg",
+                    "nazwa": "Punkt widokowy Krzemionki",
+                    "adres": "30-001, Kraków",
+                    "ocena": 4.7,
+                    "komentarze": ["zbyszek432: Wspaniałe miejsce na krótki spacer", "gresd: Super widok na Kraków, polecam."]
+                }
+            },
+            {
+                "coordinates": [50.03999298411976, 19.9140229824643],
+                "category": "viewpoint",
+                "title": "Punkt widokowy na Wawel",
+                "info": {
+                    "zdjecie": "https://cdn.galleries.smcloud.net/t/galleries/gf-SWoh-vTYR-DJex_wawel-zamek-krolewski-na-wawelu-994x828.jpg",
+                    "nazwa": "Punkt widokowy na Wawel",
+                    "adres": "Salezjańska 7, 30-374 Kraków",
+                    "ocena": 4.9,
+                    "komentarze": ["jakub: Punkt z ładnym widokiem na Wawel, Kopiec Kościuszki, widać też kawałek Diabelskiego Młynca", "gresd: Piękne i spokojne miejsce. Wspaniała panorama."]
+                }
+            },
+            {
+                "coordinates": [50.088430768555405, 19.86759139999806],
+                "category": "viewpoint",
+                "title": "Punkt widokowy przy krzyżu \"pod lipką\"",
+                "info": {
+                    "zdjecie": "https://www.trasadlabobasa.pl/image/16845.jpg",
+                    "nazwa": "Punkt widokowy przy krzyżu pod lipką",
+                    "adres": "Stanisława Ignacego Witkiewicza, 31-398 Kraków",
+                    "ocena": 4.8,
+                    "komentarze": ["user432: Super", "unknown: Wspaniałe miejsce."]
+                }
+            },
+            {
+                "coordinates": [49.98792965430816, 22.050968054003615],
+                "category": "viewpoint",
+                "title": "Panorama pogórze karpackie",
+                "info": {
+                    "zdjecie": "https://mynaszlaku.pl/wp-content/uploads/2020/04/widok-z-wiezy-widokowej-pod-jaworzem.jpg",
+                    "nazwa": "Panorama pogórze karpackie",
+                    "adres": "35-330 Rzeszów",
+                    "ocena": 4.8,
+                    "komentarze": ["user432: Ciekawy punkt widokowy, oraz liczne podjazdy i trasy rowerowe.", "unknown: Najczęściej odwiedzana przeze mnie miejscówka do widoków na Tatry."]
+                }
+            },
+            {
+                "coordinates": [52.249929405707974, 21.01395332769446],
+                "category": "viewpoint",
+                "title": "Punkt widokowy Warszawa",
+                "info": {
+                    "zdjecie": "https://wf1.xcdn.pl/files/21/07/13/179807_H1cd_IMG_20200604_182438scaled_83.jpg.webp",
+                    "nazwa": "Punkt widokowy Warszawa",
+                    "adres": "00-001 Warszawa",
+                    "ocena": 4.3,
+                    "komentarze": ["user432: Super", "unknown: Wspaniałe miejsce."]
+                }
+            },
+            {
+                "coordinates": [50.038248252600916, 22.00316469006734],
+                "category": "bar",
+                "title": "Pub K20",
+                "info": {
+                    "zdjecie": "https://bi.im-g.pl/im/5f/61/13/z20323679IHG.jpg",
+                    "nazwa": "Pub K20",
+                    "adres": "Mikołaja Kopernika 4, 35-002 Rzeszów",
+                    "ocena": 4.9,
+                    "komentarze": ["user432: Super", "unknown: Wspaniałe miejsce."]
+                }
+            },
+            {
+                "coordinates": [50.037127083621925, 22.00561791165481],
+                "category": "bar",
+                "title": "Corner Pub Mała Graciarnia Rzeszów",
+                "info": {
+                    "zdjecie": "https://partyonline.pl/files/place_gallery/18910/corner-pub-mala-graciarnia-rzeszow_22318910.jpg",
+                    "nazwa": "Corner Pub Mała Graciarnia Rzeszów",
+                    "adres": "Przesmyk 2, 35-065 Rzeszów",
+                    "ocena": 4.1,
+                    "komentarze": ["user432: Super", "unknown: Wspaniałe miejsce."]
+                }
+            },
+            {
+                "coordinates": [50.06269736311796, 19.934847992842947],
+                "category": "bar",
+                "title": "BaniaLuka",
+                "info": {
+                    "zdjecie": "https://krakowbuzz.com/wp-content/uploads/2017/08/Bania-Luka-Krakow.jpg",
+                    "nazwa": "BaniaLuka",
+                    "adres": "Szewska 13, 31-009 Kraków",
+                    "ocena": 4.4,
+                    "komentarze": ["user432: Super", "unknown: Wspaniałe miejsce."]
+                }
+            },
+            {
+                "coordinates": [50.061831445702154, 19.935832699998063],
+                "category": "bar",
+                "title": "Vis a Vis. Drink-bar",
+                "info": {
+                    "zdjecie": "https://upload.wikimedia.org/wikipedia/commons/1/12/Vis-à-vis_01_AB.jpg",
+                    "nazwa": "Vis a Vis. Drink-bar",
+                    "adres": "Rynek Główny 29, 31-010 Kraków",
+                    "ocena": 4.3,
+                    "komentarze": ["user432: Super", "unknown: Wspaniałe miejsce."]
+                }
+            },
+            {
+                "coordinates": [50.0643488018698, 19.937751293235355],
+                "category": "bar",
+                "title": "The Artist Cocktail Bar",
+                "info": {
+                    "zdjecie": "https://krakowboatparty.com/wp-content/uploads/2020/06/Opus-Lounge-Bar-2.jpg",
+                    "nazwa": "The Artist Cocktail Bar",
+                    "adres": "św. Marka 11A, 31-012 Kraków",
+                    "ocena": 4.7,
+                    "komentarze": ["user432: Super", "unknown: Wspaniałe miejsce."]
+                }
+            },
+            {
+                "coordinates": [50.06393113290446, 19.942860001612825],
+                "category": "fun",
+                "title": "Teatr im. Juliusza Słowackiego w Krakowie",
+                "info": {
+                    "zdjecie": "../style/img/imgHTML/teatr.png",
+                    "nazwa": "Teatr im. Juliusza Słowackiego w Krakowie",
+                    "adres": "plac Świętego Ducha 1, 31-023 Kraków",
+                    "ocena": 4.8,
+                    "komentarze": ["mike432: To jeden z najpiękniejszych teatrów", "gresd: Budynek jest przepiękny"]
+                }
+            },
+            {
+                "coordinates": [50.0615205852016, 19.935422947001836],
+                "category": "fun",
+                "title": "Kino Pod Baranami",
+                "info": {
+                    "zdjecie": "https://media.krakow.travel/photos/21796/xxl.jpg",
+                    "nazwa": "Kino Pod Baranami",
+                    "adres": "Rynek Główny 27, 31-010 Kraków",
+                    "ocena": 4.7,
+                    "komentarze": ["zuser2: Klimatyczne miejsce w sercu Krakowa", "piotr: Super"]
+                }
+            },
+            {
+                "coordinates": [50.064400296631746, 19.94076952397438],
+                "category": "fun",
+                "title": "Kino 7D Max & Gry VR Kraków",
+                "info": {
+                    "zdjecie": "https://assets.superprezenty.pl/files/uploaded/programs/c679d740d5bd40228f74eda5022adaa2.jpeg",
+                    "nazwa": "Kino 7D Max & Gry VR Kraków",
+                    "adres": "Floriańska 36, 31-021 Kraków",
+                    "ocena": 4.4,
+                    "komentarze": ["zbyszek432: Fajne doświadczenie, do wyboru kilka filmów.", "gresd: Ciekawe miejsce."]
+                }
+            },
+            {
+                "coordinates": [50.03495567484332, 22.000864204017365],
+                "category": "fun",
+                "title": "Kino „Zorza”",
+                "info": {
+                    "zdjecie": "https://bi.im-g.pl/im/cc/d2/1b/z29172940AMP.jpg",
+                    "nazwa": "Kino Zorza",
+                    "adres": "3 Maja 28, 35-030 Rzeszów",
+                    "ocena": 4.6,
+                    "komentarze": ["zbyszek432: Bardzo ładne kino", "gresd: Tanie bilety i niszowe filmy."]
+                }
+            },
+            {
+                "coordinates": [50.019123215425616, 21.990689099998054],
+                "category": "fun",
+                "title": "Kino Helios",
+                "info": {
+                    "zdjecie": "https://www.resinet.pl/_foty_news/260/kino-helios-w-galerii-rzeszow-wznawia-dzialalnosc-strefa-barowa-wciaz-pozostanie-zamknieta_40094.jpg",
+                    "nazwa": "Kino Helios",
+                    "adres": "Aleja Józefa Piłsudskiego 44, 35-001 Rzeszów",
+                    "ocena": 4.5,
+                    "komentarze": ["zbyszek432: Polecam", "gresd: Smaczne nachosy."]
+                }
+            },
+            {
+                "coordinates": [50.062617282040776, 19.93809080882538],
+                "category": "info",
+                "title": "InfoKraków",
+                "info": {
+                    "zdjecie": "https://infokrakow.pl/images/InfoKrakow-ul-sw-Jana-2.jpeg",
+                    "nazwa": "InfoKraków",
+                    "adres": "Świętego Jana 2, 33-332 Kraków",
+                    "ocena": 4.5,
+                    "komentarze": ["jan2: polecam"]
+                }
+            },
+            {
+                "coordinates": [50.061795280812305, 19.937605452573617],
+                "category": "info",
+                "title": "InfoKraków Sukiennice",
+                "info": {
+                    "zdjecie": "https://infokrakow.pl/images/InfoKrakow-Sukiennice.jpeg",
+                    "nazwa": "InfoKraków Sukiennice",
+                    "adres": "Rynek Główny 1/3, 31-042 Kraków",
+                    "ocena": 4.1,
+                    "komentarze": ["jan2: polecam"]
+                }
+            },
+            {
+                "coordinates": [50.03786949257718, 22.003095182845605],
+                "category": "info",
+                "title": "Podkarpacka Regionalna Organizacja Turystyczna",
+                "info": {
+                    "zdjecie": "../style/img/imgHTML/inforz.png",
+                    "nazwa": "Podkarpacka Regionalna Organizacja Turystyczna",
+                    "adres": "Grunwaldzka 2, (wejście od, Jana Matejki, 35-068 Rzeszów",
+                    "ocena": 4.9,
+                    "komentarze": ["jan2: polecam"]
+                }
+            },
+            {
+                "coordinates": [50.03754589386159, 22.00403189705621],
+                "category": "info",
+                "title": "Regionalne Centrum Informacji Turystycznej (Rzeszowskie Piwnice)",
+                "info": {
+                    "zdjecie": "https://rzeszow-news.pl/wp-content/uploads/2022/08/piwnice.jpg",
+                    "nazwa": "Regionalne Centrum Informacji Turystycznej (Rzeszowskie Piwnice)",
+                    "adres": "Rynek 26, 35-064 Rzeszów",
+                    "ocena": 3.7,
+                    "komentarze": ["jan2: polecam"]
+                }
+            },
+            {
+                "coordinates": [52.23178239319089, 21.006169136872906],
+                "category": "info",
+                "title": "Stołeczne Biuro Turystyki",
+                "info": {
+                    "zdjecie": "https://cdn.galleries.smcloud.net/t/galleries/gf-ESCJ-hi8V-exxq_warszawa-stare-miasto-1920x1080-nocrop.jpg",
+                    "nazwa": "Stołeczne Biuro Turystyki",
+                    "adres": "Pałac Kultury i Nauki, plac Defilad 1, 00-901 Warszawa",
+                    "ocena": 4.0,
+                    "komentarze": ["jan2: polecam"]
+                }
+            },
+            {
+                "coordinates": [52.23276768890413, 21.013354134052193],
+                "category": "restaurant",
+                "title": "Restauracja Gala Smaków",
+                "info": {
+                    "zdjecie": "https://partyonline.pl/files/place_gallery/15195/restauracja-gala-smakow---sniadania-obiady-kolacje_5.jpg",
+                    "nazwa": "Restauracja Gala Smaków",
+                    "adres": "Zgoda 5, 00-032 Warszawa",
+                    "ocena": 3.8,
+                    "komentarze": ["olka322: nie polecam", "janusz: dobra polska kuchnia"]
+                }
+            },
+            {
+                "coordinates": [50.06429836989672, 19.942220390556788],
+                "category": "restaurant",
+                "title": "Szalone Widelce",
+                "info": {
+                    "zdjecie": "https://media-cdn.tripadvisor.com/media/photo-s/0f/5b/df/44/piwnica-szalone-widelce.jpg",
+                    "nazwa": "Szalone Widelce",
+                    "adres": "Szpitalna 40, 31-024 Kraków",
+                    "ocena": 4.7,
+                    "komentarze": ["jan2: polecam"]
+                }
+            },
+            {
+                "coordinates": [50.062912211944784, 19.94122889130315],
+                "category": "restaurant",
+                "title": "Tawerna Wilczy Dół",
+                "info": {
+                    "zdjecie": "https://pojedztam.pl/wp-content/uploads/2023/12/tawerna-wilczy-dol-w-krakowie.png",
+                    "nazwa": "Tawerna Wilczy Dół",
+                    "adres": "Szpitalna 22, 31-024 Kraków",
+                    "ocena": 4.8,
+                    "komentarze": ["jan2: polecam"]
+                }
+            },
+            {
+                "coordinates": [50.037100556716226, 22.001418287792635],
+                "category": "restaurant",
+                "title": "Restauracja „Niebieskie Migdały”",
+                "info": {
+                    "zdjecie": "https://www.rzeszowskiesmaki.resinet.pl/foto/news/4/niebieskie-migdaly-rzeszow.jpg",
+                    "nazwa": "Restauracja Niebieskie Migdały",
+                    "adres": "3 Maja 8, 35-030 Rzeszów",
+                    "ocena": 4.4,
+                    "komentarze": ["jan2: polecam"]
+                }
+            },
+            {
+                "coordinates": [50.03023128715652, 22.006994565634045],
+                "category": "restaurant",
+                "title": "Molto. Restauracja.",
+                "info": {
+                    "zdjecie": "https://media-cdn.tripadvisor.com/media/photo-s/1d/4a/58/cf/wpadnij-na-drinka-lub.jpg",
+                    "nazwa": "Molto. Restauracja.",
+                    "adres": "Podwisłocze 29, 35-309 Rzeszów",
+                    "ocena": 4.6,
+                    "komentarze": ["jan2: polecam"]
+                }
             }
-        },        
-        { "coordinates": [50.06397064954134, 19.942853125730878], "category": "fun", "title": "Teatr im. Juliusza Słowackiego",
-        "info": {
-            "zdjecie": "../style/img/imgHTML/teatr.jpg",
-            "nazwa": "Teatr im. Juliusza Słowackiego w Krakowie",
-            "adres": "plac Świętego Ducha 1, 31-023 Kraków",
-            "ocena": 4.8,
-            "komentarze": ["Pomocne panie", "Długie kolejki"]}
-    },
-        { "coordinates": [50.06205651582134, 19.937869678768998], "category": "museum", "title": "Rynek Podziemny" ,
-        "info": {
-            "zdjecie": "../style/img/imgHTML/podz.jpg",
-            "nazwa": "Rynek Podziemny",
-            "adres": "pRynek Główny 1, 31-042 Kraków",
-            "ocena": 4.5,
-            "komentarze": ["Bardzo interesujące!", "Warto odwiedzić."]}},
-        { "coordinates": [50.06157439140573, 19.93736005904437], "category": "viewpoint", "title": "Sukiennice" ,
-        "info": {
-            "zdjecie": "../style/img/imgHTML/sukiennice.jpg",
-            "nazwa": "Sukiennice",
-            "adres": "Rynek Główny 1/3, 31-042 Kraków",
-            "ocena": 4.7,
-            "komentarze": ["Super atrakcja", "Będąc w Krakowie trzeba odwiedzić!"]}},
-        { "coordinates": [50.06277280600165, 19.938084255501], "category": "museum", "title": "Muzeum Bursztynu" ,
-        "info": {
-            "zdjecie": "../style/img/imgHTML/bursztyn.jpg",
-            "nazwa": "Muzeum Bursztynu",
-            "adres": "Świętego Jana 2, 31-018 Kraków",
-            "ocena": 4.1,
-            "komentarze": ["Bardzo ciekawa atrakcja", "Dzieciom się podobało"]}},
-        { "coordinates": [50.06031474322343, 19.941430219690446], "category": "park", "title": "Planty" ,
-        "info": {
-            "zdjecie": "../style/img/imgHTML/planty.jpg",
-            "nazwa": "Planty",
-            "adres": "31-041 Kraków",
-            "ocena": 4.2,
-            "komentarze": ["Urokliwy park", "Przyjemny spacerek"]}},
-        { "coordinates": [50.061527013633864, 19.93542257204163], "category": "bar", "title": "Piwnica Pod Baranami" ,
-        "info": {
-            "zdjecie": "../style/img/imgHTML/teatr.jpg",
-            "nazwa": "Piwnica Pod Baranami",
-            "adres": "plac Świętego Ducha 1, 31-023 Kraków",
-            "ocena": 4.1,
-            "komentarze": ["Pyszne piwko", "Długie kolejki"]}},
-        { "coordinates": [50.061956647590286, 19.93674315095667], "category": "viewpoint", "title": "Rynek główny" ,
-        "info": {
-            "zdjecie": "../style/img/imgHTML/rynekgl.jpg",
-            "nazwa": "Rynek Główny",
-            "adres": "Rynek Główny, 31-422 Kraków",
-            "ocena": 4.8,
-            "komentarze": ["Pomocne panie", "Długie kolejki"]}},
-        { "coordinates": [50.06108881834254, 19.93938244469425], "category": "restaurant", "title": "Italiano Pizza and pasta" ,
-        "info": {
-            "zdjecie": "../style/img/imgHTML/italiano.jpg",
-            "nazwa": "Italiano Pizza and pasta",
-            "adres": "Sienna 6, 31-041 Kraków",
-            "ocena": 3.2,
-            "komentarze": ["Super jedzenie!", "Pyszna pizza :)"]}}
-
-]
+        ]
+        
