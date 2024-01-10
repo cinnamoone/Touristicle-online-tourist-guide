@@ -1,4 +1,5 @@
 //ranking
+let displayedRecords = 10;
 
 document.addEventListener("DOMContentLoaded", function () {
     const categoryFilter = document.getElementById("category-filter");
@@ -50,7 +51,9 @@ document.addEventListener("DOMContentLoaded", function () {
         
             rankingList.innerHTML = "";
         
-            sortedData.forEach(item => {
+            for (let i = 0; i < Math.min(displayedRecords, sortedData.length); i++) {
+                const item = sortedData[i];
+        
                 const listItem = document.createElement("li");
                 const itemImage = document.createElement("img");
                 itemImage.src = item.info.zdjecie;
@@ -59,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const itemName = document.createElement("h3");
                 itemName.textContent = item.title;
         
-                const itemAddress = document.createElement("p"); 
+                const itemAddress = document.createElement("p");
                 itemAddress.textContent = `Adres: ${item.info.adres}`;
         
                 const itemRating = document.createElement("p");
@@ -67,11 +70,24 @@ document.addEventListener("DOMContentLoaded", function () {
         
                 listItem.appendChild(itemImage);
                 listItem.appendChild(itemName);
-                listItem.appendChild(itemAddress); 
+                listItem.appendChild(itemAddress);
                 listItem.appendChild(itemRating);
                 rankingList.appendChild(listItem);
-            });
+            }
+        
+            if (displayedRecords < sortedData.length) {
+                const showMoreButton = document.createElement("button");
+                showMoreButton.textContent = "Pokaż więcej";
+                showMoreButton.classList.add("show-more-button"); 
+                showMoreButton.addEventListener("click", () => {
+                    displayedRecords += 10;
+                    displayRanking(data);
+                });
+                rankingList.appendChild(showMoreButton);
+            }
+            
         }
+        
         
 });
 
