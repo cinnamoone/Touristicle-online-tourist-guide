@@ -1,13 +1,28 @@
 
 //wywołanie mapy leaflet i ustawienie widoku na kraków
 var map = L.map('map').setView([50.0614300, 19.9365800], 15);
-L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(map);
+var satLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
 
+    // Dodawanie warstwy satelitarnej z dostawcy Mapbox (opcjonalne)
+    googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+        maxZoom: 20,
+        subdomains:['mt0','mt1','mt2','mt3']
+});
 
-//dodanie obsługi leaflet wyszukiwania do mapy
+    // Grupa warstw dla kontrolki Layer Control
+    var baseMaps = {
+        "OpenStreetMap": satLayer,
+        "Mapa satelitarna": googleSat
+    };
+    
+  //dodanie obsługi leaflet wyszukiwania do mapy
   L.Control.geocoder().addTo(map);
+//dodanie różnych warstw 
+  L.control.layers(baseMaps).addTo(map);
+
 
 
 
