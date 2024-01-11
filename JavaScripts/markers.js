@@ -805,7 +805,7 @@ markersLayer.addLayer(marker);
 // funkcja inicjalizująca bazę danych IndexedDB
 function initIndexedDB() {
   return new Promise((resolve, reject) => {
-      var request = indexedDB.open('markersDB', 3); 
+      var request = indexedDB.open('markersDB', 4); 
 
       request.onupgradeneeded = function(event) {
           var db = event.target.result;
@@ -826,6 +826,13 @@ function initIndexedDB() {
               var favouritesStore = db.createObjectStore('favourites', { keyPath: 'id', autoIncrement: true });
               favouritesStore.createIndex('userName', 'userName', { unique: false });
           }
+
+            // Oceny
+          if (!db.objectStoreNames.contains('ratings')) {
+              var ratingsStore = db.createObjectStore('ratings', { keyPath: 'id', autoIncrement: true });
+              ratingsStore.createIndex('placeName', 'placeName', { unique: false });
+              ratingsStore.createIndex('addedBy', 'addedBy', { unique: false });
+      }
       };
 
       request.onsuccess = function(event) {
@@ -897,7 +904,8 @@ this._div.innerHTML += `
 <p><strong></strong> <img src="${info.zdjecie}" alt="Zdjęcie"></p>
 <p><strong> ${info.nazwa}</strong></p>
 <p><strong>Adres:</strong> ${info.adres}</p>
-<span class="rating"><strong>Ocena:</strong> ${generateRatingStars(info.ocena)}</span>
+<span class="rating"><strong>Ocena:</strong> ${generateRatingStars(info.ocena)}</span><button onclick="showRatingForm('${info.nazwa}')" class="rate-place-button")">Oceń miejsce</button>
+
 <p><strong>Komentarze:</strong></p>
 <div id="commentsContainer"></div>
 <div class="comment-section" id="commentsSection">
@@ -1142,6 +1150,58 @@ function saveFavoriteToDB(favorite) {
     };
   });
 }
+
+//oceny
+// funkcja do dodawania oceny do bazy danych
+function addRating(placeName, rating) {
+  var addedBy = checkLoggedInUser();
+
+  if (!addedBy) {
+    alert('Musisz być zalogowany, aby dodać ocenę.');
+    return;
+  }
+
+  initIndexedDB().then(db => {
+    var transaction = db.transaction(['ratings'], 'readwrite');
+    var store = transaction.objectStore('ratings');
+    var ratingEntry = {
+      placeName: placeName,
+      rating: rating,
+      addedBy: addedBy.username,
+      timestamp: new Date().toISOString()
+    };
+    store.add(ratingEntry);
+  }).then(() => {
+    console.log('Ocena dodana.');
+    alert('Ocena została dodana.');
+    updateInfoPanel(placeName); // aktualizacja panelu info o miejscu
+  }).catch(err => {
+    console.error('Błąd podczas dodawania oceny: ', err);
+  });
+}
+
+
+// funkcja pokazująca formularz do dodawania oceny
+function showRatingForm(placeName) {
+  var ratingForm = document.createElement('div');
+  ratingForm.id = 'ratingForm'; // Ustawienie identyfikatora dla formularza
+  ratingForm.className = 'rating-form-container';
+  ratingForm.innerHTML = `
+      <h3>Oceń miejsce: ${placeName}</h3>
+      <input type="number" id="ratingInput" min="1" max="5" step="0.1" placeholder="Ocena (1-5)">
+      <button onclick="addRating('${placeName}', document.getElementById('ratingInput').value)">Dodaj ocenę</button>
+      <button onclick="closeRatingForm()">Anuluj</button>
+  `;
+  document.body.appendChild(ratingForm);
+}
+
+function closeRatingForm() {
+  var ratingForm = document.getElementById('ratingForm'); // Pobranie formularza przez ID
+  if (ratingForm) {
+      ratingForm.remove(); // Usunięcie formularza z DOM
+  }
+}
+
 
 //wyświetlanie info  
 markers.forEach(marker => {
