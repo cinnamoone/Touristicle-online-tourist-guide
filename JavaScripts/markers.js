@@ -167,6 +167,7 @@ var satLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
 var markers = rawMarkers.map(m => {
   var marker = L.marker(m.coords, {category: m.category, title: m.title});
   marker.setIcon(getIconForCategory(m.category));
+  marker.bindPopup(m.title);
   return marker;
 });
 
@@ -1202,7 +1203,12 @@ function closeRatingForm() {
   }
 }
 
-
+markers.forEach(marker => {
+  marker.on('click', function () {
+    infoContainer.update(marker.info);
+    marker.openPopup(); // Otwarcie popupu przy kliknięciu
+  });
+});
 //wyświetlanie info  
 markers.forEach(marker => {
 marker.on('click', function () {
