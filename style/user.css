@@ -131,3 +131,22 @@ p{
     margin: 0 auto; /* Wyzerowanie marginesu góra-dół */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+
+.buttonDelete {
+    background-color: #e66980;
+    color: rgb(255, 255, 255);
+    padding: 5px 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 10px;
+}
+.buttonDelete:hover {
+    background-color: #754caf;
+    color: rgb(255, 255, 255);
+    padding: 5px 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}

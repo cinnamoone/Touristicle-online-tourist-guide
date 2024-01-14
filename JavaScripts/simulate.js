@@ -70,18 +70,49 @@ function displayMarkers(markers) {
     return;
 }
 
-  markers.forEach(function(marker) {
-      var markerElement = document.createElement('div');
-      markerElement.className = 'marker';
-      markerElement.innerHTML = `
-          <img src="${marker.imageURL}" alt="${marker.placeName}">
-          <h3>${marker.placeName}</h3>
-          <p>${marker.address}</p>
-      `;
-      container.appendChild(markerElement);
-  });
+markers.forEach(function(marker) {
+    var markerElement = document.createElement('div');
+    markerElement.className = 'marker';
+    markerElement.innerHTML = `
+        <img src="${marker.imageURL}" alt="${marker.placeName}">
+        <h3>${marker.placeName}</h3>
+        <p>${marker.address}</p>
+        <button class="buttonDelete" onclick="removeMarker('${marker.id}')">Usuń miejsce</button>
+    `;
+    container.appendChild(markerElement);
+});
 }
+function removeMarker(markerId) {
+    var confirmDeletion = confirm('Czy na pewno chcesz usunąć to miejsce?');
+    if (!confirmDeletion) {
+        return;
+    }
 
+    var loggedInUser = checkLoggedInUser();
+    if (!loggedInUser) {
+        console.log('Brak zalogowanego użytkownika.');
+        return;
+    }
+
+    var db;
+    var request = indexedDB.open('markersDB', 4);
+
+    request.onsuccess = function(event) {
+        db = event.target.result;
+        var transaction = db.transaction(['markers'], 'readwrite');
+        var objectStore = transaction.objectStore('markers');
+
+        var deleteRequest = objectStore.delete(markerId);
+        deleteRequest.onsuccess = function() {
+            alert('Miejsce zostało usunięte.');
+            loadMarkers(loggedInUser.username, db); // Reload markers
+        };
+    };
+
+    request.onerror = function(event) {
+        console.error('Błąd podczas otwierania bazy danych IndexedDB.');
+    };
+}
 
 //wyświetlanie komentarzy danego użytkownika
 function displayUserComments() {
@@ -92,7 +123,7 @@ function displayUserComments() {
     }
   
     var db;
-    var request = indexedDB.open('markersDB', 3);
+    var request = indexedDB.open('markersDB', 4);
   
     request.onsuccess = function(event) {
         db = event.target.result;
@@ -128,7 +159,7 @@ function displayUserComments() {
         console.error('Nie znaleziono kontenera do wyświetlania komentarzy.');
         return;
     }
-    container.innerHTML = ''; // Clears previous comments
+    container.innerHTML = '';
 
     var header = document.createElement('h1');
     header.textContent = 'Twoje komentarze';
@@ -143,13 +174,45 @@ function displayUserComments() {
         var commentElement = document.createElement('div');
         commentElement.className = 'comment';
         commentElement.innerHTML = `
-            <p><strong>Treść komentarza:</strong> "${comment.commentText}"</p> <!-- Adjusted to commentText -->
+            <p><strong>Treść komentarza:</strong> "${comment.commentText}"</p>
             <p><strong>Miejsce:</strong> ${comment.placeName}</p>
+            <button class="buttonDelete" onclick="removeComment('${comment.id}')">Usuń komentarz</button>
         `;
         container.appendChild(commentElement);
     });
   }
+//usuwanie komentarza 
+  function removeComment(commentId) {
+    var confirmDeletion = confirm('Czy na pewno chcesz usunąć ten komentarz?');
+    if (!confirmDeletion) {
+        return;
+    }
 
+    var loggedInUser = checkLoggedInUser();
+    if (!loggedInUser) {
+        console.log('Brak zalogowanego użytkownika.');
+        return;
+    }
+
+    var db;
+    var request = indexedDB.open('markersDB', 4);
+
+    request.onsuccess = function(event) {
+        db = event.target.result;
+        var transaction = db.transaction(['comments'], 'readwrite');
+        var objectStore = transaction.objectStore('comments');
+
+        var deleteRequest = objectStore.delete(commentId);
+        deleteRequest.onsuccess = function() {
+            alert('Komentarz został usunięty.');
+            loadComments(loggedInUser.username, db); 
+        };
+    };
+
+    request.onerror = function(event) {
+        console.error('Błąd podczas otwierania bazy danych IndexedDB.');
+    };
+}
 
   //wyświetlanie ulubionych miejsc danego użytkownika
   function displayUserFavorites() {
@@ -160,7 +223,7 @@ function displayUserComments() {
     }
 
     var db;
-    var request = indexedDB.open('markersDB', 3);
+    var request = indexedDB.open('markersDB', 4);
 
     request.onsuccess = function(event) {
         db = event.target.result;
@@ -226,14 +289,52 @@ function displayFavorites(favorites) {
         var favoriteElement = document.createElement('div');
         favoriteElement.className = 'favorite';
         favoriteElement.innerHTML = `
-            
             <img src="${favorite.imageUrl}" alt="Obraz miejsca" />
             <p><strong>Nazwa miejsca:</strong> "${favorite.placeName}"</p>
+            <button class="buttonDelete" onclick="removeFavorite('${favorite.placeName}')">Usuń z ulubionych</button>
         `;
         container.appendChild(favoriteElement);
     });
 }
+function removeFavorite(placeName) {
+    var confirmDeletion = confirm(`Czy na pewno chcesz usunąć miejsce "${placeName}" z ulubionych?`);
+    if (!confirmDeletion) {
+        return; // jeśli użytkownik nie potwierdzi, przerwij funkcję
+    }
 
+    var loggedInUser = checkLoggedInUser();
+    if (!loggedInUser) {
+        console.log('Brak zalogowanego użytkownika.');
+        return;
+    }
+
+    var db;
+    var request = indexedDB.open('markersDB', 4);
+
+    request.onsuccess = function(event) {
+        db = event.target.result;
+        var transaction = db.transaction(['favourites'], 'readwrite');
+        var objectStore = transaction.objectStore('favourites');
+
+        objectStore.openCursor().onsuccess = function(event) {
+            var cursor = event.target.result;
+            if (cursor) {
+                if (cursor.value.userName === loggedInUser.username && cursor.value.placeName === placeName) {
+                    cursor.delete();
+                    alert(`Usunięto z kolekcji ulubionych: "${placeName}"`);
+                }
+                cursor.continue();
+            } else {
+                
+                loadFavorites(loggedInUser.username, db);
+            }
+        };
+    };
+
+    request.onerror = function(event) {
+        console.error('Błąd podczas otwierania bazy danych IndexedDB.');
+    };
+}
 
   
 

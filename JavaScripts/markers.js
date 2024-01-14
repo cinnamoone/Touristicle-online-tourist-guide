@@ -544,7 +544,7 @@ marker.info = {
 break;
 case 'Teatr im. Juliusza Słowackiego w Krakowie':
 marker.info = {
-    zdjecie: '../style/img/imgHTML/teatr.png',
+    zdjecie: '../style/img/imgHTML/teatr.jpg',
     nazwa: "Teatr im. Juliusza Słowackiego w Krakowie",
     adres: 'plac Świętego Ducha 1, 31-023 Kraków',
     ocena: 4.8,
