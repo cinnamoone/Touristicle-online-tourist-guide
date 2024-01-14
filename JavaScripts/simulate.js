@@ -105,7 +105,7 @@ function removeMarker(markerId) {
         var deleteRequest = objectStore.delete(markerId);
         deleteRequest.onsuccess = function() {
             alert('Miejsce zostało usunięte.');
-            loadMarkers(loggedInUser.username, db); // Reload markers
+            loadMarkers(loggedInUser.username, db); 
         };
     };
 
@@ -337,6 +337,52 @@ function removeFavorite(placeName) {
 }
 
   
+//usuwanie konta
+
+function deleteAccount() {
+    const loggedInUser = checkLoggedInUser();
+    if (!loggedInUser) {
+      alert("Nie jesteś zalogowany.");
+      return;
+    }
+
+    const isConfirmed = confirm("Czy na pewno chcesz usunąć swoje konto?");
+    if (!isConfirmed) {
+    console.log("Usuwanie konta anulowane.");
+        return; 
+    }
+  
+    const emailToDelete = loggedInUser.email;
+  
+    // Otwarcie transakcji z bazą danych
+    const deleteTransaction = request.result.transaction(["users"], "readwrite");
+    const usersObjectStore = deleteTransaction.objectStore("users");
+  
+    // Usuwanie użytkownika
+    const deleteRequest = usersObjectStore.delete(emailToDelete);
+    
+    deleteRequest.onsuccess = () => {
+      console.log('Konto usunięte:', emailToDelete);
+      alert('Twoje konto zostało usunięte.');
+  
+      // Wylogowanie użytkownika po usunięciu konta
+      logout();
+
+      window.location.href = 'main.html';
+    };
+  
+    deleteRequest.onerror = (event) => {
+      console.error('Błąd podczas usuwania konta:', event.target.error);
+    };
+    
+    deleteTransaction.oncomplete = () => {
+      request.result.close();
+    };
+  }
+  
+  document.getElementById('deleteAccountButton').addEventListener('click', deleteAccount);
+  
+
 
 // pobieranie informacji o zalogowanym użytkowniku z lokalstorage
 function checkLoggedInUser() {

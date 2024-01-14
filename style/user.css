@@ -140,7 +140,7 @@ p{
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 10px;
+    font-size: 12px;
 }
 .buttonDelete:hover {
     background-color: #754caf;
@@ -149,4 +149,29 @@ p{
     border: none;
     border-radius: 4px;
     cursor: pointer;
+}
+
+.buttonDeleteAcc {
+    position: fixed;   
+    right: 20px;       
+    bottom: 50px;     
+    padding: 10px 15px; 
+    background-color: #ff4d4d; 
+    color: white;         
+    border: none;         
+    border-radius: 5px;  
+    cursor: pointer;     
+    font-size: 16px;   
+}
+.buttonDeleteAcc:hover {
+    color: rgb(255, 255, 255);
+    right: 20px;       
+    bottom: 50px;     
+    padding: 10px 15px; 
+    background-color: #914dff; 
+    color: white;         
+    border: none;         
+    border-radius: 5px;  
+    cursor: pointer;     
+    font-size: 16px; 
 }
