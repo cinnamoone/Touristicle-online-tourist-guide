@@ -70,6 +70,23 @@ function wczytajMarkeryDlaUzytkownika(nick) {
     }
   };
 }
+document.addEventListener('DOMContentLoaded', function() {
+  var loggedInUser = checkLoggedInUser();
+  var loginContainer = document.getElementById('login-container');
+  var markerForm = document.getElementById('marker-form');
+
+  if (loggedInUser) {
+    // User is logged in, show the marker form
+    markerForm.style.display = 'block';
+    loginContainer.style.display = 'none';
+  } else {
+    // User is not logged in, show the login container
+    markerForm.style.display = 'none';
+    loginContainer.style.display = 'block';
+  }
+});
+
+// Rest of your existing functions (dodajMarker, wczytajMarkeryDlaUzytkownika, checkLoggedInUser, etc.)
 
 // Funkcja pomocnicza do pobierania informacji o zalogowanym użytkowniku z lokalnego magazynu
 function checkLoggedInUser() {

@@ -33,10 +33,15 @@
         </div>
     </header>
 
-
+        
         <div id="form">
             <h2>Dodaj nowy marker:</h2>
-            <form id="marker-form">
+            <div id="login-container" style="display: none;">
+                <p>Aby dodawać nowe miejsca do mapy, musisz się zalogować!</p>
+                <button class="buttonAdd" onclick="window.location.href='login.html'">Zaloguj</button>
+                <button class="buttonAdd" onclick="window.location.href='signup.html'">Stwórz konto</button>
+                </div>
+            <form id="marker-form" style="display: none;">
                 <label for="placeName">Nazwa miejsca:</label>
                 <input type="text" id="placeName" required><br>
                 <label for="address">Adres:</label>
