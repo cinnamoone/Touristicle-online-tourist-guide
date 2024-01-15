@@ -7,6 +7,8 @@ function redirectToHomepage() {
 
 
 document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('deleteAccountButton').onclick = deleteAccount;
+
   displayUserMarkers();
   displayUserComments();
   displayUserFavorites()
@@ -380,7 +382,7 @@ function deleteAccount() {
     };
   }
   
-  document.getElementById('deleteAccountButton').addEventListener('click', deleteAccount);
+
   
 
 
@@ -388,14 +390,3 @@ function deleteAccount() {
 function checkLoggedInUser() {
   return JSON.parse(localStorage.getItem('loggedInUser'));
 }
-
-
-
-
-
-
-
-
-
-
-
