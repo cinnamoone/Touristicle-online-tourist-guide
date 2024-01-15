@@ -163,3 +163,14 @@ select {
     color: red;
     margin-bottom: 15px;
 }
+
+
+.tooltip-icon {
+    margin-left: 5px;
+    color: #8000ff; /* Niebieski kolor ikony */
+    cursor: help; /* Kursor wskazujący podpowiedź */
+}
+
+.tooltip-icon:hover {
+    color: #0056b3; /* Ciemniejszy odcień niebieskiego przy najechaniu */
+}
