@@ -4,7 +4,9 @@ body {
     padding: 0;
     background-color: #f2f2f2;
 }
-
+h2{
+    font-size: 30px;
+}
 #form {
     background-color: #ffffffe8;
     padding: 20px;
@@ -130,4 +132,34 @@ select {
 
 #login-container p {
     margin-bottom: 20px; /* Adds space below the paragraph */
+}
+
+#marker-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    margin-top: 20px;
+}
+
+#marker-form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#marker-form input, #marker-form select {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+
+#marker-form .error {
+    color: red;
+    margin-bottom: 15px;
 }
