@@ -123,25 +123,25 @@ function displayUserComments() {
         console.log('Brak zalogowanego użytkownika.');
         return;
     }
-  
+
     var db;
     var request = indexedDB.open('markersDB', 4);
-  
+
     request.onsuccess = function(event) {
         db = event.target.result;
         loadComments(loggedInUser.username, db);
     };
-  
+
     request.onerror = function(event) {
         console.error('Błąd podczas otwierania bazy danych IndexedDB.');
     };
-  }
-  
-  function loadComments(username, db) {
+}
+
+function loadComments(username, db) {
     var transaction = db.transaction(['comments'], 'readonly');
     var objectStore = transaction.objectStore('comments');
     var comments = [];
-  
+
     objectStore.openCursor().onsuccess = function(event) {
         var cursor = event.target.result;
         if (cursor) {
@@ -153,9 +153,14 @@ function displayUserComments() {
             displayComments(comments);
         }
     };
-  }
-  
-  function displayComments(comments) {
+}
+
+function formatTimestamp(timestamp) {
+    var date = new Date(timestamp);
+    return date.toLocaleString(); // Poprawne formatowanie daty do czytelnej formy
+}
+
+function displayComments(comments) {
     var container = document.getElementById('comments-container');
     if (!container) {
         console.error('Nie znaleziono kontenera do wyświetlania komentarzy.');
@@ -171,18 +176,19 @@ function displayUserComments() {
         container.innerHTML += '<p>Nie dodałeś jeszcze żadnych komentarzy.</p>';
         return;
     }
-  
+
     comments.forEach(function(comment) {
         var commentElement = document.createElement('div');
         commentElement.className = 'comment';
         commentElement.innerHTML = `
             <p><strong>Treść komentarza:</strong> "${comment.commentText}"</p>
             <p><strong>Miejsce:</strong> ${comment.placeName}</p>
+            <p><strong>Data dodania:</strong> ${formatTimestamp(comment.timestamp)}</p> <!-- Wyświetlenie daty -->
             <button class="buttonDelete" onclick="removeComment('${comment.id}')">Usuń komentarz</button>
         `;
         container.appendChild(commentElement);
     });
-  }
+}
 //usuwanie komentarza 
   function removeComment(commentId) {
     var confirmDeletion = confirm('Czy na pewno chcesz usunąć ten komentarz?');
