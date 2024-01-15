@@ -7,10 +7,26 @@
     <link rel="stylesheet" type="text/css" href="../style/ranking.css">
     <link rel="stylesheet" type="text/css" href="../style/dodawanie.css">
     <script src="\JavaScripts\menu.js"></script>
+    
+    
+    
+    <!-- Importuj bibliotekę Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+<!-- Importuj plugin "leaflet-control-geocoder" -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css">
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+<!-- Importuj bibliotekę Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<!-- Twój kod HTML i JavaScript -->
+
     <script src="\JavaScripts\adding.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <title>Touristicle</title>
+    
 </head>
 
 <body>
@@ -63,8 +79,7 @@
                 </select>
                 <br>
                 <label for="coordinates">Współrzędne geograficzne:</label>
-                <i class="fas fa-info-circle tooltip-icon" title="Wprowadź współrzędne w formacie: 'latitude, longitude',
-                np.: 50.0614300, 19.9365800"></i>
+                <i class="fas fa-info-circle tooltip-icon" title="Kliknij na mapę, aby zaznaczyć miejsce"></i>
                 <input type="text" id="coordinates" required><br>
 
 
@@ -72,11 +87,12 @@
                 <label for="imageURL">Link URL do zdjęcia:</label>
                 <input type="text" id="imageURL"><br>
                 <input type="button" class="formbutton" value="Dodaj marker" onclick="dodajMarker()">
-
               </form>
-              
-            
-        </div>
+        
+        
+              <div id="map2" style="width: 100%; height: 300px;"></div></div>
+
+        
 
 
     <footer>
@@ -92,6 +108,7 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="\JavaScripts\adding.js"></script>
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    
 </body>
 
 </html>

@@ -25,12 +25,12 @@ function dodajMarker() {
   // Sprawdzenie, czy wybrano kategorię
   if (category === "wybierz kategorię z listy") {
       document.getElementById('category-error').style.display = 'block';
-      return; // Zatrzymaj funkcję, jeśli kategoria nie została wybrana
+      return; 
   } else {
       document.getElementById('category-error').style.display = 'none';
   }
 
-  var addedBy = checkLoggedInUser(); // Pobierz informacje o zalogowanym użytkowniku
+  var addedBy = checkLoggedInUser(); 
 
   var markerData = {
     placeName: placeName,
@@ -38,7 +38,7 @@ function dodajMarker() {
     category: category,
     coordinates: coordinates,
     imageURL: imageURL,
-    addedBy: addedBy.username // Wyciągnij tylko nick użytkownika
+    addedBy: addedBy.username 
   };
   
   var transaction = db.transaction(['markers'], 'readwrite');
@@ -76,17 +76,43 @@ document.addEventListener('DOMContentLoaded', function() {
   var markerForm = document.getElementById('marker-form');
 
   if (loggedInUser) {
-    // User is logged in, show the marker form
+    
     markerForm.style.display = 'block';
     loginContainer.style.display = 'none';
   } else {
-    // User is not logged in, show the login container
+    
     markerForm.style.display = 'none';
     loginContainer.style.display = 'block';
   }
 });
 
-// Rest of your existing functions (dodajMarker, wczytajMarkeryDlaUzytkownika, checkLoggedInUser, etc.)
+document.addEventListener("DOMContentLoaded", function() {
+  var map = L.map('map2').setView([50.0614300, 19.9365800], 15);
+  var satLayer2 = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  
+  L.Control.geocoder().addTo(map);
+
+        var marker;
+
+        map.on('click', function(e) {
+            // Usuń poprzedni marker
+            if (marker) {
+                map.removeLayer(marker);
+            }
+
+            // pobranie współrzędnych z kliknięcia na mapie
+            var coordinates = e.latlng;
+
+            marker = L.marker(coordinates).addTo(map);
+
+            document.getElementById('coordinates').value = coordinates.lat + ', ' + coordinates.lng;
+        });
+      
+});
 
 // Funkcja pomocnicza do pobierania informacji o zalogowanym użytkowniku z lokalnego magazynu
 function checkLoggedInUser() {
