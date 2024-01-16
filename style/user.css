@@ -1,11 +1,11 @@
 #welcomeMessage {
-    background-color: rgba(255, 255, 255, 0.7); /* Tło z przezroczystością */
-    padding: 10px; /* Dodaj wewnętrzny padding */
-    border-radius: 5px; /* Zaokrąglony brzeg */
-    text-align: center; /* Wyśrodkowanie tekstu */
-    font-size: 24px; /* Rozmiar czcionki */
-    color: #71088f; /* Kolor tekstu */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Cień tekstu */
+    background-color: rgba(255, 255, 255, 0.7); 
+    padding: 10px; 
+    border-radius: 5px; 
+    text-align: center; 
+    font-size: 24px; 
+    color: #71088f; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
 }
 
 
@@ -36,54 +36,54 @@
 
 
 #markers-container {
-    background-color: rgba(255, 255, 255, 0.8); /* Półprzezroczyste tło */
-    border-radius: 15px; /* Zaokrąglone rogi */
+    background-color: rgba(255, 255, 255, 0.8); 
+    border-radius: 15px; 
     padding: 20px;
     max-width: 600px;
     margin: auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Lekkie cieniowanie */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 #comments-container {
-    background-color: rgba(255, 255, 255, 0.8); /* Półprzezroczyste tło */
-    border-radius: 15px; /* Zaokrąglone rogi */
+    background-color: rgba(255, 255, 255, 0.8); 
+    border-radius: 15px; 
     padding: 20px;
     max-width: 600px;
     margin: auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Lekkie cieniowanie */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 #favorites-container {
-    background-color: rgba(255, 255, 255, 0.8); /* Półprzezroczyste tło */
-    border-radius: 15px; /* Zaokrąglone rogi */
+    background-color: rgba(255, 255, 255, 0.8); 
+    border-radius: 15px; 
     padding: 20px;
     max-width: 600px;
     margin: auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Lekkie cieniowanie */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 .marker {
-    background-color: white; /* Białe tło dla każdego markera */
+    background-color: white; 
     border: 1px solid #ddd;
     padding: 10px;
     margin-bottom: 10px;
-    border-radius: 10px; /* Zaokrąglone rogi dla markerów */
+    border-radius: 10px; 
 }
 .comment {
-    background-color: white; /* Białe tło dla każdego markera */
+    background-color: white; 
     border: 1px solid #ddd;
     padding: 10px;
     margin-bottom: 10px;
-    border-radius: 10px; /* Zaokrąglone rogi dla markerów */
+    border-radius: 10px;
 }
 .favorite {
-    background-color: white; /* Białe tło dla każdego markera */
+    background-color: white; 
     border: 1px solid #ddd;
     padding: 10px;
     margin-bottom: 10px;
-    border-radius: 10px; /* Zaokrąglone rogi dla markerów */
+    border-radius: 10px; 
 }
 .marker img {
     max-width: 300px;
     height: auto;
-    border-radius: 5px; /* Zaokrąglone rogi dla obrazków */
+    border-radius: 5px; 
 }
 .marker h3 {
     margin: 0 0 10px 0;
@@ -106,29 +106,29 @@ p{
 }
 
 #fav-container {
-    background-color: rgba(255, 255, 255, 0.5); /* Półprzezroczyste tło */
-    border-radius: 15px; /* Zaokrąglone rogi */
+    background-color: rgba(255, 255, 255, 0.5); 
+    border-radius: 15px;
     padding: 20px;
     max-width: 600px;
     margin: auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Lekkie cieniowanie */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
 .sekcja {
     display: flex;
     justify-content: space-around;
-    align-items: flex-start; /* Dodane wyrównanie elementów do góry */
+    align-items: flex-start; 
     padding: 10px;
 }
 
 /* Dodanie minimalnej wysokości dla każdego kontenera */
 #comments-container, #markers-container, #favorites-container {
-    min-height: 300px; /* Możesz dostosować wysokość według potrzeb */
+    min-height: 300px; 
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 15px;
     padding: 20px;
     max-width: 600px;
-    margin: 0 auto; /* Wyzerowanie marginesu góra-dół */
+    margin: 0 auto; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -153,20 +153,21 @@ p{
 
 .buttonDeleteAcc {
     position: fixed;   
-    right: 20px;       
-    bottom: 50px;     
+    right: 15px;         
+    bottom: 50px;    
     padding: 10px 15px; 
     background-color: #ff4d4d; 
     color: white;         
     border: none;         
     border-radius: 5px;  
     cursor: pointer;     
-    font-size: 16px;   
+    font-size: 16px; 
+    z-index: 1000;  
 }
 .buttonDeleteAcc:hover {
     color: rgb(255, 255, 255);
-    right: 20px;       
-    bottom: 50px;     
+    right: 15px;         
+    top: 20px;    
     padding: 10px 15px; 
     background-color: #914dff; 
     color: white;         
@@ -174,4 +175,17 @@ p{
     border-radius: 5px;  
     cursor: pointer;     
     font-size: 16px; 
+}
+
+/* Media query dla mniejszych ekranów */
+@media (max-width: 768px) {
+    .sekcja {
+        flex-direction: column; /* Elementy ułożone pionowo */
+    }
+
+    #markers-container, #comments-container, #favorites-container {
+        max-width: 100%; 
+        margin: 10px 0; }
+
+    
 }

@@ -66,7 +66,6 @@ function wczytajMarkeryDlaUzytkownika(nick) {
       }
       cursor.continue();
     } else {
-      // Tutaj masz dostęp do tablicy markers, która zawiera markery danego użytkownika
     }
   };
 }
@@ -99,7 +98,6 @@ document.addEventListener("DOMContentLoaded", function() {
         var marker;
 
         map.on('click', function(e) {
-            // Usuń poprzedni marker
             if (marker) {
                 map.removeLayer(marker);
             }
