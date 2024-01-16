@@ -26,6 +26,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("confirmPassword").value;
 
+    // Sprawdzanie, czy wszystkie pola są wypełnione
+    if (!username || !email || !password || !confirmPassword) {
+      alert("Proszę wypełnić wszystkie pola!");
+      return;
+    }
+
     // sprawdzanie haseł
     if (password !== confirmPassword) {
       alert("Podane hasła nie są identyczne!");
