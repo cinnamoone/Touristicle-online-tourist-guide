@@ -5,22 +5,22 @@ var satLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
         attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    // Dodawanie warstwy satelitarnej z dostawcy Mapbox (opcjonalne)
+    // Dodawanie warstwy satelitarnej z dostawcy Mapbox 
     googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
         maxZoom: 20,
         subdomains:['mt0','mt1','mt2','mt3']
 });
 
-    // Grupa warstw dla kontrolki Layer Control
-    var baseMaps = {
-        "OpenStreetMap": satLayer,
-        "Mapa satelitarna": googleSat
-    };
+// Grupa warstw dla kontrolki Layer Control
+var baseMaps = {
+  "OpenStreetMap": satLayer,
+  "Mapa satelitarna": googleSat
+};
     
-  //dodanie obsługi leaflet wyszukiwania do mapy
-  L.Control.geocoder().addTo(map);
+//dodanie obsługi leaflet wyszukiwania do mapy
+L.Control.geocoder().addTo(map);
 //dodanie różnych warstw 
-  L.control.layers(baseMaps).addTo(map);
+L.control.layers(baseMaps).addTo(map);
 
 
 
