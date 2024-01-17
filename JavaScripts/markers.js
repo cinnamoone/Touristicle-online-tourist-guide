@@ -940,12 +940,13 @@ function addComment(placeName) {
     };
     store.add(comment).onsuccess = function(event) {
       console.log('Komentarz dodany.');
-      // Po dodaniu komentarza, odśwież informacje o markerze
       var updatedMarker = markers.find(m => m.info && m.info.nazwa === placeName);
       if (updatedMarker) {
-        updatedMarker.info.komentarze.push(addedBy.username + ': ' + commentText);
-        infoContainer.update(updatedMarker.info);
+          updatedMarker.info.komentarze.push(addedBy.username + ': ' + commentText); 
+          infoContainer.update(updatedMarker.info); 
       }
+      
+      
     };
   }).catch(err => {
     console.error('Błąd podczas dodawania komentarza: ', err);
@@ -975,54 +976,65 @@ function updateInfoPanel(placeName) {
 }
 
 // Funkcja do wyświetlania komentarzy w panelu informacyjnym
-function displayComments(info) {
-  // Obsługa wyjątku
-  if (!info || typeof info.nazwa === 'undefined') {
-    console.error('Informacje o miejscu są niepełne lub niezdefiniowane.');
-    return;
-  }
-
+function displayComments(markerInfo) {
   var commentsContainer = document.getElementById('commentsContainer');
   if (!commentsContainer) {
-    console.error('Nie znaleziono kontenera na komentarze.');
-    return;
+      //console.error('Nie znaleziono kontenera na komentarze.');
+      return;
   }
 
-  // Czyszczenie istniejących komentarzy
   commentsContainer.innerHTML = '';
 
-  // Dodawanie komentarzy z obiektu 'info'
-  if (info.komentarze && info.komentarze.length > 0) {
-    info.komentarze.forEach(comment => {
-      var commentDiv = document.createElement('div');
-      commentDiv.classList.add('comment');
-      commentDiv.innerHTML = comment;
-      commentsContainer.appendChild(commentDiv);
-    });
-  } else {
-    // Jeśli brak komentarzy w obiekcie 'info', sprawdź IndexedDB
-    initIndexedDB().then(db => {
+  let allComments = new Map();
+
+  // Dodawanie komentarzy z atrybutu info
+  if (markerInfo.komentarze && markerInfo.komentarze.length > 0) {
+      markerInfo.komentarze.forEach(comment => {
+          allComments.set(comment, { text: comment, timestamp: null });
+      });
+  }
+
+  // Pobieranie i dodawanie komentarzy z IndexedDB
+  initIndexedDB().then(db => {
       var transaction = db.transaction(['comments'], 'readonly');
       var store = transaction.objectStore('comments');
       var index = store.index('placeName');
-      var range = IDBKeyRange.only(info.nazwa);
+      var range = IDBKeyRange.only(markerInfo.nazwa);
 
       index.openCursor(range).onsuccess = function(event) {
-        var cursor = event.target.result;
-        if (cursor) {
-          var commentDiv = document.createElement('div');
-          commentDiv.classList.add('comment');
-          commentDiv.innerHTML = `<strong>${cursor.value.addedBy}:</strong> ${cursor.value.commentText}`;
-          commentsContainer.appendChild(commentDiv);
-          cursor.continue();
-        }
+          var cursor = event.target.result;
+          if (cursor) {
+              var fullComment = cursor.value.addedBy + ': ' + cursor.value.commentText;
+              allComments.set(fullComment, { text: fullComment, timestamp: new Date(cursor.value.timestamp) });
+              cursor.continue();
+          } else {
+              // Wyświetlanie komentarzy: najpierw te z atrybutu info, potem posortowane z IndexedDB
+              displaySortedComments(allComments, commentsContainer);
+          }
       };
-    })
-    .catch(err => {
+  }).catch(err => {
       console.error('Błąd podczas wyświetlania komentarzy z IndexedDB:', err);
-    });
-  }
+  });
 }
+
+
+function displaySortedComments(allComments, commentsContainer) {
+  // Konwersja Map na Array i sortowanie
+  let sortedComments = Array.from(allComments.values()).sort((a, b) => {
+      if (a.timestamp === null) return -1;
+      if (b.timestamp === null) return 1;
+      return a.timestamp - b.timestamp; // Sortowanie od najstarszego do najnowszego
+  });
+
+  sortedComments.forEach(comment => {
+      var commentDiv = document.createElement('div');
+      commentDiv.classList.add('comment');
+      commentDiv.textContent = comment.text;
+      commentsContainer.appendChild(commentDiv);
+  });
+}
+
+
 
 
 

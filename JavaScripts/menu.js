@@ -13,7 +13,7 @@ function updateMenu() {
             <li class="dropdown">
                 <a href="#">Konto</a>
                 <ul class="submenu">
-                    <li id="mojeKontoItem"><a href="konto.html">Moje-Konto</a></li>
+                    <li id="mojeKontoItem"><a href="konto.html">Moje konto</a></li>
                     <li id="wylogujItem"><a href="main.html" onclick="logout()">Wyloguj</a></li>
                 </ul>
             </li>
