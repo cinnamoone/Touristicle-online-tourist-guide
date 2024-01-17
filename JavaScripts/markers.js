@@ -976,9 +976,9 @@ function updateInfoPanel(placeName) {
 
 // Funkcja do wyświetlania komentarzy w panelu informacyjnym
 function displayComments(info) {
-  // obsługa wyjątku
+  // Obsługa wyjątku
   if (!info || typeof info.nazwa === 'undefined') {
-    //console.error('Informacje o miejscu są niepełne lub niezdefiniowane.');
+    console.error('Informacje o miejscu są niepełne lub niezdefiniowane.');
     return;
   }
 
@@ -988,13 +988,10 @@ function displayComments(info) {
     return;
   }
 
-  // czyszczenie istniejących komentarzy
+  // Czyszczenie istniejących komentarzy
   commentsContainer.innerHTML = '';
 
-
-  //komentarze dodajemy z wewnątrz projektu i z bazy danych indexedDB więc musimy zrobić obsługę obu przypadków
-
-  // dodawanie komentarzy z obiektu 'info'
+  // Dodawanie komentarzy z obiektu 'info'
   if (info.komentarze && info.komentarze.length > 0) {
     info.komentarze.forEach(comment => {
       var commentDiv = document.createElement('div');
@@ -1002,29 +999,29 @@ function displayComments(info) {
       commentDiv.innerHTML = comment;
       commentsContainer.appendChild(commentDiv);
     });
+  } else {
+    // Jeśli brak komentarzy w obiekcie 'info', sprawdź IndexedDB
+    initIndexedDB().then(db => {
+      var transaction = db.transaction(['comments'], 'readonly');
+      var store = transaction.objectStore('comments');
+      var index = store.index('placeName');
+      var range = IDBKeyRange.only(info.nazwa);
+
+      index.openCursor(range).onsuccess = function(event) {
+        var cursor = event.target.result;
+        if (cursor) {
+          var commentDiv = document.createElement('div');
+          commentDiv.classList.add('comment');
+          commentDiv.innerHTML = `<strong>${cursor.value.addedBy}:</strong> ${cursor.value.commentText}`;
+          commentsContainer.appendChild(commentDiv);
+          cursor.continue();
+        }
+      };
+    })
+    .catch(err => {
+      console.error('Błąd podczas wyświetlania komentarzy z IndexedDB:', err);
+    });
   }
-
-  // dodawanie komentarzy z IndexedDB
-  initIndexedDB().then(db => {
-    var transaction = db.transaction(['comments'], 'readonly');
-    var store = transaction.objectStore('comments');
-    var index = store.index('placeName');
-    var range = IDBKeyRange.only(info.nazwa);
-
-    index.openCursor(range).onsuccess = function(event) {
-      var cursor = event.target.result;
-      if (cursor) {
-        var commentDiv = document.createElement('div');
-        commentDiv.classList.add('comment');
-        commentDiv.innerHTML = `<strong>${cursor.value.addedBy}:</strong> ${cursor.value.commentText}`;
-        commentsContainer.appendChild(commentDiv);
-        cursor.continue();
-      }
-    };
-  })
-  .catch(err => {
-    console.error('Błąd podczas wyświetlania komentarzy z IndexedDB:', err);
-  });
 }
 
 
