@@ -1,4 +1,3 @@
-
 //wywołanie mapy leaflet i ustawienie widoku na kraków
 var map = L.map('map').setView([50.0614300, 19.9365800], 15);
 var satLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -1043,19 +1042,24 @@ function generateRatingStars(rating) {
   let starsHtml = '';
   let ratingDisplay = '';
 
-  if (rating === 'Brak ocen') {
-      starsHtml = '<i class="far fa-star"></i>'.repeat(5); // 5 pustych gwiazdek
-      ratingDisplay = '(Brak ocen)';
+  // Upewnij się, że rating jest liczbą
+  const numericRating = parseFloat(rating);
+
+  if (isNaN(numericRating)) {
+    starsHtml = '<i class="far fa-star"></i>'.repeat(5); // 5 pustych gwiazdek
+    ratingDisplay = '(Brak ocen)';
   } else {
-      const filledStars = '<i class="fas fa-star"></i>'.repeat(Math.floor(rating));
-      const halfStar = rating % 1 !== 0 ? '<i class="fas fa-star-half-alt"></i>' : '';
-      const emptyStars = '<i class="far fa-star"></i>'.repeat(5 - Math.ceil(rating));
-      starsHtml = `${filledStars}${halfStar}${emptyStars}`;
-      ratingDisplay = `(${rating.toFixed(1)})`; // zaokrąglenie do jednego miejsca po przecinku
+    const validRating = Math.max(0, Math.floor(numericRating)); // Upewnij się, że rating nie jest ujemny
+    const filledStars = '<i class="fas fa-star"></i>'.repeat(validRating);
+    const halfStar = numericRating % 1 !== 0 ? '<i class="fas fa-star-half-alt"></i>' : '';
+    const emptyStars = '<i class="far fa-star"></i>'.repeat(5 - Math.ceil(numericRating));
+    starsHtml = `${filledStars}${halfStar}${emptyStars}`;
+    ratingDisplay = `(${numericRating.toFixed(1)})`; // zaokrąglenie do jednego miejsca po przecinku
   }
 
   return `<span class="rating-stars">${starsHtml}</span> <span class="rating-number">${ratingDisplay}</span>`;
 }
+
 
 
 function resetInfoContainer() {
@@ -1068,43 +1072,65 @@ function closeInfoContainer() {
 //wczytywanie markerów dodanych przez użytkownika
 function readMarkersFromDB() {
   initIndexedDB().then(function (db) {
-  var transaction = db.transaction('markers', 'readonly');
-  var store = transaction.objectStore('markers');
-  
-  store.openCursor().onsuccess = function (event) {
-  var cursor = event.target.result;
-  
-  if (cursor) {
-      var markerData = cursor.value;
-      if (markerData.coordinates) {
+    var transaction = db.transaction(['markers', 'ratings', 'comments'], 'readonly');
+    var markersStore = transaction.objectStore('markers');
+    var ratingsStore = transaction.objectStore('ratings');
+    var commentsStore = transaction.objectStore('comments');
+
+    markersStore.openCursor().onsuccess = function (event) {
+      var cursor = event.target.result;
+      if (cursor) {
+        var markerData = cursor.value;
         var coordinatesArray = markerData.coordinates.split(', ');
         var lat = parseFloat(coordinatesArray[0]);
         var lng = parseFloat(coordinatesArray[1]);
-    
-    } else {
-        console.error('Błąd: brak współrzędnych dla markera', markerData);
-    }  
-      var marker = L.marker([lat, lng], { icon: getIconForCategory(markerData.category) });
-      marker.info = {
-          nazwa: markerData.placeName,
-          adres: markerData.address,
-          ocena: markerData.rating || 'Brak ocen',
-          komentarze: markerData.comments && markerData.comments.length > 0 ? markerData.comments : ['Brak komentarzy'],
-          zdjecie: markerData.imageURL
-      };
-  
-      markersLayer.addLayer(marker);
-  
-      marker.on('click', function () {
-          currentMarker = marker; // aktualizacja currentMarker przy kliknięciu
+
+        var marker = L.marker([lat, lng], { icon: getIconForCategory(markerData.category) });
+        marker.info = {
+          nazwa: markerData.placeName || ['Brak nazwy miejsca'],
+          adres: markerData.address || ['Brak podanego adresu'], 
+          zdjecie: markerData.imageURL,
+          
+        };
+
+        var index = commentsStore.index('placeName');
+        var range = IDBKeyRange.only(markerData.placeName);
+          index.get(range).onsuccess = function(event) {
+            var commentsRecord = event.target.result;
+         if (commentsRecord) {
+            marker.info.komentarze = commentsRecord.comments;
+            } else {
+                marker.info.komentarze = ['Brak komentarzy'];
+              }
+              };
+
+        var index = ratingsStore.index('placeName');
+        var range = IDBKeyRange.only(markerData.placeName);
+        index.get(range).onsuccess = function(event) {
+          var ratingRecord = event.target.result;
+          if (ratingRecord) {
+            marker.info.ocena = ratingRecord.rating;
+          } else {
+            marker.info.ocena = 'Brak ocen';
+          }
+        };
+
+        markersLayer.addLayer(marker);
+
+        marker.on('click', function () {
           infoContainer.update(marker.info);
-      });
-  
-      cursor.continue();
-  }
-  };
+        });
+        
+        cursor.continue();
+      }
+    };
+  }).catch(function (error) {
+    console.error("Błąd odczytu z IndexedDB:", error);
   });
-  }
+}
+
+
+
   
 
 //ulubione
@@ -1253,44 +1279,44 @@ function addRating(placeName, rating) {
   var addedBy = checkLoggedInUser();
 
   if (!addedBy) {
-    alert('Musisz być zalogowany, aby dodać ocenę.');
-    return;
+      alert('Musisz być zalogowany, aby dodać ocenę.');
+      return;
   }
 
   initIndexedDB().then(db => {
-    var transaction = db.transaction(['ratings'], 'readwrite');
-    var store = transaction.objectStore('ratings');
-    var ratingEntry = {
-      placeName: placeName,
-      rating: rating,
-      addedBy: addedBy.username,
-      timestamp: new Date().toISOString()
-    };
-    store.add(ratingEntry).onsuccess = function() {
-      console.log('Ocena dodana.');
-      alert('Ocena została dodana.');
-      calculateAverageRating(placeName); // Obliczamy średnią ocenę po dodaniu oceny
-    };
+      var transaction = db.transaction(['ratings'], 'readwrite');
+      var store = transaction.objectStore('ratings');
+      var index = store.index('addedBy');
+      var range = IDBKeyRange.only(addedBy.username);
+
+      index.openCursor(range).onsuccess = function(event) {
+          var cursor = event.target.result;
+          if (cursor) {
+              if (cursor.value.placeName === placeName) {
+                  // Użytkownik już ocenił to miejsce, aktualizuj ocenę lub wyświetl komunikat
+                  alert('Już oceniłeś to miejsce.');
+                  return; // Zapobiega dodaniu kolejnej oceny
+              }
+              cursor.continue();
+          } else {
+              // Dodaj nową ocenę
+              store.add({
+                  placeName: placeName,
+                  rating: rating,
+                  addedBy: addedBy.username,
+                  timestamp: new Date().toISOString()
+              }).onsuccess = function() {
+                  console.log('Ocena dodana.');
+                  alert('Ocena została dodana.');
+                  calculateAverageRating(placeName);
+              };
+          }
+      };
   }).catch(err => {
-    console.error('Błąd podczas dodawania oceny: ', err);
+      console.error('Błąd podczas dodawania oceny: ', err);
   });
 }
-function saveMarkerToDB(markerData) {
-  initIndexedDB().then(function (db) {
-    var transaction = db.transaction('markers', 'readwrite');
-    var store = transaction.objectStore('markers');
 
-    var request = store.add(markerData);
-
-    request.onsuccess = function (event) {
-      console.log('Marker został zapisany w bazie danych.');
-    };
-
-    request.onerror = function (event) {
-      console.error('Błąd podczas zapisu markera do bazy danych.');
-    };
-  });
-}
 
 
 // funkcja pokazująca formularz do dodawania oceny
