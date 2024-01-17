@@ -147,7 +147,7 @@ ul a:hover {
     margin-bottom: 5px;
 }
 .info-container {
-    background: rgba(255, 255, 255, 0.615);
+    background: rgba(255, 255, 255, 0.8);
     padding: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     position: relative;
@@ -167,7 +167,7 @@ ul a:hover {
 
 .info-container img {
     max-width: 500px;  /* Ustawia maksymalną szerokość na 100% szerokości kontenera */
-    max-height: 250px;     /* Automatyczne dostosowanie wysokości dla zachowania proporcji */
+    max-height: 300px;     /* Automatyczne dostosowanie wysokości dla zachowania proporcji */
     display: block;   /* Eliminuje dodatkowe marginesy, które mogą występować dla elementu img */
     margin: 0 auto;   /* Centralizuje obraz w obrębie kontenera */
 }
