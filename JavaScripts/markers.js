@@ -1159,10 +1159,36 @@ function saveFavoriteToDB(favorite) {
 }
 
 //oceny
+function calculateAverageRating(placeName) {
+  initIndexedDB().then(db => {
+    var transaction = db.transaction(['ratings'], 'readonly');
+    var store = transaction.objectStore('ratings');
+    var index = store.index('placeName');
+    var range = IDBKeyRange.only(placeName);
+    var totalRating = 0;
+    var ratingCount = 0;
+
+    index.openCursor(range).onsuccess = function(event) {
+      var cursor = event.target.result;
+      if (cursor) {
+        totalRating += cursor.value.rating;
+        ratingCount++;
+        cursor.continue();
+      } else {
+        var averageRating = ratingCount > 0 ? totalRating / ratingCount : 'Brak ocen';
+        var updatedMarker = markers.find(m => m.info && m.info.nazwa === placeName);
+        if (updatedMarker) {
+          updatedMarker.info.ocena = averageRating;
+          infoContainer.update(updatedMarker.info);
+        }
+      }
+    };
+  });
+}
 // Funkcja pokazująca formularz do dodawania oceny
 function showRatingForm(placeName) {
   var ratingForm = document.createElement('div');
-  ratingForm.id = 'ratingForm'; 
+  ratingForm.id = 'ratingForm';
   ratingForm.className = 'rating-form-container';
   ratingForm.innerHTML = `
       <h3>Oceń miejsce: ${placeName}</h3>
@@ -1186,13 +1212,6 @@ function showRatingForm(placeName) {
       selectRating(rating);
     });
   });
-}
-
-function closeRatingForm() {
-  var ratingForm = document.getElementById('ratingForm');
-  if (ratingForm) {
-    ratingForm.remove();
-  }
 }
 
 
@@ -1238,13 +1257,29 @@ function addRating(placeName, rating) {
       addedBy: addedBy.username,
       timestamp: new Date().toISOString()
     };
-    store.add(ratingEntry);
-  }).then(() => {
-    console.log('Ocena dodana.');
-    alert('Ocena została dodana.');
-    updateInfoPanel(placeName); // aktualizacja panelu info o miejscu
+    store.add(ratingEntry).onsuccess = function() {
+      console.log('Ocena dodana.');
+      alert('Ocena została dodana.');
+      calculateAverageRating(placeName); // Obliczamy średnią ocenę po dodaniu oceny
+    };
   }).catch(err => {
     console.error('Błąd podczas dodawania oceny: ', err);
+  });
+}
+function saveMarkerToDB(markerData) {
+  initIndexedDB().then(function (db) {
+    var transaction = db.transaction('markers', 'readwrite');
+    var store = transaction.objectStore('markers');
+
+    var request = store.add(markerData);
+
+    request.onsuccess = function (event) {
+      console.log('Marker został zapisany w bazie danych.');
+    };
+
+    request.onerror = function (event) {
+      console.error('Błąd podczas zapisu markera do bazy danych.');
+    };
   });
 }
 
