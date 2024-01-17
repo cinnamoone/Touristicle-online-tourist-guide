@@ -84,6 +84,7 @@ markers.forEach(function(marker) {
     container.appendChild(markerElement);
 });
 }
+//usuwanie dodanych miejsc
 function removeMarker(markerId) {
     var confirmDeletion = confirm('Czy na pewno chcesz usunąć to miejsce?');
     if (!confirmDeletion) {
@@ -104,7 +105,8 @@ function removeMarker(markerId) {
         var transaction = db.transaction(['markers'], 'readwrite');
         var objectStore = transaction.objectStore('markers');
 
-        var deleteRequest = objectStore.delete(markerId);
+      
+        var deleteRequest = objectStore.delete(Number(markerId));
         deleteRequest.onsuccess = function() {
             alert('Miejsce zostało usunięte.');
             loadMarkers(loggedInUser.username, db); 
@@ -115,6 +117,7 @@ function removeMarker(markerId) {
         console.error('Błąd podczas otwierania bazy danych IndexedDB.');
     };
 }
+
 
 //wyświetlanie komentarzy danego użytkownika
 function displayUserComments() {
@@ -190,8 +193,8 @@ function displayComments(comments) {
     });
 }
 //usuwanie komentarza 
-  function removeComment(commentId) {
-    var confirmDeletion = confirm('Czy na pewno chcesz usunąć ten komentarz?');
+function removeComment(commentId) {
+    var confirmDeletion = confirm(`Czy na pewno chcesz usunąć ten komentarz?`);
     if (!confirmDeletion) {
         return;
     }
@@ -210,10 +213,17 @@ function displayComments(comments) {
         var transaction = db.transaction(['comments'], 'readwrite');
         var objectStore = transaction.objectStore('comments');
 
-        var deleteRequest = objectStore.delete(commentId);
-        deleteRequest.onsuccess = function() {
-            alert('Komentarz został usunięty.');
-            loadComments(loggedInUser.username, db); 
+        objectStore.openCursor().onsuccess = function(event) {
+            var cursor = event.target.result;
+            if (cursor) {
+                if (cursor.value.addedBy === loggedInUser.username && cursor.value.id === Number(commentId)) {
+                    cursor.delete();
+                    alert(`Komentarz został usunięty.`);
+                }
+                cursor.continue();
+            } else {
+                loadComments(loggedInUser.username, db);
+            }
         };
     };
 
@@ -221,6 +231,7 @@ function displayComments(comments) {
         console.error('Błąd podczas otwierania bazy danych IndexedDB.');
     };
 }
+
 
   //wyświetlanie ulubionych miejsc danego użytkownika
   function displayUserFavorites() {
