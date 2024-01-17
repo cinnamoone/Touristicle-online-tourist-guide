@@ -22,13 +22,41 @@ function dodajMarker() {
   var coordinates = document.getElementById('coordinates').value;
   var imageURL = document.getElementById('imageURL').value;
 
-  // Sprawdzenie, czy wybrano kategorię
+  var isValid = true;
   if (category === "wybierz kategorię z listy") {
-      document.getElementById('category-error').style.display = 'block';
-      return; 
+    document.getElementById('category-error').style.display = 'block';
+    isValid = false;
   } else {
-      document.getElementById('category-error').style.display = 'none';
+    document.getElementById('category-error').style.display = 'none';
   }
+  if (!placeName) {
+    document.getElementById('placeName-popup').style.display = 'block';
+    isValid = false;
+  } else {
+    document.getElementById('placeName-popup').style.display = 'none';
+  }
+
+  if (!address) {
+    document.getElementById('address-popup').style.display = 'block';
+    isValid = false;
+  } else {
+    document.getElementById('address-popup').style.display = 'none';
+  }
+
+  if (!coordinates) {
+    document.getElementById('coordinates-popup').style.display = 'block';
+    isValid = false;
+  } else {
+    document.getElementById('coordinates-popup').style.display = 'none';
+  }
+
+  // ... sprawdzenie innych pól ...
+
+  if (!isValid) {
+    return;
+  }
+  // Sprawdzenie, czy wybrano kategorię
+ 
 
   var addedBy = checkLoggedInUser(); 
 
@@ -46,7 +74,7 @@ function dodajMarker() {
   var request = objectStore.add(markerData);
 
   request.onsuccess = function() {
-    alert('Marker został dodany do bazy danych IndexedDB.');
+    swal('Marker został dodany do bazy.');
   };
 
   markerForm.reset();

@@ -44,14 +44,14 @@ function login(event) {
         localStorage.setItem('loggedInUser', JSON.stringify(user));
   
         
-        alert('Zalogowano pomyślnie! Przekierowywanie do strony "Moje Konto"...');
+        swal('Zalogowano pomyślnie!','Przekierowywanie do strony "Moje Konto"...',  'success');
   
         setTimeout(() => {
           window.location.href = 'konto.html';
-        }, 1000);
+        }, 2000);
       } else {
         console.log('Nieprawidłowy email lub hasło');
-        alert('Nieprawidłowy email lub hasło');
+        swal('Nieprawidłowy email lub hasło');
       }
     };
   

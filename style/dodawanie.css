@@ -166,3 +166,12 @@ select {
 .tooltip-icon:hover {
     color: #0056b3; /* Ciemniejszy odcień niebieskiego przy najechaniu */
 }
+
+.popup {
+    display: none; 
+    color: #d8000c; 
+    padding: 10px; 
+    margin-top: 5px; 
+    font-size: 14px; 
+    max-width: 250px;
+  }

@@ -8,7 +8,8 @@
     <link rel="stylesheet" type="text/css" href="../style/dodawanie.css">
     <script src="\JavaScripts\menu.js"></script>
     
-    
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     
     <!-- Importuj bibliotekę Leaflet -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
@@ -61,8 +62,10 @@
                 </div>
             <form id="marker-form" style="display: none;">
                 <label for="placeName">Nazwa miejsca:</label>
+                <div id="placeName-popup" class="popup" style="display: none;">Pole nazwy jest wymagane!</div>
                 <input type="text" id="placeName" required><br>
                 <label for="address">Adres:</label>
+                <div id="address-popup" class="popup" style="display: none;">Pole adresu jest wymagane!</div>
                 <input type="text" id="address" required><br>
                 <label for="category">Kategoria:</label>
                 <span id="category-error" class="error-message" style="color: red; display: none;">Proszę wybrać kategorię z listy.</span>
@@ -80,6 +83,8 @@
                 <br>
                 <label for="coordinates">Współrzędne geograficzne:</label>
                 <i class="fas fa-info-circle tooltip-icon" title="Kliknij na mapę, aby zaznaczyć miejsce"></i>
+                <div id="coordinates-popup" class="popup" style="display: none;">Pole współrzędnych jest wymagane!</div>
+
                 <input type="text" id="coordinates" required><br>
 
 

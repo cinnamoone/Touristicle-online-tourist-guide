@@ -108,7 +108,7 @@ function removeMarker(markerId) {
       
         var deleteRequest = objectStore.delete(Number(markerId));
         deleteRequest.onsuccess = function() {
-            alert('Miejsce zostało usunięte.');
+            swal('Miejsce zostało usunięte.');
             loadMarkers(loggedInUser.username, db); 
         };
     };
@@ -218,7 +218,7 @@ function removeComment(commentId) {
             if (cursor) {
                 if (cursor.value.addedBy === loggedInUser.username && cursor.value.id === Number(commentId)) {
                     cursor.delete();
-                    alert(`Komentarz został usunięty.`);
+                    swal(`Komentarz został usunięty.`);
                 }
                 cursor.continue();
             } else {
@@ -340,7 +340,7 @@ function removeFavorite(placeName) {
             if (cursor) {
                 if (cursor.value.userName === loggedInUser.username && cursor.value.placeName === placeName) {
                     cursor.delete();
-                    alert(`Usunięto z kolekcji ulubionych: "${placeName}"`);
+                    swal(`Usunięto z kolekcji ulubionych: "${placeName}"`);
                 }
                 cursor.continue();
             } else {
@@ -382,7 +382,7 @@ function deleteAccount() {
     
     deleteRequest.onsuccess = () => {
       console.log('Konto usunięte:', emailToDelete);
-      alert('Twoje konto zostało usunięte.');
+      swal('Twoje konto zostało usunięte.');
   
       // Wylogowanie użytkownika po usunięciu konta
       logout();

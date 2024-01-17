@@ -1137,7 +1137,7 @@ function readMarkersFromDB() {
 function toggleFavorite(placeName, checkboxElem, imageUrl) {
   var user = checkLoggedInUser();
   if (!user) {
-    alert('Aby dodać miejsce do ulubionych, musisz być zalogowany');
+    swal('Aby dodać miejsce do ulubionych, musisz być zalogowany');
     checkboxElem.checked = false;
     return;
   }
@@ -1155,14 +1155,14 @@ function removeFromFavorites(placeName, user) {
     var store = transaction.objectStore('favourites');
     store.delete(placeName).onsuccess = function() {
       console.log('Usunięto z ulubionych.');
-      alert('Usunięto z ulubionych');
+      swal('Usunięto z ulubionych');
     };
   });
 }
 
 function addToFavorites(placeName, user, imageUrl) {
   if (!user) {
-    alert('Aby dodać miejsce do ulubionych, musisz być zalogowany.');
+    swal('Aby dodać miejsce do ulubionych, musisz być zalogowany.');
     return;
   }
 
@@ -1184,7 +1184,7 @@ function saveFavoriteToDB(favorite) {
 
     request.onsuccess = function() {
       console.log('Dodano do ulubionych!');
-      alert('Dodano do ulubionych!');
+      swal('Dodano do ulubionych!');
     };
 
     request.onerror = function(event) {
@@ -1267,7 +1267,7 @@ function selectRating(rating) {
 
 function submitRating(placeName) {
   if (selectedRating === 0) {
-    alert('Proszę wybrać ocenę.');
+    swal('Proszę wybrać ocenę.');
     return;
   }
   addRating(placeName, selectedRating);
@@ -1279,7 +1279,7 @@ function addRating(placeName, rating) {
   var addedBy = checkLoggedInUser();
 
   if (!addedBy) {
-      alert('Musisz być zalogowany, aby dodać ocenę.');
+      swal('Musisz być zalogowany, aby dodać ocenę.');
       return;
   }
 
@@ -1294,7 +1294,7 @@ function addRating(placeName, rating) {
           if (cursor) {
               if (cursor.value.placeName === placeName) {
                   // Użytkownik już ocenił to miejsce, aktualizuj ocenę lub wyświetl komunikat
-                  alert('Już oceniłeś to miejsce.');
+                  swal('Już oceniłeś to miejsce.');
                   return; // Zapobiega dodaniu kolejnej oceny
               }
               cursor.continue();
@@ -1307,7 +1307,7 @@ function addRating(placeName, rating) {
                   timestamp: new Date().toISOString()
               }).onsuccess = function() {
                   console.log('Ocena dodana.');
-                  alert('Ocena została dodana.');
+                  swal('Ocena została dodana.');
                   calculateAverageRating(placeName);
               };
           }
