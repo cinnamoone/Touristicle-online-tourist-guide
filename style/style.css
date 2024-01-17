@@ -405,7 +405,7 @@ footer {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
-    background-color: #f9f9f9e5;
+    background-color: #f9f9f9ec;
     padding: 25px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -472,3 +472,33 @@ footer {
 .rate-place-button:hover {
     background-color: #7445a0; /* Zmiana koloru tła przy najechaniu */
 }
+
+
+/* Style dla gwiazdek z nową klasą */
+.custom-rating {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    margin-bottom: 10px;
+    display: flex; /* Wyświetlanie gwiazdek w linii */
+  }
+  
+  .custom-rating .star {
+    color: gray;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+   /* Odstęp między gwiazdkami */
+  }
+  
+  /* Po najechaniu myszą na gwiazdkę, zmiana koloru na złoty */
+  .custom-rating .star:hover {
+    color: gold;
+  }
+  
+  /* Styl dla wybranych gwiazdek */
+  .custom-rating .star.selected {
+    color: gold;
+    
+  }
+  

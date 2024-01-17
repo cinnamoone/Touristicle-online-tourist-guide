@@ -938,14 +938,20 @@ function addComment(placeName) {
       addedBy: addedBy.username,
       timestamp: new Date().toISOString()
     };
-    store.add(comment);
-  }).then(() => {
-    console.log('Komentarz dodany.');
-    alert('Komentarz dodany.');
-    updateInfoPanel(placeName); // aktualizacja panelu info o miejscu
-  }).catch(err => {console.error('Błąd podczas dodawania komentarza: ', err);
+    store.add(comment).onsuccess = function(event) {
+      console.log('Komentarz dodany.');
+      // Po dodaniu komentarza, odśwież informacje o markerze
+      var updatedMarker = markers.find(m => m.info && m.info.nazwa === placeName);
+      if (updatedMarker) {
+        updatedMarker.info.komentarze.push(addedBy.username + ': ' + commentText);
+        infoContainer.update(updatedMarker.info);
+      }
+    };
+  }).catch(err => {
+    console.error('Błąd podczas dodawania komentarza: ', err);
   });
 }
+
 
 // aktualizacja panelu informacyjnego
 function updateInfoPanel(placeName) {
@@ -1153,6 +1159,67 @@ function saveFavoriteToDB(favorite) {
 }
 
 //oceny
+// Funkcja pokazująca formularz do dodawania oceny
+function showRatingForm(placeName) {
+  var ratingForm = document.createElement('div');
+  ratingForm.id = 'ratingForm'; 
+  ratingForm.className = 'rating-form-container';
+  ratingForm.innerHTML = `
+      <h3>Oceń miejsce: ${placeName}</h3>
+      <div class="custom-rating">
+        <span class="star" data-rating="1">☆</span>
+        <span class="star" data-rating="2">☆</span>
+        <span class="star" data-rating="3">☆</span>
+        <span class="star" data-rating="4">☆</span>
+        <span class="star" data-rating="5">☆</span>
+      </div>
+      <button id="submitRating" onclick="submitRating('${placeName}')">Zatwierdź ocenę</button>
+      <button onclick="closeRatingForm()">Anuluj</button>
+  `;
+  document.body.appendChild(ratingForm);
+
+  // Dodajmy nasłuchiwanie na gwiazdki
+  var stars = document.querySelectorAll('.star');
+  stars.forEach(star => {
+    star.addEventListener('click', () => {
+      var rating = star.getAttribute('data-rating');
+      selectRating(rating);
+    });
+  });
+}
+
+function closeRatingForm() {
+  var ratingForm = document.getElementById('ratingForm');
+  if (ratingForm) {
+    ratingForm.remove();
+  }
+}
+
+
+var selectedRating = 0; // Zmienna do przechowywania wybranej oceny
+
+function selectRating(rating) {
+  selectedRating = rating;
+  var stars = document.querySelectorAll('.star');
+  stars.forEach(star => {
+    var starRating = star.getAttribute('data-rating');
+    if (starRating <= rating) {
+      star.classList.add('selected');
+    } else {
+      star.classList.remove('selected');
+    }
+  });
+}
+
+function submitRating(placeName) {
+  if (selectedRating === 0) {
+    alert('Proszę wybrać ocenę.');
+    return;
+  }
+  addRating(placeName, selectedRating);
+  closeRatingForm(); // Dodajmy zamknięcie formularza po zatwierdzeniu oceny
+}
+
 // funkcja do dodawania oceny do bazy danych
 function addRating(placeName, rating) {
   var addedBy = checkLoggedInUser();
@@ -1183,18 +1250,7 @@ function addRating(placeName, rating) {
 
 
 // funkcja pokazująca formularz do dodawania oceny
-function showRatingForm(placeName) {
-  var ratingForm = document.createElement('div');
-  ratingForm.id = 'ratingForm'; // Ustawienie identyfikatora dla formularza
-  ratingForm.className = 'rating-form-container';
-  ratingForm.innerHTML = `
-      <h3>Oceń miejsce: ${placeName}</h3>
-      <input type="number" id="ratingInput" min="1" max="5" step="0.1" placeholder="Ocena (1-5)">
-      <button onclick="addRating('${placeName}', document.getElementById('ratingInput').value)">Dodaj ocenę</button>
-      <button onclick="closeRatingForm()">Anuluj</button>
-  `;
-  document.body.appendChild(ratingForm);
-}
+
 
 function closeRatingForm() {
   var ratingForm = document.getElementById('ratingForm'); // Pobranie formularza przez ID
