@@ -747,15 +747,15 @@ var markersLayer = L.layerGroup(markers).addTo(map);
 var filterContainer = document.getElementById('filter-container');
 
 var customControl = L.Control.extend({
-options: {
-position: 'topleft'
-},
+  options: {
+      position: 'topleft'
+  },
 
 onAdd: function (map) {
-var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
-container.innerHTML = '<button class="custom-button" onclick="toggleFilterPanel()">Filtruj</button>';
-return container;
-}
+  var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+  container.innerHTML = '<button class="custom-button" onclick="toggleFilterPanel()">Filtruj</button>';
+  return container;
+  }
 });
 
 map.addControl(new customControl());
@@ -1022,7 +1022,7 @@ function displaySortedComments(allComments, commentsContainer) {
   let sortedComments = Array.from(allComments.values()).sort((a, b) => {
       if (a.timestamp === null) return -1;
       if (b.timestamp === null) return 1;
-      return a.timestamp - b.timestamp; // Sortowanie od najstarszego do najnowszego
+      return a.timestamp - b.timestamp; 
   });
 
   sortedComments.forEach(comment => {
@@ -1042,19 +1042,18 @@ function generateRatingStars(rating) {
   let starsHtml = '';
   let ratingDisplay = '';
 
-  // Upewnij się, że rating jest liczbą
   const numericRating = parseFloat(rating);
 
   if (isNaN(numericRating)) {
     starsHtml = '<i class="far fa-star"></i>'.repeat(5); // 5 pustych gwiazdek
     ratingDisplay = '(Brak ocen)';
   } else {
-    const validRating = Math.max(0, Math.floor(numericRating)); // Upewnij się, że rating nie jest ujemny
+    const validRating = Math.max(0, Math.floor(numericRating)); 
     const filledStars = '<i class="fas fa-star"></i>'.repeat(validRating);
     const halfStar = numericRating % 1 !== 0 ? '<i class="fas fa-star-half-alt"></i>' : '';
     const emptyStars = '<i class="far fa-star"></i>'.repeat(5 - Math.ceil(numericRating));
     starsHtml = `${filledStars}${halfStar}${emptyStars}`;
-    ratingDisplay = `(${numericRating.toFixed(1)})`; // zaokrąglenie do jednego miejsca po przecinku
+    ratingDisplay = `(${numericRating.toFixed(1)})`; 
   }
 
   return `<span class="rating-stars">${starsHtml}</span> <span class="rating-number">${ratingDisplay}</span>`;

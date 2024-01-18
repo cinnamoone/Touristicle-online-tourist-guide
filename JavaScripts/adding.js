@@ -50,7 +50,7 @@ function dodajMarker() {
     document.getElementById('coordinates-popup').style.display = 'none';
   }
 
-  // ... sprawdzenie innych pól ...
+
 
   if (!isValid) {
     return;
