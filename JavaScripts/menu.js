@@ -1,13 +1,10 @@
-//zmiana menu w zależności czy użytkownik jest zalogowany czy nie
+//zmiana menu w zależności czy użytkownik jest zalogowany
 function updateMenu() {
     const loggedInUser = checkLoggedInUser();
 
-    
     const menu = document.querySelector('.menu ul');
 
-    
-    if (loggedInUser) {
-        
+    if (loggedInUser) {   
         menu.innerHTML = `
             <li><a href="dodawanie.html">Dodaj miejsce</a></li>
             <li class="dropdown">
@@ -18,8 +15,7 @@ function updateMenu() {
                 </ul>
             </li>
             <li><a href="ranking.html">Ranking</a></li>`;
-    } else {
-        
+    } else {    
         menu.innerHTML = `
             <li><a href="dodawanie.html">Dodaj miejsce</a></li>
             <li class="dropdown">
@@ -32,6 +28,7 @@ function updateMenu() {
             <li><a href="ranking.html">Ranking</a></li>`;
     }
 }
+
 
 //obsługa wylogowania
 function logout() {

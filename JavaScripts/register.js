@@ -1,7 +1,7 @@
 //rejestracja
 
-// otowrzenie bazy danych 
-const request = indexedDB.open("usersDB", 3);
+// otworzenie bazy danych 
+const request = indexedDB.open("usersDB", 2);
 
 // obsługa błędów lub aktualizacja bazy danych
 request.onerror = (event) => {
@@ -11,7 +11,6 @@ request.onerror = (event) => {
 request.onupgradeneeded = (event) => {
   const db = event.target.result;
 
-  
   let objectStore;
   if (!db.objectStoreNames.contains("users")) {
     objectStore = db.createObjectStore("users", { keyPath: "email" });
@@ -19,12 +18,12 @@ request.onupgradeneeded = (event) => {
     objectStore = request.transaction.objectStore("users");
   }
 
-  // Tworzenie indeksów dla 'username' i 'email'
+  // tworzenie indeksu dla 'username' 
   if (!objectStore.indexNames.contains("username")) {
     objectStore.createIndex("username", "username", { unique: true });
   }
 };
-
+ 
 document.addEventListener("DOMContentLoaded", () => {
   
 
@@ -37,13 +36,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Sprawdzanie, czy wszystkie pola są wypełnione
     if (!username || !email || !password || !confirmPassword) {
+
       swal("Proszę wypełnić wszystkie pola!");
+      
       return;
     }
 
     // sprawdzanie haseł
     if (password !== confirmPassword) {
-      swal("Podane hasła nie są identyczne!");
+
+      swal("Podane hasła nie są identyczne!", "Spróbuj ponownie.", "warning");
+      
       return;
     }
 

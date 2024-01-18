@@ -1,6 +1,6 @@
 //logowanie
 // tworzenie/otwieranie bazy danych IndexedDB
-const request = indexedDB.open("usersDB",   3);
+const request = indexedDB.open("usersDB",  2);
 
 // obsługa błędów lub aktualizacja bazy danych
 request.onerror = (event) => {
@@ -51,7 +51,16 @@ function login(event) {
         }, 2000);
       } else {
         console.log('Nieprawidłowy email lub hasło');
-        swal('Nieprawidłowy email lub hasło');
+
+        Swal.fire({
+          title: "Podane hasła nie są identyczne!",
+          text: "Spróbuj ponownie.",
+          icon: "warning",
+          customClass: {
+            confirmButton: "custom-confirm-button-class" 
+          }
+        });
+
       }
     };
   
