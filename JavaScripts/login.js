@@ -1,6 +1,6 @@
 //logowanie
 // tworzenie/otwieranie bazy danych IndexedDB
-const request = indexedDB.open("usersDB",   2);
+const request = indexedDB.open("usersDB",   3);
 
 // obsługa błędów lub aktualizacja bazy danych
 request.onerror = (event) => {

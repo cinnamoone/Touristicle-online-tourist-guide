@@ -1,7 +1,7 @@
 //rejestracja
 
 // otowrzenie bazy danych 
-const request = indexedDB.open("usersDB", 2);
+const request = indexedDB.open("usersDB", 3);
 
 // obsługa błędów lub aktualizacja bazy danych
 request.onerror = (event) => {
@@ -12,9 +12,18 @@ request.onupgradeneeded = (event) => {
   const db = event.target.result;
 
   
-  const objectStore = db.createObjectStore("users", { keyPath: "email" });
-};
+  let objectStore;
+  if (!db.objectStoreNames.contains("users")) {
+    objectStore = db.createObjectStore("users", { keyPath: "email" });
+  } else {
+    objectStore = request.transaction.objectStore("users");
+  }
 
+  // Tworzenie indeksów dla 'username' i 'email'
+  if (!objectStore.indexNames.contains("username")) {
+    objectStore.createIndex("username", "username", { unique: true });
+  }
+};
 
 document.addEventListener("DOMContentLoaded", () => {
   
@@ -28,29 +37,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Sprawdzanie, czy wszystkie pola są wypełnione
     if (!username || !email || !password || !confirmPassword) {
-      alert("Proszę wypełnić wszystkie pola!");
+      swal("Proszę wypełnić wszystkie pola!");
       return;
     }
 
     // sprawdzanie haseł
     if (password !== confirmPassword) {
-      alert("Podane hasła nie są identyczne!");
+      swal("Podane hasła nie są identyczne!");
       return;
     }
 
   
-    const transaction = request.result.transaction(["users"], "readwrite");
+    const db = request.result;
+    const transaction = db.transaction(["users"], "readwrite");
     const objectStore = transaction.objectStore("users");
 
-    // sprawdzanie czy użytkownik o danej nazwie już istnieje
-    const requestGet = objectStore.get(username);
-    requestGet.onsuccess = (event) => {
-      const existingUser = event.target.result;
+    // Sprawdzanie, czy użytkownik o danym e-mailu już istnieje
+    const requestEmail = objectStore.get(email);
+    requestEmail.onsuccess = () => {
+      if (requestEmail.result) {
+        swal("Użytkownik o tym adresie e-mail już istnieje.");
+        return;
+      }
 
-      if (existingUser) {
-        alert("Użytkownik o tej nazwie już istnieje. Wybierz inną nazwę.");
-      } else {
-        
+      // Sprawdzanie, czy użytkownik o danej nazwie użytkownika już istnieje
+      const usernameIndex = objectStore.index("username");
+      const requestUsername = usernameIndex.get(username);
+      requestUsername.onsuccess = () => {
+        if (requestUsername.result) {
+          swal("Użytkownik o tej nazwie już istnieje. Wybierz inną nazwę.");
+          return;
+        }
+
+        // Rejestracja nowego użytkownika
         const newUser = { username, email, password };
         const requestAdd = objectStore.add(newUser);
 
@@ -63,13 +82,13 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         requestAdd.onerror = () => {
-          alert("Błąd rejestracji. Spróbuj ponownie.");
+          swal("Błąd rejestracji. Spróbuj ponownie.");
         };
-      }
+      };
     };
 
     transaction.oncomplete = () => {
-      request.result.close();
+      db.close();
     };
   };
 });
