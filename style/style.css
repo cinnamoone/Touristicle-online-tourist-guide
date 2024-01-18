@@ -167,7 +167,7 @@ ul a:hover {
 
 .info-container img {
     max-width: 500px;  /* Ustawia maksymalną szerokość na 100% szerokości kontenera */
-    max-height: 300px;     /* Automatyczne dostosowanie wysokości dla zachowania proporcji */
+    max-height: 250px;     /* Automatyczne dostosowanie wysokości dla zachowania proporcji */
     display: block;   /* Eliminuje dodatkowe marginesy, które mogą występować dla elementu img */
     margin: 0 auto;   /* Centralizuje obraz w obrębie kontenera */
 }
