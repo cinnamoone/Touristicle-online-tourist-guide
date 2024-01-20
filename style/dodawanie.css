@@ -175,3 +175,11 @@ select {
     font-size: 14px; 
     max-width: 250px;
   }
+
+  .custom-confirm-button-class {
+    background-color: #4c8baf !important;  /* Użyj !important, aby upewnić się, że styl nadpisuje domyślne style SweetAlert */
+  }
+  .custom-font-class {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+}

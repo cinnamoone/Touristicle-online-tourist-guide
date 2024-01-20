@@ -501,4 +501,7 @@ footer {
     color: gold;
     
   }
+  .custom-confirm-button-class {
+    background-color: #4c8baf !important;  /* Użyj !important, aby upewnić się, że styl nadpisuje domyślne style SweetAlert */
+  }
   

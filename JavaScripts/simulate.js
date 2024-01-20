@@ -316,44 +316,56 @@ function displayFavorites(favorites) {
     });
 }
 function removeFavorite(placeName) {
-    var confirmDeletion = confirm(`Czy na pewno chcesz usunąć miejsce "${placeName}" z ulubionych?`);
-    if (!confirmDeletion) {
-        return; // jeśli użytkownik nie potwierdzi, przerwij funkcję
-    }
+    Swal.fire({
+        title: `Czy na pewno chcesz usunąć miejsce\n"${placeName}"\nz ulubionych?`,
+        text: "Tej operacji nie można cofnąć.",
+        icon: 'warning',
+        customClass: {
+            title: 'custom-font-class',
+            confirmButton: 'custom-confirm-button-class'
+        },
+        showCancelButton: true,
+        confirmButtonText: 'Tak, usuń',
+        cancelButtonText: 'Nie, zachowaj'
+    }).then((result) => {
+        if (!result.isConfirmed) {
+            return; // jeśli użytkownik nie potwierdzi, przerwij funkcję
+        }
 
-    var loggedInUser = checkLoggedInUser();
-    if (!loggedInUser) {
-        console.log('Brak zalogowanego użytkownika.');
-        return;
-    }
+        var loggedInUser = checkLoggedInUser();
+        if (!loggedInUser) {
+            console.log('Brak zalogowanego użytkownika.');
+            return;
+        }
 
-    var db;
-    var request = indexedDB.open('markersDB', 4);
+        var db;
+        var request = indexedDB.open('markersDB', 4);
 
-    request.onsuccess = function(event) {
-        db = event.target.result;
-        var transaction = db.transaction(['favourites'], 'readwrite');
-        var objectStore = transaction.objectStore('favourites');
+        request.onsuccess = function(event) {
+            db = event.target.result;
+            var transaction = db.transaction(['favourites'], 'readwrite');
+            var objectStore = transaction.objectStore('favourites');
 
-        objectStore.openCursor().onsuccess = function(event) {
-            var cursor = event.target.result;
-            if (cursor) {
-                if (cursor.value.userName === loggedInUser.username && cursor.value.placeName === placeName) {
-                    cursor.delete();
-                    swal(`Usunięto z kolekcji ulubionych: "${placeName}"`);
+            objectStore.openCursor().onsuccess = function(event) {
+                var cursor = event.target.result;
+                if (cursor) {
+                    if (cursor.value.userName === loggedInUser.username && cursor.value.placeName === placeName) {
+                        cursor.delete();
+                        Swal.fire(`Usunięto z kolekcji ulubionych: "${placeName}"`, '', 'success');
+                    }
+                    cursor.continue();
+                } else {
+                    loadFavorites(loggedInUser.username, db);
                 }
-                cursor.continue();
-            } else {
-                
-                loadFavorites(loggedInUser.username, db);
-            }
+            };
         };
-    };
 
-    request.onerror = function(event) {
-        console.error('Błąd podczas otwierania bazy danych IndexedDB.');
-    };
+        request.onerror = function(event) {
+            console.error('Błąd podczas otwierania bazy danych IndexedDB.');
+        };
+    });
 }
+
 
   
 //usuwanie konta

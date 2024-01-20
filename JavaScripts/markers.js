@@ -1183,8 +1183,13 @@ function saveFavoriteToDB(favorite) {
 
     request.onsuccess = function() {
       console.log('Dodano do ulubionych!');
-      swal('Dodano do ulubionych!');
-    };
+      Swal.fire({
+        title: 'Dodano do ulubionych!',
+        customClass: {
+          confirmButton: 'custom-confirm-button-class'
+        }
+      });
+          };
 
     request.onerror = function(event) {
       console.error('Błąd przy dodawaniu miejsca do ulubionych.', event);
@@ -1294,6 +1299,7 @@ function addRating(placeName, rating) {
               if (cursor.value.placeName === placeName) {
                   // Użytkownik już ocenił to miejsce, aktualizuj ocenę lub wyświetl komunikat
                   swal('Już oceniłeś to miejsce.');
+                  
                   return; // Zapobiega dodaniu kolejnej oceny
               }
               cursor.continue();

@@ -44,7 +44,17 @@ function login(event) {
         localStorage.setItem('loggedInUser', JSON.stringify(user));
   
         
-        swal('Zalogowano pomyślnie!','Przekierowywanie do strony "Moje Konto"...',  'success');
+        Swal.fire({
+          title: 'Zalogowano pomyślnie!',
+          text: 'Przekierowywanie do strony "Moje Konto"...',
+          icon: 'success',
+          customClass: {
+            confirmButton: "custom-confirm-button-class" 
+          },
+          timer: 3000, 
+          showConfirmButton: false 
+      });
+      
   
         setTimeout(() => {
           window.location.href = 'konto.html';
@@ -53,9 +63,9 @@ function login(event) {
         console.log('Nieprawidłowy email lub hasło');
 
         Swal.fire({
-          title: "Podane hasła nie są identyczne!",
+          title: "Nieprawidłowy email lub hasło!",
           text: "Spróbuj ponownie.",
-          icon: "warning",
+          icon: "error",
           customClass: {
             confirmButton: "custom-confirm-button-class" 
           }

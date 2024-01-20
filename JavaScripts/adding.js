@@ -74,7 +74,13 @@ function dodajMarker() {
   var request = objectStore.add(markerData);
 
   request.onsuccess = function() {
-    swal('Marker został dodany do bazy.');
+    Swal.fire({
+      title: 'Marker został dodany do mapy!',
+      customClass: {
+        title: 'custom-font-class',
+        confirmButton: 'custom-confirm-button-class'
+      }
+    });
   };
 
   markerForm.reset();

@@ -37,7 +37,16 @@ document.addEventListener("DOMContentLoaded", () => {
     // Sprawdzanie, czy wszystkie pola są wypełnione
     if (!username || !email || !password || !confirmPassword) {
 
-      swal("Proszę wypełnić wszystkie pola!");
+      Swal.fire({
+        title: 'Proszę wypełnić wszystkie pola!',
+        icon: 'warning',
+        
+        customClass: {
+          title: 'custom-font-class',
+          confirmButton: 'custom-confirm-button-class'
+        }
+      });
+          
       
       return;
     }
@@ -45,7 +54,16 @@ document.addEventListener("DOMContentLoaded", () => {
     // sprawdzanie haseł
     if (password !== confirmPassword) {
 
-      swal("Podane hasła nie są identyczne!", "Spróbuj ponownie.", "warning");
+      Swal.fire({
+        title: 'Podane hasła nie są identyczne!',
+        text: 'Spróbuj ponownie',
+        icon: 'warning',
+        
+        customClass: {
+          title: 'custom-font-class',
+          confirmButton: 'custom-confirm-button-class'
+        }
+      });
       
       return;
     }
@@ -59,7 +77,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const requestEmail = objectStore.get(email);
     requestEmail.onsuccess = () => {
       if (requestEmail.result) {
-        swal("Użytkownik o tym adresie e-mail już istnieje.");
+        Swal.fire({
+          title: 'Użytkownik o takim mailu już istnieje!',
+          text: 'Spróbuj ponownie',
+          icon: 'warning',
+          
+          customClass: {
+            title: 'custom-font-class',
+            confirmButton: 'custom-confirm-button-class'
+          }
+        });
         return;
       }
 
@@ -68,7 +95,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const requestUsername = usernameIndex.get(username);
       requestUsername.onsuccess = () => {
         if (requestUsername.result) {
-          swal("Użytkownik o tej nazwie już istnieje. Wybierz inną nazwę.");
+          Swal.fire({
+            title: 'Podana nazwa użytkownika jest zajęta!',
+            text: 'Spróbuj ponownie',
+            icon: 'warning',
+            
+            customClass: {
+              title: 'custom-font-class',
+              confirmButton: 'custom-confirm-button-class'
+            }
+          });
           return;
         }
 
@@ -77,12 +113,22 @@ document.addEventListener("DOMContentLoaded", () => {
         const requestAdd = objectStore.add(newUser);
 
         requestAdd.onsuccess = () => {
-          const confirmation = confirm("Rejestracja zakończona pomyślnie. Chcesz teraz przejść do strony logowania?");
-          
-          if (confirmation) {
-            window.location.href = 'login.html';
-          }
-        };
+          Swal.fire({
+              title: 'Rejestracja zakończona pomyślnie!',
+              text: 'Chcesz teraz przejść do strony logowania?',
+              icon: 'success',
+              showCancelButton: true,
+              confirmButtonText: 'Tak, przejdź do logowania',
+              cancelButtonText: 'Nie, pozostań tutaj',
+              customClass: {
+                confirmButton: 'custom-confirm-button-class'
+            }
+          }).then((result) => {
+              if (result.isConfirmed) {
+                  window.location.href = 'login.html';
+              }
+          });
+      };
 
         requestAdd.onerror = () => {
           swal("Błąd rejestracji. Spróbuj ponownie.");
