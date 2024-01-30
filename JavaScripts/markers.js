@@ -926,7 +926,20 @@ infoContainer.addTo(map);
 // dodawanie komentarza do IndexedDB
 function addComment(placeName) {
   var commentText = document.getElementById('commentInput').value;
-  var addedBy = checkLoggedInUser();
+  var loggedInUser = checkLoggedInUser();
+
+  if (!loggedInUser) {
+    console.error('Musisz być zalogowany, aby dodać komentarz.');
+    Swal.fire({
+      title: 'Musisz być zalogowany, aby dodać komentarz!',
+      
+      customClass: {
+        title: 'custom-font-size',
+        confirmButton: 'custom-confirm-button-class'
+      }
+    });
+    return;
+  }
 
   initIndexedDB().then(db => {
     var transaction = db.transaction(['comments'], 'readwrite');
@@ -934,23 +947,22 @@ function addComment(placeName) {
     var comment = {
       placeName: placeName,
       commentText: commentText,
-      addedBy: addedBy.username,
+      addedBy: loggedInUser.username,
       timestamp: new Date().toISOString()
     };
     store.add(comment).onsuccess = function(event) {
       console.log('Komentarz dodany.');
       var updatedMarker = markers.find(m => m.info && m.info.nazwa === placeName);
       if (updatedMarker) {
-          updatedMarker.info.komentarze.push(addedBy.username + ': ' + commentText); 
-          infoContainer.update(updatedMarker.info); 
+        updatedMarker.info.komentarze.push(loggedInUser.username + ': ' + commentText);
+        infoContainer.update(updatedMarker.info);
       }
-      
-      
     };
   }).catch(err => {
     console.error('Błąd podczas dodawania komentarza: ', err);
   });
 }
+
 
 
 // aktualizacja panelu informacyjnego
