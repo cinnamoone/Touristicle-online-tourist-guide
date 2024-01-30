@@ -1136,7 +1136,14 @@ function readMarkersFromDB() {
 function toggleFavorite(placeName, checkboxElem, imageUrl) {
   var user = checkLoggedInUser();
   if (!user) {
-    swal('Aby dodać miejsce do ulubionych, musisz być zalogowany');
+    Swal.fire({
+      title: 'Aby dodać miejsce do ulubionych, musisz być zalogowany!',
+      
+      customClass: {
+        title: 'custom-font-size',
+        confirmButton: 'custom-confirm-button-class'
+      }
+    });
     checkboxElem.checked = false;
     return;
   }
@@ -1154,14 +1161,27 @@ function removeFromFavorites(placeName, user) {
     var store = transaction.objectStore('favourites');
     store.delete(placeName).onsuccess = function() {
       console.log('Usunięto z ulubionych.');
-      swal('Usunięto z ulubionych');
+      Swal.fire({
+        title: 'Usunięto z ulubionych!',
+        customClass: {
+          title: 'custom-font-size',
+          confirmButton: 'custom-confirm-button-class'
+        }
+      });
     };
   });
 }
 
 function addToFavorites(placeName, user, imageUrl) {
   if (!user) {
-    swal('Aby dodać miejsce do ulubionych, musisz być zalogowany.');
+    Swal.fire({
+      title: 'Aby dodać miejsce do ulubionych, musisz być zalogowany!',
+      customClass: {
+        title: 'custom-font-size',
+        confirmButton: 'custom-confirm-button-class'
+      }
+    });
+    
     return;
   }
 
@@ -1186,6 +1206,7 @@ function saveFavoriteToDB(favorite) {
       Swal.fire({
         title: 'Dodano do ulubionych!',
         customClass: {
+          title: 'custom-font-size',
           confirmButton: 'custom-confirm-button-class'
         }
       });
@@ -1283,7 +1304,13 @@ function addRating(placeName, rating) {
   var addedBy = checkLoggedInUser();
 
   if (!addedBy) {
-      swal('Musisz być zalogowany, aby dodać ocenę.');
+      Swal.fire({
+        title: 'Musisz być zalogowany, aby dodać ocenę.',
+        customClass: {
+          title: 'custom-font-size',
+          confirmButton: 'custom-confirm-button-class'
+        }
+      });
       return;
   }
 
@@ -1298,7 +1325,13 @@ function addRating(placeName, rating) {
           if (cursor) {
               if (cursor.value.placeName === placeName) {
                   // Użytkownik już ocenił to miejsce, aktualizuj ocenę lub wyświetl komunikat
-                  swal('Już oceniłeś to miejsce.');
+                  Swal.fire({
+                    title: 'Już oceniłeś to miejsce!',
+                    customClass: {
+                      title: 'custom-font-size',
+                      confirmButton: 'custom-confirm-button-class'
+                    }
+                  });
                   
                   return; // Zapobiega dodaniu kolejnej oceny
               }
@@ -1312,7 +1345,14 @@ function addRating(placeName, rating) {
                   timestamp: new Date().toISOString()
               }).onsuccess = function() {
                   console.log('Ocena dodana.');
-                  swal('Ocena została dodana.');
+                  Swal.fire({
+                    title: 'Ocena została dodana!',
+                    customClass: {
+                      title: 'custom-font-size',
+                      confirmButton: 'custom-confirm-button-class'
+                    }
+                  });
+                  
                   calculateAverageRating(placeName);
               };
           }
