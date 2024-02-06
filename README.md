@@ -1,6 +1,6 @@
 Views from app:
 
-![image](https://github.com/cinnamoone/Touristicle-online-tourist-guide/assets/117740426/641c629d-ed02-4a1b-a265-084aebb2ee94)
+![image](https://github.com/cinnamoone/Touristicle-online-tourist-guide/assets/117740426/b46e134a-30dd-44e3-8c61-4cb606a3f628)
 ![image](https://github.com/cinnamoone/Touristicle-online-tourist-guide/assets/117740426/716d6899-ac99-4e13-98fc-b1a6775dd999)
 ![image](https://github.com/cinnamoone/Touristicle-online-tourist-guide/assets/117740426/78da4f73-e9bc-42a9-b6b9-2a66521691f0)
 ![image](https://github.com/cinnamoone/Touristicle-online-tourist-guide/assets/117740426/b8acaed4-5856-44ff-b9d9-2473030db4ef)
